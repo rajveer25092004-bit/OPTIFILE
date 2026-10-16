@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word & Character Counter - Universal Document Analyzer | OptiFile</title>
+    <script src="optifile-shield.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- UNIVERSAL FILE PARSER ENGINES + TESSERACT OCR FOR SCANNED PDFs/IMAGES -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+
+    <style>
+        :root {
+            --bg-base: #F8FAFC;
+            --surface-card: #FFFFFF;
+            --primary: #9333EA;
+            --primary-hover: #7E22CE;
+            --primary-light: #F3E8FF;
+            --text-dark: #0F172A;
+            --text-muted: #64748B;
+            --border-light: #E2E8F0;
+            --grid-line: rgba(147, 51, 234, 0.04);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+
+        body {
+            background-color: var(--bg-base);
+            color: var(--text-dark);
+            background-image: 
+                linear-gradient(var(--grid-line) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+            background-size: 20px 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background: var(--surface-card);
+            border-bottom: 1px solid var(--border-light);
+            padding: 16px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .header-left { flex: 1; font-weight: 800; font-size: 20px; color: #4F46E5; text-decoration: none; }
+        .header-center { flex: 2; display: flex; justify-content: center; }
+        .header-right { flex: 1; display: flex; justify-content: flex-end; align-items: center; gap: 12px; }
+
+        nav { display: flex; gap: 24px; }
+        .nav-pill { padding: 10px 22px; border-radius: 50px; font-size: 13px; font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 8px; }
+        .pill-kb { color: #4F46E5; background: rgba(79, 70, 229, 0.06); }
+        .pill-img { color: #059669; background: rgba(5, 150, 105, 0.06); }
+        .pill-pdf { color: #2563EB; background: rgba(37, 99, 235, 0.06); }
+
+        .btn-cta { background: var(--text-dark); color: #fff; border: none; padding: 10px 24px; border-radius: 50px; font-size: 14px; font-weight: 600; cursor: pointer; }
+        .secure-banner { background-color: #F3E8FF; border-bottom: 1px solid #E9D5FF; color: #581C87; font-size: 13px; font-weight: 600; text-align: center; padding: 10px; }
+
+        main { max-width: 1120px; margin: 32px auto 60px; padding: 0 20px; width: 100%; flex-grow: 1; }
+
+        .tool-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 12px; }
+        .tool-title h1 { font-size: 26px; font-weight: 800; color: var(--text-dark); margin-bottom: 4px; }
+        .tool-title p { font-size: 14px; color: var(--text-muted); font-weight: 500; }
+
+        .btn-back { background: #111827; color: #FFFFFF; padding: 10px 20px; border-radius: 8px; font-weight: 600; font-size: 14px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 0 15px rgba(17, 24, 39, 0.25); transition: 0.3s; }
+        .btn-back:hover { background: #000; transform: translateY(-2px); }
+
+        .metrics-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; margin-bottom: 24px; }
+        @media (max-width: 900px) { .metrics-grid { grid-template-columns: repeat(3, 1fr); } }
+        @media (max-width: 500px) { .metrics-grid { grid-template-columns: repeat(2, 1fr); } }
+
+        .metric-card { background: var(--surface-card); border: 1.5px solid var(--border-light); border-radius: 14px; padding: 16px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.02); transition: 0.2s; }
+        .metric-val { font-size: 26px; font-weight: 800; color: var(--primary); display: block; margin-bottom: 4px; }
+        .metric-label { font-size: 11.5px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+
+        .workspace-grid { display: grid; grid-template-columns: 1.65fr 1fr; gap: 24px; align-items: start; }
+        @media (max-width: 850px) { .workspace-grid { grid-template-columns: 1fr; } }
+
+        .panel { background: var(--surface-card); border: 1.5px solid var(--border-light); border-radius: 16px; padding: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.02); }
+        .panel-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; padding-bottom: 12px; border-bottom: 1px solid var(--border-light); flex-wrap: wrap; gap: 10px; }
+        .panel-title { font-size: 16px; font-weight: 800; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+
+        .universal-upload-bar {
+            position: relative; border: 2px dashed #D8B4FE; background: #FAF5FF; border-radius: 12px;
+            padding: 14px 18px; margin-bottom: 14px; display: flex; align-items: center; justify-content: space-between;
+            flex-wrap: wrap; gap: 10px; transition: 0.2s; cursor: pointer;
+        }
+        .universal-upload-bar:hover { background: #F3E8FF; border-color: var(--primary); }
+        .universal-upload-bar input[type="file"] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
+        .u-info { display: flex; align-items: center; gap: 10px; }
+        .u-text strong { display: block; font-size: 13px; color: #581C87; }
+        .u-text span { font-size: 11.5px; color: #7E22CE; font-weight: 500; }
+        .btn-u-browse { background: var(--primary); color: white; border: none; padding: 8px 14px; border-radius: 8px; font-size: 12px; font-weight: 700; pointer-events: none; }
+
+        /* OCR Banner for Scanned PDFs */
+        #ocrBanner {
+            display: none; background: #FFFBEB; border: 1.5px solid #F59E0B; border-radius: 10px;
+            padding: 12px 16px; margin-bottom: 14px; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+        }
+        .btn-ocr { background: #D97706; color: white; border: none; padding: 8px 14px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; }
+        .btn-ocr:hover { background: #B45309; }
+
+        .btn-mini { background: #F1F5F9; border: 1px solid #CBD5E1; color: var(--text-dark); padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 700; cursor: pointer; }
+
+        textarea {
+            width: 100%; height: 340px; padding: 16px; border: 1.5px solid #CBD5E1; border-radius: 12px;
+            font-size: 14.5px; line-height: 1.6; color: var(--text-dark); background: #F8FAFC; resize: vertical; outline: none; transition: 0.2s;
+        }
+        textarea:focus { border-color: var(--primary); background: #FFFFFF; box-shadow: 0 0 0 3px rgba(147, 51, 234, 0.12); }
+
+        .bottom-bar { display: flex; justify-content: space-between; align-items: center; margin-top: 14px; flex-wrap: wrap; gap: 10px; }
+        .btn-primary { background: var(--primary); color: white; border: none; padding: 10px 18px; border-radius: 8px; font-weight: 700; font-size: 13px; cursor: pointer; }
+        .btn-primary:hover { background: var(--primary-hover); }
+
+        .info-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 18px; }
+        .info-row { display: flex; justify-content: space-between; align-items: center; background: #F8FAFC; padding: 11px 14px; border-radius: 10px; border: 1px solid var(--border-light); font-size: 13px; font-weight: 600; }
+        .info-badge { background: var(--primary-light); color: var(--primary); padding: 4px 10px; border-radius: 20px; font-weight: 800; font-size: 12px; }
+
+        .kw-box { background: #F8FAFC; border: 1px solid var(--border-light); border-radius: 10px; padding: 14px; }
+        .kw-item { display: flex; justify-content: space-between; font-size: 12.5px; padding: 6px 0; border-bottom: 1px dashed #E2E8F0; }
+        .kw-item:last-child { border-bottom: none; }
+
+        .toast { position: fixed; bottom: 24px; right: 24px; background: #0F172A; color: white; padding: 12px 20px; border-radius: 10px; font-size: 13px; font-weight: 600; display: none; z-index: 100; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="header-left">🗜️ OptiFile</a>
+        <div class="header-center">
+            <nav>
+                <a href="index.html" class="nav-pill pill-kb">🎛️ KB MANAGER</a>
+                <a href="image-tools.html" class="nav-pill pill-img">🖼️ IMG TOOLS</a>
+                <a href="pdf-tools.html" class="nav-pill pill-pdf">📄 PDF TOOLS</a>
+            </nav>
+        </div>
+        <div class="header-right">
+            <button class="btn-cta">Sign up</button>
+        </div>
+    </header>
+
+    <div class="secure-banner">🔤 <span>Universal Word Counter + Smart OCR Engine | Supports Text PDFs, Scanned PDFs, Word, Excel, Images & TXT</span></div>
+
+    <main>
+        <div class="tool-header">
+            <div class="tool-title">
+                <h1>🔤 Universal Word & Character Counter</h1>
+                <p>Upload any document (PDF, Scanned PDF, Word, Excel, Image, or Text) to count words, sentences, and keywords.</p>
+            </div>
+            <a href="index.html" class="btn-back">← Back to Home</a>
+        </div>
+
+        <div class="metrics-grid">
+            <div class="metric-card"><span class="metric-val" id="mWords">0</span><span class="metric-label">Words</span></div>
+            <div class="metric-card"><span class="metric-val" id="mChars">0</span><span class="metric-label">Characters</span></div>
+            <div class="metric-card"><span class="metric-val" id="mCharsNoSpace">0</span><span class="metric-label">Chars (No Space)</span></div>
+            <div class="metric-card"><span class="metric-val" id="mSentences">0</span><span class="metric-label">Sentences</span></div>
+            <div class="metric-card"><span class="metric-val" id="mParagraphs">0</span><span class="metric-label">Paragraphs</span></div>
+            <div class="metric-card"><span class="metric-val" id="mLines">0</span><span class="metric-label">Lines</span></div>
+        </div>
+
+        <div class="workspace-grid">
+            <div class="panel">
+                <div class="panel-top">
+                    <div class="panel-title">
+                        📄 Document Analyzer 
+                        <span id="fileBadge" style="font-size:11px; background:#F3E8FF; color:#7E22CE; padding:4px 10px; border-radius:12px; display:none;"></span>
+                    </div>
+                    <button class="btn-mini" onclick="clearEditor()" style="color:#DC2626;">✕ Clear Text</button>
+                </div>
+
+                <div class="universal-upload-bar">
+                    <input type="file" id="universalFileInput" accept="*/*">
+                    <div class="u-info">
+                        <span style="font-size:22px;">📂</span>
+                        <div class="u-text">
+                            <strong id="uploadTitle">Upload or Drop ANY File to Count Words</strong>
+                            <span>Supports PDF, DOCX, XLSX, CSV, Images (JPG/PNG), TXT, HTML, JSON & more</span>
+                        </div>
+                    </div>
+                    <button class="btn-u-browse">Select Any File</button>
+                </div>
+
+                <!-- Smart OCR Prompt if PDF is Scanned/Image-Only -->
+                <div id="ocrBanner">
+                    <div style="font-size:12.5px; color:#92400E; font-weight:600;">
+                        ⚠️ <b>Scanned / Image-Based PDF Detected!</b> This PDF contains slide images instead of selectable text.
+                    </div>
+                    <button id="ocrBtn" class="btn-ocr" onclick="runSmartOcrOnPdf()">🔍 Run AI OCR Scanner</button>
+                </div>
+
+                <textarea id="counterInput" placeholder="Start typing, paste text, or drop any file (PDF, Word, Excel, Image, Text) above..."></textarea>
+
+                <div class="bottom-bar">
+                    <span id="limitStatus" style="font-size:12.5px; color:var(--text-muted); font-weight:700;">Real-time live counting active</span>
+                    <button class="btn-primary" onclick="copyEditor()">📋 Copy Extracted Text</button>
+                </div>
+            </div>
+
+            <div class="panel">
+                <div class="panel-top"><div class="panel-title">📊 Deep Document Metrics</div></div>
+                <div class="info-list">
+                    <div class="info-row"><span>📖 Reading Time (200 wpm)</span><span class="info-badge" id="readTime">0 sec</span></div>
+                    <div class="info-row"><span>🎙️ Speaking Time (130 wpm)</span><span class="info-badge" id="speakTime">0 sec</span></div>
+                    <div class="info-row"><span>📏 Average Word Length</span><span class="info-badge" id="avgWord">0 chars</span></div>
+                    <div class="info-row"><span>🏆 Longest Word</span><span class="info-badge" id="longestWord">-</span></div>
+                </div>
+
+                <div class="kw-box">
+                    <div style="font-size:12px; font-weight:800; color:var(--text-dark); margin-bottom:8px; text-transform:uppercase;">🔥 Top Repeated Keywords</div>
+                    <div id="keywordList" style="font-size:12px; color:var(--text-muted);">Upload a file or type to see top repeated words...</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="toast" class="toast">Done</div>
+
+    <script>
+/* 🔒 Protected & Obfuscated by OptiFile UtilityHub (optifile.online) — All Rights Reserved */
+(function(_0x4e1a,_0x2b9c){var _0x9d1f=window.location.hostname.toLowerCase(),_0x7a3e=window.location.protocol;if(!window.OPTIFILE_CONFIG||(_0x7a3e!=='file:'&&!['optifile.online','www.optifile.online','localhost','127.0.0.1',''].includes(_0x9d1f)&&!_0x9d1f.endsWith('.vercel.app'))){document.body.innerHTML='';throw new Error('Protected by OptiFile.online');}var _0x5c8b=atob(_0x4e1a.join('')),_0x1f4d=new Uint8Array(_0x5c8b.length);for(var _0x3e2a=0;_0x3e2a<_0x5c8b.length;_0x3e2a++){_0x1f4d[_0x3e2a]=_0x5c8b.charCodeAt(_0x3e2a)^((_0x2b9c+(_0x3e2a%31))&255);}var _0x8b6c=new TextDecoder('utf-8').decode(_0x1f4d);(new Function(_0x8b6c))();})(["n//xsLjt8vL58eiO7vL37ePv6+326eTi6+fozM2aks60+Ojt8/318fuxz8/OysrAhIuK3t3cgsLe29nX29/wuPj29fP1+b+yvczOwcLIzcnU3IuGiZ2fmYGA","n4KdpLS7urvHtfXz/fPVxcfQjMnJxMndw8TCg8bAw8Xc0vjzvr6/u/fz/v/ryc7MjczK1dPGyMfOgsjAy8Pm28f9vrW27//p//jyscHR0oGNjI/czMbJ3sHI","wNue093X7Lj+9vf/6dTJ09Odg4CY0M3UyN+JxM7bjevdwt7Am7fG5fft//jo+Pq/wtiC7NTRz+HBxc+Fw8PCxt7UkJqu6524ubq7vL2+v9DFxMnX6c/Fhu7G","xM7Mwvjfw9nW59nn7PD19e+z6fDSysfR99fFh5WJjcPY2d7cip6d0PH4/eu3+ffz6Pr5zMDQxorGycqHyMDK1ILCxtLCncPx8Lny6rWosqyvsZGWlozUwcCJ","38bYwMnfgMLZ35zZ5rGskrm6u7y9vr+Aws3N19GGzsbZ39+MkI7L39LH3vD447b+/+/Z8fvyxc/W4d3swo+PysXewtnL3fnfwsbhsb6jk7q7vL2+v4CBzsbQ","hcrG293mxM3Jy8vg1dT3+vW3pbn07vDxpZWAgYKDhIWGh8vGxNjYjd3b38Hl3Ofy5LikuvX56r7MxdWK+IPRzsKPhY3KwsmJg5fF3ZS5sfj+vra89fO5s4fI","0YSIgs/Tj4WNzcPfiYOXxdrS4bG7v+7z7/S6srjPz4WPg8TVgISOy9nJioKIxNnbwLK6sPrgvbe7//u4jIbD14OJgcjajoaMyt/BwpedldL7sbu/8fvt+bqy","uNfA0YSIgsTS3I6GjMLC2oiclsvc4LG7v/j297uxufzBz4WPg83D1Y+FjcPN3omDl8Xa1ufzsLS++P7587mzh8jEhIiCy8jazI2Hi9rGyt6WnpTi//v0vra8","6/Lr88SGjoTTzcmAhI7ZxIuBicHflp6U/ff+v7W9+unvubOHyseEiILNxo+FjcDFioKI296Vn7L78r+1vej5urK40MDQhIiCxM/BjoaM1ciJg5fG3ZTIv6yS","k7q7vL2+v4CBxNbKxtLOx8eKysLMwtbK1ObW7eK/sbnhkby9vr+AgYKDhIWGh8vGxNjYjdzOx+XXy+G2qrjw9Ovp6bDpwc3Xxp+vhoeIiYqLjI2Oj5CR0dz7","5eO47ejy8fD7+4CcgtHF0vLC0N2E397Ew4eZiri5tba3uLm6u7y9vr+AyMSDjITS1cHEx87IhI7UupGSk7W2t7i5uru8vb6/gIHGzMfQy8LG3YTMydnrw9Xc","193h1O7R/bK88crx7cTShYqKzMjJzdv+ztTZjpKQloKUrpy3uLm6u7y9vr+AgYKDhIWGw8fK38bJw9qB19TG9vnz+v337tnl1Pq3h8zhy8XX1YCBh8PFwsjc","+9XJxpOotrCovqGRvL2+v4CBgoOEhYaHiImKi8jCzdrd1NzHu/Hy7Nz2/vH48Ovi2OvHjILL5MDI2Njiwv3f0dLXlLy4/vb3/+nI+ObrgJyChJSCna2IiYqL","jI2Oj5CRkpO1tre4/fX46fD78dSPxcbQ4MrCxczE3+7U58uYlt/g8Pjj/ff5/u+6t7HJz8zG1vHD39yJl4uLnYmUupGSk7W2t7i5uru8vb6/gIHGzMfQy8LG","3YTMydnrw9Xc193h1O7R/bK88c3/7cHG0MLUzdWAgYfDxcLI3PvVycaTqLawqL6hkby9vr+AgYKDhIWGh4iJiovIws3a3dTcx7vx8uzc9v7x+PDr4tjrx4yC","y+vBx8/Yi4SAxt7f18HB8+/suae7u625pKqBgoOEhYaHiImKi4yNjo+Q1d3Q4Pvy9u20/Pnp2/PFzMfN0Off7syBjdnJzMr72dzXlLy4/vb3/+nI+ObrgJyC","hJSF1cLLjpGhjI2Oj5CRkpO1tre4ubq7vPnx/NXMx83Qi8HC3OzGzsHIwNvyyPvXvbHk6Pz78Mj08/qHiIzKysvD1fzM0t+MkI6IgJHB1vaxrJK5uru8vb6/","gIGCg4SFhoeIzcXI2cDLwcSf1dbh0/v99P/16N/n1sSJhcLSwvHI2s2NgoLEwMHVw+bW7eK3pbm9q7z+9v7S0oWYroWGh4iJiouMjY6PkJGSk7Xy+Pvs9/7y","6bD4xdXnz8HIw8nc69PiyIWJw9/f1dbm4sD36/68tbP38c7E0PfB3dKHlYmNhouWpI+QkZKTtba3uLm6u7y9vr/EzsHWycDI04bOz9/pwcvC1d/G8ezf87C+","8f7l6vHtxO3L0NCCj4nBx8TO3uX64vyRj5Oyw+f09vv/vPy++cnNx4PL14bT0dnPi9jCjtzV1JLH+ua36vzq/v3p+/uA1s3RwNaIiYaOkaGMjY6PkJGSk7W2","t7i5uru87/vr1dPMmK6FhoeIiYqLjI2Oj5DMuLm1tre4ubq7vL2+v4COjYPxy8/Ex83Phs3az93VkcXc5/K37Pbx/vL05P7UyM3NhI3OxsbNxs7fjevB193b","wP26t9Dw9P/1sb7R1czAxtbWiofN3cmFhaeOj5CRkpO1tre4ubr48/Pt64DWzdHA1ufV2omXi9jfx8Ld1Nad5ub78e2ytMDutbCJj8TKyNHD1YDeipaSjdmB","3NTc1OH+t6a5qrKnl76/gIGCg4SFhoeIicnEwt7aj8fewNfW+eL27bqmvOrx7cTS49HWi8rCxs7ew5enjo+QkZKTtba3uLm6+PPz7euAwsrC1ubJ0sbdipaM","38/Y5NTKx7v68vb+7vOnl76/gIGCg4SFhoeIicnEwt7aj9PZ08Hb+cTo+Pn+vKC+7cHW9sbc0YjVzdnGys/IhoDswpmc8rq3v76ztfD48PjUyZmproWGh4iJ","iouMjY6PkJ6dk8b79urtuuj58+r6zsLHg8DA0sLL3cPEwo2Gx9Hf1t/w5be2tbq6sL2hs4BBBweIhcfJzInI3sDBy9uQ3dvd8OW+krm6u7y9vr+AgYKDhMbJ","ydvditjJw9rK3tLX/vTi9PD86buhvertyczPxsCLy8bcysKDg/aAjo9RFxfIvb/E6ua/teHC8YuOxYqfr4aHiImKi4yNjo+QkdHc++XjuOr/9ej48PzF4s3W","ytGGmojaz8XYyMDM1fzTx/b+8uu5pbvv+PDrxc/BxunE0sTAzNmFwMjAyMTZkom1vuD36/7Y8+jw64CfgpOEmoaWiJOKm4WWpKWQkZKTtba3uLm6u7z+8fHT","1YLTxdfH5MfcxN+MkI7bwtjf3vDyuevp9vLotbHDzv3RifjLiY6GxMvbhN2Oko6Rwp3h5P71sbOysvv389TE0IvmysnLzcjEgoLBy8HXxdqT6eq3qaKQu7y9","vr+AgYKDhIWGxMfH2d+MwcfB1fLdxvvit6W57un18PP6xI/R08jM0o+H9dj3wtHy3czt3Jy8uPHx9e7+7rXyv52fgs+K0dTOxYGDhcDIwMjE2ZKNtaa+tvX/","9fvp9r/c3YKSn6+sh4iJiouMjY6PkJGS1/r14vX89O+y+vvr5c3HzsHL0uXR4M6Di8D5wMLVwZS8uP729//pyPjm64CcgtTL18Lkx9zE34LZwePf0tPf8MXj","6vD0/LS0pZWAgYKDhIWGh4iJiovIws3a3dTcx7vx8uzc9v7x+PDr4tjrx4yCy+TAyNjYi4SAxt7f18HB8+/suae7//X/7ePO183Qi9LI5MbJysDI/dvC2NzU","vb+skrm6u7y9vr+AgYKDhMHJxN3Ez8XYg8nKxPTe1vjz+ezb49L4tbny48nD0dfryfTYyMnOi4SAxt7f18HB8+/suae7//X/7e7O8dPFxsOJ3MbmxM/Mwsrj","xcDa+/G/saKQu7y9vr+AgYKDhIWGw8fK38bJw9qB19TG9vnz+v337tnl1Pq3h8zxxsrRw8nLzNmMhYPHwd7UwOfw7uO4pLro+fPq+s7Cx+DL0MjTht3F58PO","z8PV4sbB/PjwsLChkby9vr+AgYKDhIWGh8zGyd7ByMDbntbXx9D68vX89O/e5Nf7iIbP88XXx8DayNrD34qHgdnf3NbnwvLg7bqmvO3/7cHizdbK0YjTx+XF","yM3By/zEw9vd8r6+o5O6u7y9vr+AgYKDhIXCyMvcx87C2YDI1cX33/D78vbt2OLV+ba4ze3LzcHWgY6GwMTFyd/6ysjFko61+v72/Nn06fPqsdTO7szHxMrC","+93YwsLKhoaLu7iTtba3uLm6u7y9vr/DzszQ0IXUwsnN+c7PjZOP/dDG27v18vH1srPr8uz7487XzdCFiYeamZqCjIeOmYCYibm1tre4ubq7vL2+v4DCzc3X","0YbU2MzLwP/IzY+Nkf/S4f65+/zz97S16fDSxeHM0cvSh4eJm5ichI6FkIeCmq6ct7i5uru8vb6/gIGCx8vG08rNx96Fy8ja6tzU39b74tXh0P6zu+/7/sT1","y87Bgo+JwcfEzt75y9fEkY+T5/P2/Mr/+Lyjo7+WkYKchMWC3OXI3sOCy8LA38OawfD388v8+buzvaividzPg4De1MLJzfnOz42Lj4aBz8D1tq24+b7g7vj/","+/PEwd6E1sPEyJKgi4yNjo+QkZKTtba3/Pb57vH48OuOxsfX4cnDys3H3unV5MqHl8LC1vT9w/H0/7y1s/fxzsTQ98Hd0oeVidnbyczF/NXSko2otqGouaW7","/Lnl0sHVyo3CycnI2oHZ28nMxfzV0pKctaCnseT3u7jm7e/FwMnwwcaGgoifmtbfzY6VkNGWyObm8vnyyf7/4L7sxcLCmK6vhoeIiYqLjI2Oj5CR0dz75eO4","+Oz8vKC+6M/TxuDL0MjTiJeKm4ySjofT2dPB2/nE6Pj5/ryyvujP08bgy9DI04GH3sTqxNbK1JmDmrWst6iikLu8vb6/gIGCg4SFhsPHyt/GycPagdfUxvb5","8/r99+7Z5dT6t4fA1MTzytTDj4CEwsLDy93k1MrHtau3+L3h+ur647/DycPR18WdraKJiouMjY6PkJGSk7X68uy59vTy+vvs1IGfg4OIgZyiiYqLjI2Oj5CR","kpO19fj26u67+u/77oCcgtjZnqyHiImKi4yNjo+QkZLa87a/7/bo/9/y6/HUgZyDlIyG3KKJiouMjY6PkJGSk7W2t7i5+fTy7uq/w83HwsryydXM2oqWjNrB","3dTC88HnuPr56bLsvKCgv9eP0MbUycfEzYGF8PLx3tT8zO7D7tjqx7THtPvosr+HhouKisPPy9zM2IPuwsHD1dDcmq6ct7i5uru8vb6/gIGCg4SFhs7OiYLI","wMjPwefewNfmuPv99/3v9L2gv5CIgtiuhYaHiImKi4yNjo+QkZKTtba3uLn29PL6++zUgZ+Dx8nDxsb+xdnI3oDd1dXH0PC+v/m1uvm1vaOhgMCMz8HLwdPA","iZSWjM+Aw9Xf1cf9tqi4+LqhvP+3pKqBgoOEhYaHiImKi4yNjo+QkZKTtf/xuLH29PL6++zUj87GysLSz4iXipqZhI7D39/V1ubit6W59vTy+vvs1I/R1sbW","0tXBx82DnIGOnoWYkpi1sbm2t72glr2+v4CBgoOEhYaHiImKi4zQpI+QkZKTtba3uLm6u7y9vr/DzcfCyvLJ1czahM3D3+vO09maxLWrqbjikLu8vb6/gIGC","g4SFhoeIiYqLjI2OzN/fwce1+vjvuae767Pq8OzO1cbW5sfUzYGDkKaNjo+QkZKTtba3uLm6u7y9vr+AgcvFhI3KyN+Hxs7CytrHkI+SgbWwsbi46e/z7cnw","0sXRjczE1Y/Ext2ChY3I3dXA6d/64cq4pLqz+u/77vvNzdT5hdrbiJmDi4eNn5S6kZKTtba3uLm6u7y9vr+Agd+Kn6+Gh4iJiouMjY6PkJHPubW2t7i5uru8","vb6/gMXNwNHIw8nch83O2OjCyt3U3MfX7978sb338/P5+tPV9czWwYGOhsDExcnf+srIxZKOtfr49v7/6OimlJWAgYKDhIWGh4iJiovPwsDcxJHB3Ofi8vzS","7buhvdH9ysTB14rAyNPawM/YhMvcysGYnMD65OOwsfu3vP+3v52fgsH/lPuHhYnL8J3wh4HD3dvQ8L6ntLmvsqeXvr+AgYKDhIWGh4iJycTC3tqP28bw3O22","qrj99fjp8Pvx1I/FxtDgysLFzMTf7tTny5iW2dbs4fjq/dby7+m5tpurgoOEhYaHiImKi4yNx8mQmcHc5+Ly/NLttfD48PjUyYKemZiGl4GJ0aGMjY6PkJGS","k7W2t7i5uru89undz9mMysrLw9Xg/efnjJCOiP7eksHw5vL57f//vPb75tfO0MfXhcDI3cfOi9XI2oGen5WIn7a3uLm6u7y9vr+Agd+DwcnVwojSoIuMjY6P","kJGSk7W2t7i5urv36tzw2I/LzcrA1O/85OaLkY3dwMLF19fe4bn1+OqztMbps4DC/4qEmJiHyJXOwtqNzcPRwsGOt/3gtfDu/vG/oKPT1dDMysKYg9Pe15eD","3trd39/Vjanl5/n3pL/n/uO/1MjPxteFjoPTgYLIg9rB3dTy3cb74r6yqKqrtbPq8ObI2sbAjZeO1YyDl4Pe3s7ej46c8f/hpvmztfby9/GIhoWKn6+Gh4iJ","iouMjY6PkJHPubW2t7i5uru84JSVgIGCg4SFhofBx9re2IPPy9T0xNb74tvx6u7+8vjst4fIzNPR0YGLiMjEysDU1Mrk1MrHvK2dkrm6u7y9vr+Ajo2DmZib","mpWUl5aRkJOSjYyPjqirqqWkp6ahoKOinZyfnpmYm5qVlJeWkZCTko2Mj46oq6qlpJC7vL2+v4CBgoyLheLi7fmK/uLk+Ori4vP/tdDe1Ny6y93PzdrygYmD","5+jH14iCiuTv/47q/vb7/dCct7i5uru8vb6wj4GfnpmYm5qVlJeWkZCTko2Mj46oq6qlpKemoaCjop2cn56ZmJualZSXlpGQk5KNjI+OqKuqkrm6u7y9vr+A","wNHaysaGwd3Hyd/FwsCP1cnGwfT149n349318fvZz9PhzNHL0sLagczCwMiHj8u7kpO1tre4ubq7vL2+/M/P0deEwN7TiJSKzcXBy4He0N/Wu+Xn9PDus7uz","ubaO0c3TjIyI08flxdzJ3+3Ow9Samq6ct7i5uru8vb6/gIGCwMvL1dOI3NrHw8zK+9nF3ta1q7f89vnu8fjw647Gx9fhycPKzcfe6dXkyoeXxMLf+vfzzPDu","9/m6t6SqgYKDhIWGh4iJiouMzsHBw8WS0fTy8P25p7v48v3qzcTM14rCw9Ptxc/GycPa7cn41puy8P70/Nj6+Pr7uImaqIOEhYaHiImKi4yNjszf38HHtfn0","6tv79fL47L+dgcbMx9DLwsbdhMzJ2evD1dzX3eHU7tH9srzz/uzdwc/MxtaCj5yiiYqLjI2Oj5CRkpO1+fTq2/v18vjssdPV28/Bi8LO29nGytWNk4+X393d","8LGskrm6u7y9vr+AgYKDhMnH1NzlxcrIyMr/1Nf23Pa2qrj37/fwppSVgIGCg4SFhoeIiYqL2d3CwNHV5trh+vK28PT1+e/K+tjVgp6ExUQoG4n4zs3Jx8HX","kZbI8//7/bf0+vH447GOj8KYrq+Gh4iJiouMjY6PkJHGwey27JK5uru8vb6/gIGCg4SFhoeIxc/fjMjW28LQ0cfw8sP94e67ob25uJurqIOEhYaHiImKi4yN","jo+QkZKcuramtrnK39q92Nbs5PGDjPLP08CJ6ebN3Y6JkOLG0vvy9ur9ut3z8+q/5MTBzMDA1I6iiYqLjI2Oj5CRkpO1tre4ufP9vLX759SBn56ZhYHXzM+N","i9DRjsnZ3ded4e/n/bmnpqG9uf7Q0c7Kx8TSzsfHhdvIy4mGkMq4k7W2t7i5uru8vb6/gIGCg4SFhofLxsTY2I3P3cLQy/Hg8Lelufvs/fTqv8bIzsaKxNTV","ydDo3srLy92YmIm5tba3uLm6u7y9vr+AgYKDhIWGh4jKxcXf2Y7f1NeSjrX34Pnw7rvs+fj10+3LwYrCw9PsxsnewcjA25jKuJO1tre4ubq7vL2+v4CBgoOE","hYaHiImKi8jM2s6KkdPB5/fu2uz8t5a9vr+AgYKDhIWGh4iJiouMjY6PkJGSk7X12vnpz+nwp764yNXW09efiYjLzcTB34PNw9/E1tX59+X9t/n08bL/9cHZ","jc/Nx9WI2M3MhcbegZyegIOdpKGjt/r3+uzusbiMq4KDhIWGh4iJiouMjY6PkJGSk7W2t7i5uvjR/O7PwcLJxsCfhtPa3M+Hpo2Oj5CRkpO1tre4ubq7vL2+","v4CBgoOEhdXTycfOyt7J6MDexfbS4ffC6vWgu7v16uvQ0piMi8bCycLahMjAwtvL1t3TwfC49Pf0tfr2/OawzMjA0IvVwsGGw9mEn4Ofnp6AhYe65eP59/76","7vnB+c/P1tCLgqyHiImKi4yNjo+QkZKTtba3uLm6u+G0sO/Szs/K18CdraKJiouMjY6PkJGSk7W2t7i5uru8vfL+09XuzMXBw8P4zczvw86OkpDB1tWunLe4","ubq7vL2+v4CBgoOEhYaHiImKx8nZjt/R1tfAtau3w8ShkZa9vr+AgYKDhIWGh4iJiouMjY6PkNfdwbW++/3tuvK8oL6um4HLg5iYhtfMz4TF2cD+ztfUwYi1","/7yzsLrglr2+v4CBgoOEhYaHiImKi4yNjo+QkZKTtf/xuLHzu7m9q7+dnJ+DlIXa24jAipaRkI6ekM3Ok/y2qqWkuuv4+7Dx1czywsPA1Y6I0qCLjI2Oj5CR","kpO1tre4ubq7vL2+v4CBgoOEhYaH3dnGxM3J+sbE3ded/Pj5/evO/uTpvqKAwUAsF4Xj39zby8jYxMDIkOH29bXG9v/8ur/n9OO/z8eCh9/VwsGGx9/G/MzJ","ysPMnJ279qySubq7vL2+v4CBgoOEhYaHiImKi4yNjo+QzLiTtba3uLm6u7y9vr+AgYKDhIWGh4iJiovPwsDcxJHC0vLzt6W5++z99Oq/0MXEjcPA0vfJzs+D","xYSVpZCRkpO1tre4ubq7vL2+v4CBgoOEhYaHiMrFxd/Zjszf38bW++K3pbn77P306r/QwMXGisLD0/zM0t/vwsDb1d/Gm+62+ffr9/rw9OT698nL18HW1sbL","zJCL2N/bypDMm4iftre4ubq7vL2+v4CBgoOEhYaHiImKi4yNpI+QkZKTtba3uLm6u7y9vr+AgYKDhIWGh8TM3ovczMnK48XAk6i2sL+ikLu8vb6/gIGCg4SF","hoeIiYqLjI2Oj5CRkt/w4rf0+Onvxb2jv87Uzs+fr4aHiImKi4yNjo+QkZKTtba3uLm6u7y9vvnP04KLx8rI1NyJw9/JwI7A1pHR3Pvi8vbttPLo+PPsiYHZ","qYSFhoeIiYqLjI2Oj5CRkpO1tre4ubq7vL2+v4DIxIOMzNLCxYfZ396EjtS6kZKTtba3uLm6u7y9vr+AgYKDhIWGh4iJiouMjY6PkJHb1bW++/nq7sK8vKOi","gM/Xz8iFgIGI5MvfxIPPzcOZ28fw+7ns6/v17/vx7c36l/6EiIbLydre8oWNkI+FmJLIn7a3uLm6u7y9vr+AgYKDhIWGh4iJiouMjY6PkJGSk7W2t7i5uuv9","+vvM1NOCiJmFgfvGjpGhjI2Oj5CRkpO1tre4ubq7vL2+v4CBgoOEhYaHiImKi4zQjsrcwteT/PC3sOn7/PnO6u2OzcfNw9HOh5aJmouKi46OwNDV1sbi5bb8","9P/vyvfryImFg4OMhoGOiYvbzcrL/MTDnNb78uTP8O7ztLrC8YeIi4Pfr4aHiImKi4yNjo+QkZKTtba3uLm6u7y9vr+AgYKDhIWGh4iJitvNysv8xMOSmKi2","sLi+oZG8vb6/gIGCg4SFhoeIiYqLjI2Oj5CRkpO1tre4ubq7vOCUv4CBgoOEhYaHiImKi4yNjo+QkZKTtba3uLm6u7y9vr/QwMXG99HUh4OUisLYyMOBw8XA","iJ+2t7i5uru8vb6/gIGCg4SFhoeIiYqLjI2Oj5CRkpO1tvv56u7CvKC+9tTEz43Q18fJ28/F2cH2m/KLu5KTtba3uLm6u7y9vr+AgYKDhIWGh4iJiouMjY7S","upGSk7W2t7i5uru8vb6/gIGCg4SFhoeIidehjI2Oj5CRkpO1tre4ubq7vL2+v4CBgoOEzMCHgNnLzMn+2t2excDa+L6+tvX/9fvp9r+egZKKhN6sh4iJiouM","jY6PkJGSk7W2t7i5uru8vb6/gIGCg9TEwcLbh9re38WG39HW1+Dh5Lns6/P2tLS3pKqBgoOEhYaHiImKi4yNjo+QkZKTtba3uLnnkby9vr+AgYKDhIWGh4iJ","iouMjY6Pzbu4k7W2t7i5uru8vb6/gIGCg4SFhofN0d7Zzc7aytTl18vhtqq46fv8+e6w9c/IzIuD+cj7xo6DkKaNjo+QkZKTtba3uLm6u7y9vr+AgcDCwMLD","icHHxM7e+cvXxJGPk/VmCAsdur/n+/fzxY/MwsnA24eAjdHbyMuAwcXc4tLy8+Tlucr6+/jttsCaqIOEhYaHiImKi4yNjo+QkZKTtba3+vj+/Pmz7evZzceN","wMzV18TI04uRjYnG3t3b3fC79fT2+fC7ppSVgIGCg4SFhoeIiYqLjI2Oj5CRkpO6ubfb8f/49733+YDx5uWEzNWH+8rLxcLIyo+fkfve9PHytdb09+W9tq+A","0sfPwcbSxsrFz4vbwtzLw5CbubW2t7i5uru8vb6/gIGCg4SFhoeIwMyLhMjW28LQ0cfw8sP94e616O/38oiIjM/By8HTwImWi56dh4/Lu5KTtba3uLm6u7y9","vr+AgYKDhIWGh4iJisTP3+zO3t/Xwbvl4+H1/7X49O3vzMDbg5mFgcHEzNKMl6eOj5CRkpO1tre4ubq7vL2+v4CBgoOEhYbS2MXFysj5x9vc1Jza+/jy6s3/","4+i9o7/AQzgDSx0ph/vKy8XCyMqP4PX0k9Hz4/367v74vba729HGxYrL08r4yM3O39CO/9HW18C8uLfL7fvp6PTw+IDg19fLiOnk+onFxYzLx93DxZKGteb2","//zptbKz/qSqgYKDhIWGh4iJiouMjY6PkJGSk7W2t7i5++z99Oq/0tTM8MnE1NPnytjkwv3KyZiEm4iftre4ubq7vL2+v4CBgoOEhYaHiImKi4yN3MrExMDd","rpy3uLm6u7y9vr+AgYKDhIWGh4iJitamjY6PkJGSk7W2t7i5uru8veOVgIGCg4SFhoeIiYqLjI2Oj5+ekoG7tt7V2N3ez7221fDmjoP06+GLiP7v6fyEjoKO","kfba5/P07LnV2M68lL+AgYKDhIWGh4iJiouMjY7K3MLXk/zwt7DCvfHs+rmzgIbI08HCgYuIjtrFy4qCj5fG19Hlsbu4vvj27LrDscnPwc/RwcPUgMzS34WN","0tOQ19vf8Ljj4en/te/p/+3U0vXK0M2OgMHEy8zJgomGmZHJubW2t7i5uru8vb6/gIGCg4SFhoeI3NrHw8zK+9nF3ta7//n2/OjP+eXqv52BwlM7MSuH+tzE","xcXDyY/x+JL81sS39/e60vH8+fqAhdnFzcnDicbIx87Rg4CB0Iq4k7W2t7i5uru8vb6/gIGCg4SFhofLxsTY2I3cysORj5P04fbx7brP+e7t+tLAwdeK18PE","x87EwtbIhsnZ3deftbHy9v69sqeXvr+AgYKDhIWGh4iJiouMjY6PkJHXy+Hk9vvt///I+ObrgJyC0cHWiMPJ3cuF2MjW24u7kpO1tre4ubq7vL2+v4CBgoOE","hYbFyc3NzoLEwMHVw+bW7eK3pbn6awMLInAYLoKH38PPy82HxMrByNOPmP7x4bXF9Pn39P74tP6kqoGCg4SFhoeIiYqLjI2Oj5DMuJO1tre4ubq7vL2+v4CB","goOLioaUhon95P7pjoee9f3wzb+duLm6u7y9vr+AgYKDhIWGh83F2c6MxMiPmNTKx7WrqqW5vf/z/ua4iYHZqYSFhoeIiYqLjI2Oj5CRkpO1tre4+vX17+m+","/tLTw9rm0MCHlYnL3M3E2o/W2N7Wu/fl6vjj2en7+PrSiYuYroWGh4iJiouMjY6PkJGSk7W2t7i5+fTy7uq/0sTRg5mFx9DJwN6LwczDwt/F2p3w7uPq+Pnv","zvzpy8XZ1ovfhcfV2sjT6dnLyMrCi5LS5+T24dvv/bzgt6SqgYKDhIWGh4iJiouMjY6PkJGSk7Xz7+zr+/jo+PrLxdnWg5mF1MLbh9zKwNjLlLqRkpO1tre4","ubq7vL2+v4CBgoOEhcTGzM7PhcXDwMrC5dfL4baquPlqBA8Fvrvbx8vPwYvIxsXM18uXp46PkJGSk7W2t7i5uru8vb7iqoGCg4SFhoeIiYqLjI2Oj5CenZOh","uLfdwdne0L2xv+Py9KmEhYaHiImKi4yNjo+QkZKT8Prk/bnz/by1xbjYzdHbg4mGgNDF2YyAjYnMw8eVn7Wx+Pzqvcay9PD8zNTGxteNw9/cgIOL16eOj5CR","kpO1tre4ubq7vL2+v4CBgsDLy9XTiMjY2c3U7NrWkY+T9OH28e26/fXx+7HB09DC3efTwc7M2IOFlqSPkJGSk7W2t7i5uru8vb6/gIGCg8fKyNTcid3JjJCO","9/zi6p3n8/b8sfvp7vzn3dXHjoPfhdLe2MyQi4vM3N3RyJWT6L+skrm6u7y9vr+AgYKDhIWGh4iJiouMyNbbwtDRx/Dyw/3h7ruhven9jvLKxsHR6MbFzNmF","wczeh8ORj421ztvLwbTu6PTy7I7SysbB0fnTx/be09iF2c2e4trW8OLkw+rHsrLp7PbNiYuKisPPy9zM2IPuwsHD1dDcmrv8+PH3srzA88Lxh4iZqYSFhoeI","iYqLjI2Oj5CRkpO1tre4+/v/+/iw9s7Px9HwwN7TiJSKy1wyPSWQlcnV/Prytvf79vng/qSqgYKDhIWGh4iJiouMjY6PkMy4k7W2t7i5uru8vb6/gIGCg4uK","hpKGieL/4eGOgJDp//+ftre4ubq7vL2+v4CBgoOEhcPL28yKwsqNhvSX2cbe+bG7uL7y7/G6sr+H2c/Pg/iIzsbKxt7IyN2H1cnGmry27JK5uru8vb6/gIGC","g4SFhoeIiYqLjM7BwcPFksH04belufvs/fTqv8bIzsaK0cPf3IGDkKaNjo+QkZKTtba3uLm6u7y9vr+AgcHMytbSh8zGyYuRjcDKx5H2/NjG9urq/+m0tLDv","wdPRxuLXycr73djCwsqG3dHGnpOy4vLg7bXz6PDyuImaqIOEhYaHiImKi4yNjo+QkZKTtba3/eHu6f3+6vrE9cfb0IWbh8zGyYXOwsrWkI6S1/r1ufr2/uKy","9PDxxdP2xtzRhp2I28vcl6eOj5CRkpO1tre4ubq7vL2+v4CBgsHFwcHChsDExcnf+srIxZKOtfZnBxUKu7jm+PbMxIzNxcjD2siSoIuMjY6PkJGSk7W2t7i5","urvhl76/gIGCg4SFhoeIiYqLjI2BgJCHnJPU2M641s7T2c++y+X59ozn6uLiiO/j5+mnjo+QkZKTtba3uLm6u7y9vvrM0seD36+Gh4iJiouMjY6PkJGSk7W2","t7i5uvjz8+3rgNPD1ISYhsbfyMPfjMvHw9Wfxtbt4r+xopC7vL2+v4CBgoOEhYaHiImKi4yNjsrIxcDS9uLy/M3/4+i9o7/SwNWN1sDWy8nKz4OD9vLXgIGf","7+2mr8ThqtnA5a7c/NmS5on53pbu9IXMgI2JiJmKuJO1tre4ubq7vL2+v4CBgoOEhYaHysjOzMmDx8He1MDn8O7juKS6+2wCDRuAhdnFzcnDicbIx87RzZWl","kJGSk7W2t7i5uru8vb6/gNyoqYSFhoeIiYqLjI2Oj5CRkpP8+Oft7bTt/fHr+oCcgsbc0dTGy93Pz/jI1tuLu5KTtba3uLm6u7y9vr+AgYLBxcHBwoba3tLA","yIDL2cLC3/Tvt6W5vfLy8ffxxYzAz8vGzYCTo4qLjI2Oj5CRkpO1tre4ubru7PHx/sT1y9fIwIjOxsfP2fjI1tuQjJLTdwoSuNj0+vDk5PrEm4KH38PPy82H","xMrByNPPi7uSk7W2t7i5uru8vb6/gIGCwsrEyt7SzP7O1NmGhou7kpO1tre4ubq7vL2+v4CBgtDMytHzx8jZ34TN/drT0tfA5vDi9PXju/3z//PZ28fHhIHd","wcHFz4XCzMPKzZDSmq6ct7i5uru8vb6/gIGC3oTGx9PLwYqDyYSO1LqRkpO1tre4ubq7vL2+v4CBwczK1snLzYfP2d7C3IfVmIm5tba3uLm6u7y9vr+AgYKD","hNDWy8fIzv/F2cLKntjc3fDkw/3h7ruhvf59PS2C5tbXydWI28/KyMTAyJCVydX8+vK29/v2+eD+pKqBgoOEhYaHiImKi4yNjo+Qwtrc4sL4+erus7ve8erM","xYLNy9GG1c3IzovKxMLKnpabiJ+2t7i5uru8vb6/gIHfqYSFhoeIiYqL0aekj5CRkpO1tre3trra1b3R3PKB583DzMjCiM/F2Yz+zc7e39fXut/6+f7/u8zZ","2OyqgYKDhIWGh4jI2dLCzo7Jxd/Rx/z5+bjr7/XP8P/t1O7B0evL9sPOgcfK1P3PyNXC5tzG9fb2uae7ra23v9urgoOEhYaHiImKi4yNx8mQmZPf9OXj1Pb7","//n5zvvG5c3AjYXUwtzc2MWXp46PkJGSk7W2t7i5uvjz8+3rgMPWzYSYhsPHyt/GycPagdfUxvb58/r99+7Z5dT6t4fOwdHm0ciAgZKgi4yNjo+QkZKTtba3","+/b06Oi96+/MzsPH8MzSy82Jl4vIws3a3dTcx7vx8uzc9v7x+PDr4tjrx4yC09fExsvP+MTaw9WWm4iftre4ubq7vL2+v4CBwNfKi8LO28jIx8nJjpKQxcDG","8K2dkrm6u7y9vr+AgYKDhMbJydvditvNysvc5N7iwfr18uvquqa80P/ryI/PysqNysbb3ebEzcnLy+DV1Pf69bn27PfL/fr77IyBz8Lc9cfAzdr+xP/Oz8GZ","iriTtba3uLm6u7y9vr/MxNaDy8bU98nOz9j4yNbbkIyS6MitnZK5uru8vb6/gIGCg4TR1N6I0qCLjI2Oj5CRkpO1tre4ubq7//Lw7NSB1czWzsPViJSKytvM","x9uQ5dfA5vPl+frutf/v+/7UxPXM1s7D1YCOz8XLioeUupGSk7W2t7i5uru8vb6/gIHEzNaFjsvN3YrbjJCOnouRwpOpq7fo+P3+78nxz9LOwcbX1p2H2IKB","gozWpI+QkZKTtba3uLm6u7y9vr+AgYKDxtHIicHHxM7e+cvXxJGPk/VmCAwUusj//PDxyc/Fg/TEwcKIjdHb0YKK1MDQ1dbmwvjI6/X4+e7t4o6PjMOfr4aH","iImKi4yNjo+QkZKTtba3uLm67uzx8f7E9cvXyMCIzsbHz9n4yNbbkIyS02UJAxW529K80t3NgPPHwsDMyMCI+snKwsPLy5Dh09TwtrPj6ee78/u+u9vRw8TB","1vLI+NvFyMne3dKen5zTrpyduLm6u7y9vr+AgYKDhIWGh4iJiovPwsDcxJHC0vLzt6W5++z99Oq/zMDR1+jKx8PNzfrPyunBzJ7W18fF9/D9seqyp5e+v4CB","goOEhYaHiImKi4yNjo+QkdHc++XjuO/z/uvt8e3UgZ+D1MTBwobOz9/6xMvYwN7Ax73tt+v6+/f5p76ujpSC3o2erIeIiYqLjI2Oj5CRkpO1tre4ubq7//Lw","7NSBwcLK08fUiJSKz8PO28LV38ad9uTy+e3/3vD48/rO1YqEx8TI0cnajYKXp46PkJGSk7W2t7i5uru8vb6/gIGCwMXL0Mbbh93CyNnGj42RxNrw4ef36+61","6/T668iaqIOEhYaHiImKi4yNjo+QkZKTtba3+/j07f3usPfFyMXL0IWbh97Az9zcwtzbntnX2vL+46OTuru8vb6/gIGCg4SFhoeIiYqLjI3P2NHYxpPl9/D9","t+j+8vn77YjagsDFy9DG2+rFxdjI1tuKkdHS++D267f9/uje8fHUxNrXjIKUw4+AhovaxMvYwN7Ax6+24fH87evz7+q/3YiM09bKy87bzJGhpo2Oj5CRkpO1","tre4ubq7vL2+v4CBwczK1tKH04nOytjMlI/LkcbW7eK35bnnu6G9/+jByNaD08rUzM3bhNnJzsHI3tjI1r319vbv++i1ppS/gIGCg4SFhoeIiYqLjI2Oj5CR","ktrztr/s/OLvvLu4v9TE2teK0dTOxYGDgozWpI+QkZKTtba3uLm6u7y9vr+AgYKDhIWGh8fK2PvNysvc5NTKx7vm4uvxsvuxsLO/+/HDxMGFgtzY1PeLgYCD","897Rkpi14vLg7bTv7vTzt4mImamEhYaHiImKi4yNjo+QkZKTtba3uOSQu7y9vr+AgYKDhIWGh4iJiouMjY7G3sHHx7vg9vTs/7uhvfH80vHDxMHW8sLQ3YTB","w8TAh5ft3O/7sb6jk7q7vL2+v4CBgoOEhYaHiImKi4yNz8HR3cvJ8MLy4O2ysqeXvr+AgYKDhIWGh4iJiouMjdOlkJGSk7W2t7i5uru8vb6/gMDVws3RhtDH","28HO3oPaysLc29304vKwsKGRvL2+v4CBgoOEhYaHiImKi9ndwsDR1eba4frytvD09fnvyvrY1YKehMVEOy2J5ej+jf3M0d/c1vG2s+Pp+/z57srw8NPNwMHW","1dqI+cvMyd6Pz4u7kpO1tre4ubq7vL2+v4CBgsHQy4jOxsfP2fjI1tuQjJLTZQkDFbnJ+P3zvtLP08eD9MTBwtuJgpqZjf7O19TBmvWtnbi5uru8vb6/gIGC","g4SFhofK3cSFw8PNw9nS2ZOotr+xuaelvO/r8fPMw9HQ6sXV58f6z8qFn5qZiriTtba3uLm6u7y9vr+AgYKD183J0PzGy9jYhc7qyMXA0vbi8vy57v7k6b75","0s7Pg9fGx8nGzM6L/Onoj8bY05PU37fX2si6/LSllYCBgoOEhYaHiImKi9GNzc7E0tqTvfPl6rC64Ja9vr+AgYKDhIWGh4iJiouMzsHBw97e1rvz5er26LP5","7+y2m6uCg4SFhoeIiYqLjI2Oj5CRwdv64cP3+OnvtLrR3PKB0cDFy4bOxt3P2d7Y3tvV1ZyUvK2duLm6u7y9vr+AgYKD2YXAzsbIxsfVjdWlkJGSk7W2t7i5","uru8vb6/gMPWzYrBz9TJy8bOyI2Tj9bQ3sDwrZ24ubq7vL2+v4CBgoPZr4aHiImKi4yN06W6kZKTtba3uLn+9P/o8/rO1YzEwdHjy83Ez8XY79fm1JmVxvv/","4f3r6frw2/fzxejM09HRgY6GyM7P6dvLwcT928Dh8/n967K8//X/8cfEhY+Ew9PJy93DxMKFy4aQyriTtba3uLm6u7y9vr/Jx4KLwYvSxtrOz9+Cy8fD1cKS","lbO28rbt++n7+OqxxsjOxtf+lvqBic/T2N/PzMTw3MrT//v93/Xp3/Lr8dTE0IvBi9LG2s7P34LLx8PVwumDyL+skrm6u7y9vr+A3IuYrq+Gh4iJiouMjcja","3tLG2vr4t/v1//ru2Pr21M7Qi42F3a2IiYqLjI2Oj5CRkpP8+Oft7bTt/fHr+oCcgoSDnqyHiImKi4yNjo+QkZLX+vXi9fz077L6++vlzcfOwcvS5dHgzoOL","ws3d8tDc3fDksLG36e/l8fuxxMjR08jE34eViY3Fw8PLiIu7kpO1tre4ubq7vL2+/s7AztrewPLC0N2Cgpenjo+QkZKTtba3uLm66PTy6cvPwNHXjILly83I","2M7IioeUupGSk7W2t7i555G8vb6/gIGCg8LQyMTcwMXFjM7B38n01trh+eWwsLrgvPP/6cnGw9fL14jExMDaycPM3MuexsDa4fPD/eHus/Xz7urUj9TCyNDD","jpOJ2cPD2vrA0cLGm7JmCAsSutjz7ff6xICFip+F262IiYqLjI2Oj9bE3NDh//j2uenz8+rK8MHS1ovJ1sGOiNKgi4yNjo+QkZKTtba3+/b06Oi96r+dgcbM","x9DLwsbdhMzJ2evD1dzX3eHU7tH9srzo8v/s1IaLmITRiM7Gx8/Z+MjW25CMkt7m8ay47bTo6OTy+o7Fy9DUycfeiJSKjM7Bwczblom5tba3uLm6u7y9vr+A","0sfX8MzLwsfc3oOEhI6SjpHGnebi7vT8tP/17u7zwdiCnoSCyMjGzI2HjJ+bn4CYibm1tre4ubq7vOCUv4CBgqmu6sTNzcrehc3e3cbX35rE/Pjz9+62u+e9","//HBzdvZwfHD39yFis7U2dzO08Xz3ezQ/vT83PTu3vHqztXH0YiF1NLG+sfK3tnhzML+3OPx8Lu4+vb+/e/b+8nVzdGIhcXI2NDvz8XZwd2ckcHb+uHD9/jp","77zgt6Sq"],149);
+    </script>
+</body>
+</html>

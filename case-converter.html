@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Case Converter - Universal File Case Changer | OptiFile</title>
+    <script src="optifile-shield.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- UNIVERSAL FILE PARSER & EXPORT ENGINES -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <style>
+        :root {
+            --bg-base: #F8FAFC;
+            --surface-card: #FFFFFF;
+            --primary: #E11D48;
+            --primary-hover: #BE123C;
+            --primary-light: #FFE4E6;
+            --text-dark: #0F172A;
+            --text-muted: #64748B;
+            --border-light: #E2E8F0;
+            --grid-line: rgba(225, 29, 72, 0.04);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+
+        body {
+            background-color: var(--bg-base);
+            color: var(--text-dark);
+            background-image: 
+                linear-gradient(var(--grid-line) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+            background-size: 20px 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background: var(--surface-card);
+            border-bottom: 1px solid var(--border-light);
+            padding: 16px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .header-left { flex: 1; font-weight: 800; font-size: 20px; color: #4F46E5; text-decoration: none; }
+        .header-center { flex: 2; display: flex; justify-content: center; }
+        .header-right { flex: 1; display: flex; justify-content: flex-end; align-items: center; gap: 12px; }
+
+        nav { display: flex; gap: 24px; }
+        .nav-pill { padding: 10px 22px; border-radius: 50px; font-size: 13px; font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 8px; }
+        .pill-kb { color: #4F46E5; background: rgba(79, 70, 229, 0.06); }
+        .pill-img { color: #059669; background: rgba(5, 150, 105, 0.06); }
+        .pill-pdf { color: #2563EB; background: rgba(37, 99, 235, 0.06); }
+
+        .btn-cta { background: var(--text-dark); color: #fff; border: none; padding: 10px 24px; border-radius: 50px; font-size: 14px; font-weight: 600; cursor: pointer; }
+        .secure-banner { background-color: #FFE4E6; border-bottom: 1px solid #FECDD3; color: #881337; font-size: 13px; font-weight: 600; text-align: center; padding: 10px; }
+
+        main { max-width: 1040px; margin: 32px auto 60px; padding: 0 20px; width: 100%; flex-grow: 1; }
+
+        .tool-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 12px; }
+        .tool-title h1 { font-size: 26px; font-weight: 800; color: var(--text-dark); margin-bottom: 4px; }
+        .tool-title p { font-size: 14px; color: var(--text-muted); font-weight: 500; }
+
+        .btn-back { background: #111827; color: #FFFFFF; padding: 10px 20px; border-radius: 8px; font-weight: 600; font-size: 14px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 0 15px rgba(17, 24, 39, 0.25); transition: 0.3s; }
+        .btn-back:hover { background: #000; transform: translateY(-2px); }
+
+        .panel { background: var(--surface-card); border: 1.5px solid var(--border-light); border-radius: 16px; padding: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.02); }
+        .panel-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; padding-bottom: 12px; border-bottom: 1px solid var(--border-light); flex-wrap: wrap; gap: 10px; }
+
+        /* Universal Upload Bar */
+        .universal-upload-bar {
+            position: relative; border: 2px dashed #FDA4AF; background: #FFF1F2; border-radius: 12px;
+            padding: 14px 18px; margin-bottom: 18px; display: flex; align-items: center; justify-content: space-between;
+            flex-wrap: wrap; gap: 10px; transition: 0.2s; cursor: pointer;
+        }
+        .universal-upload-bar:hover { background: #FFE4E6; border-color: var(--primary); }
+        .universal-upload-bar input[type="file"] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
+        .u-info { display: flex; align-items: center; gap: 10px; }
+        .u-text strong { display: block; font-size: 13px; color: #881337; }
+        .u-text span { font-size: 11.5px; color: #BE123C; font-weight: 500; }
+        .btn-u-browse { background: var(--primary); color: white; border: none; padding: 8px 14px; border-radius: 8px; font-size: 12px; font-weight: 700; pointer-events: none; }
+
+        .btn-mini { background: #F1F5F9; border: 1px solid #CBD5E1; color: var(--text-dark); padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 700; cursor: pointer; }
+
+        .case-buttons-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 18px; }
+        @media (max-width: 650px) { .case-buttons-grid { grid-template-columns: repeat(2, 1fr); } }
+
+        .case-btn {
+            background: #F8FAFC; border: 1.5px solid var(--border-light); border-radius: 10px; padding: 14px;
+            font-size: 14px; font-weight: 700; color: var(--text-dark); cursor: pointer; transition: all 0.2s; text-align: center;
+        }
+        .case-btn:hover { border-color: var(--primary); background: var(--primary-light); color: var(--primary); transform: translateY(-2px); }
+        .case-btn span { display: block; font-size: 11px; color: var(--text-muted); font-weight: 500; margin-top: 3px; }
+
+        textarea {
+            width: 100%; height: 320px; padding: 16px; border: 1.5px solid #CBD5E1; border-radius: 12px;
+            font-size: 14.5px; line-height: 1.6; color: var(--text-dark); background: #F8FAFC; resize: vertical; outline: none; transition: 0.2s;
+        }
+        textarea:focus { border-color: var(--primary); background: #FFFFFF; box-shadow: 0 0 0 3px rgba(225, 29, 72, 0.12); }
+
+        .bottom-bar { display: flex; justify-content: space-between; align-items: center; margin-top: 16px; flex-wrap: wrap; gap: 10px; }
+        .export-select { padding: 9px 12px; border: 1px solid #CBD5E1; border-radius: 8px; font-size: 12.5px; font-weight: 700; background: white; outline: none; cursor: pointer; }
+        .btn-primary { background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 8px; font-weight: 700; font-size: 13.5px; cursor: pointer; }
+        .btn-primary:hover { background: var(--primary-hover); }
+        .btn-dark { background: var(--text-dark); color: white; border: none; padding: 10px 18px; border-radius: 8px; font-weight: 700; font-size: 13.5px; cursor: pointer; }
+
+        .toast { position: fixed; bottom: 24px; right: 24px; background: #0F172A; color: white; padding: 12px 20px; border-radius: 10px; font-size: 13px; font-weight: 600; display: none; z-index: 100; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="header-left">🗜️ OptiFile</a>
+        <div class="header-center">
+            <nav>
+                <a href="index.html" class="nav-pill pill-kb">🎛️ KB MANAGER</a>
+                <a href="image-tools.html" class="nav-pill pill-img">🖼️ IMG TOOLS</a>
+                <a href="pdf-tools.html" class="nav-pill pill-pdf">📄 PDF TOOLS</a>
+            </nav>
+        </div>
+        <div class="header-right">
+            <button class="btn-cta">Sign up</button>
+        </div>
+    </header>
+
+    <div class="secure-banner">🔠 <span>Universal Case Converter | Drop PDF, Word (.DOCX), Excel (.XLSX), CSV, HTML, or TXT</span></div>
+
+    <main>
+        <div class="tool-header">
+            <div class="tool-title">
+                <h1>🔠 Universal Smart Case Converter</h1>
+                <p>Upload any document (PDF, Word, Excel, Text) and convert 10,000+ words to any case in 1 click.</p>
+            </div>
+            <a href="index.html" class="btn-back">← Back to Home</a>
+        </div>
+
+        <div class="panel">
+            <!-- Universal Upload Bar -->
+            <div class="universal-upload-bar">
+                <input type="file" id="universalFileInput" accept="*/*">
+                <div class="u-info">
+                    <span style="font-size:22px;">📂</span>
+                    <div class="u-text">
+                        <strong id="uploadTitle">Upload or Drag & Drop ANY File Here</strong>
+                        <span>Extracts text from PDF, DOCX, XLSX, CSV, TXT, HTML, JSON, MD & more</span>
+                    </div>
+                </div>
+                <button class="btn-u-browse">Browse Any File</button>
+            </div>
+
+            <div class="case-buttons-grid">
+                <button class="case-btn" onclick="convertCase('sentence')">Sentence case.<span>First letter of every sentence capital</span></button>
+                <button class="case-btn" onclick="convertCase('upper')">UPPERCASE<span>CONVERTS ALL LETTERS TO CAPS</span></button>
+                <button class="case-btn" onclick="convertCase('lower')">lowercase<span>converts all letters to small</span></button>
+                <button class="case-btn" onclick="convertCase('title')">Title Case<span>Smart Essay & Heading Case</span></button>
+                <button class="case-btn" onclick="convertCase('capitalize')">Capitalize Each Word<span>Every Single Word Starts With Caps</span></button>
+                <button class="case-btn" onclick="convertCase('inverse')">iNVERSE cASE<span>Flips uppercase & lowercase</span></button>
+            </div>
+
+            <div class="panel-top">
+                <span style="font-size:13.5px; font-weight:700;" id="caseStats">0 Words | 0 Characters</span>
+                <div style="display:flex; gap:8px;">
+                    <button class="btn-mini" onclick="undoCase()">↩ Undo</button>
+                    <button class="btn-mini" onclick="clearCaseText()" style="color:#DC2626;">✕ Clear</button>
+                </div>
+            </div>
+
+            <textarea id="caseInput" placeholder="Type, paste, or drop any file (PDF, Word, Excel, Text) above to convert its case..."></textarea>
+
+            <div class="bottom-bar">
+                <span style="font-size:12.5px; color:var(--text-muted); font-weight:600;">Instant conversion • Download in 3 formats</span>
+                <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                    <select id="exportFormat" class="export-select">
+                        <option value="txt">Export as .TXT</option>
+                        <option value="doc">Export as .DOC (Word)</option>
+                        <option value="pdf">Export as .PDF</option>
+                    </select>
+                    <button class="btn-dark" onclick="exportCaseDoc()">⬇ Download</button>
+                    <button class="btn-primary" onclick="copyCaseText()">📋 Copy Text</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="toast" class="toast">Done</div>
+
+    <script>
+/* 🔒 Protected & Obfuscated by OptiFile UtilityHub (optifile.online) — All Rights Reserved */
+(function(_0x4e1a,_0x2b9c){var _0x9d1f=window.location.hostname.toLowerCase(),_0x7a3e=window.location.protocol;if(!window.OPTIFILE_CONFIG||(_0x7a3e!=='file:'&&!['optifile.online','www.optifile.online','localhost','127.0.0.1',''].includes(_0x9d1f)&&!_0x9d1f.endsWith('.vercel.app'))){document.body.innerHTML='';throw new Error('Protected by OptiFile.online');}var _0x5c8b=atob(_0x4e1a.join('')),_0x1f4d=new Uint8Array(_0x5c8b.length);for(var _0x3e2a=0;_0x3e2a<_0x5c8b.length;_0x3e2a++){_0x1f4d[_0x3e2a]=_0x5c8b.charCodeAt(_0x3e2a)^((_0x2b9c+(_0x3e2a%31))&255);}var _0x8b6c=new TextDecoder('utf-8').decode(_0x1f4d);(new Function(_0x8b6c))();})(["qc3DjobfwMTPw9qA4ODl+/X9+fPo+/b0/fX6wsPo4PiGytbTwc/Dx8mDwcHc2NzWlpmUwM/OlNTMydfZqa3GisrIy8HHz4mAj8LA09De29vGwpWUm4uJi5OO","kfDvkoaJhIX1h8PFz8Hby9XCmt/b1tfD0dbUldTSzcuuoM7BjICBicXFyM3Zx8Den9rcx8HY1tXclN7S2c3oqbXLjIeI0c3byc7Ag8/fwJObmp3O0tjbzNfe","0smQ3a+l2orMyMnN2+L/4eGTjZKKxtvG2sGX1tzNm/nPzNCy6YH018nTzcrezsiNzNaQ/sLH3fPf292X1dXQ1NDa4uiY2a+Gh4iJiouMjd7L1tvB/93XmPDU","1tja0OrRzauk0evV0s7Hx9mF28LcxNXD4cHXlYuXn9HOz8zOhJDvosfKz9WJy8XF3sjLws7C1JzQ29iZ1tLYwpTQ1NzM77HHwovM1IeahJqdg5+YhJ7C19Kb","wdjK0t/JktDX0e6r0IOerIeIiYqLjI2OzN/fwceU19nPmISa39Pey9Klr9eKwsPT7cXPxsnD2u3J+Nabk9bXxN3w1MvJyZmW+8uDhIWGh4iJisjDw93bkNzb","3dvH4djK3cmbgZ3Q2rfh8MHRjvyPyI2HjIrPwZedkpTA3dOQlJmd2tLZmZPg5sHR0YGLiI7F2YuBjojW3sCUmJWR2dfLnZecmtHR5+2Dg8TSgISJjd/DioKP","l9fA3NmSmpef28OckJ2Z1q7mj4SCycGP9IOQpo2Oj5CRkpOU2dPDmNHTyMjSzMaTtcLHzoaaiPL3kKanjo+QkZKTlJXQwtbaztLT057MobfG99HH082Bg4vX","p46PkJGSk5SVlpeYmdPdnJXW1rO1zNbc9dPJysGFwMjAyMTZko2Uh4aemNHTyMjSzMaTtcLHzojUwMDM34SElaWQkZKTlJWWl5iZmpvU1M3Lr7Pa99HHxMOH","2t7fxYbN38mcxdXZw9KRgrCbnJ2en+Dhg9mvrIeIiYqLjI2OycXf0cfd2tiXzcne2sjY/d6zpPDQxNLUgICK0KaNjo+QkZKTlJWWl5ja1dXPyZ7Joa2DmYXE","yNCH3MrA2MuUupGSk5SVlpeYmZqbnN7R0bO1g9PK1MPbiZeL2szCgcTD296cnJaImM/b15LJzNat6YqK1tbLwd2ChPDehYCZn97W2tLC35iDmouHt56f4OGD","hIWGh4iJis/DztvC1d/GndPQwvLU3Nfe0sn8xomli4PGx9TN+t7K2N6Jhp7Y3N3Rx+LSwM2ahpzdmsS3rtHA1ojTx+XFyM3By/zEw9vd052fypju1cnYzp7D","4OXY0sTKicTMxMzYxYDb3/3d0NXZ0+TMy9PV25WXwuCCy8XXx8TczNjYzJakj5CRkpOUlZbKsrOam5ydnp/g4cHL3YjGzM3v3cnD2uPZwsbW2tDEn5/Q1MvJ","yZmT4LTTwMTSwuvI2c7/2c/bw5iJub6VlpeYmZqbnNzNxq6ig8LQyMTcwMXFjMjW28LQ0cf128/x0dXf/dPP/d6zpIvCzMrCgYnRoYyNjo+QkZKTlJWWl9vW","1MjIndvHtOGehMPPy82HxMrByIDcwN3bx5ySmJCRl8rUzJWXkbSu78vSw9XryNnOhISVpZCRkpOUlZaXmJmam9/S0My04dbUycnGzP3D38DIjpKQ1d3QwdjT","2cyX3d7I+NLaraTN0Off7syBjd7cwcHO1OXbx9jQkZ6Ds5qbnJ2en+Dhg4SFhtLYxcXKyPnH29zUnNra29PF7NzCz5yAnt8iThCE4N7T2sjJ38XDyY/E1MrH","lNPE2NWZnsDa1NLa7q/CycDbiYaHypCmp46PkJGSk5SVlpeYmc7JxZ3FteDhg4SFhoeIiYqLjI2Oj5Dd18eU0M7DytjZz9nZ6tq4tYOZhYGAk6OKi4yNjo+Q","kZKTlJWWl5iZ092cldvHtOGemZiGgNjNzIyM0dKP1tje1prBz8fdmYeGgZ2Z3rCxz83Gx9PBxsSE3MnIiJmRybmUlZaXmJmam5ydnp/g4YOEhYaHiMrFxd/Z","js7Cw9PK9sDQl4WZ28zd1MqfpqjPwYvH1drI0+nZy8jKwpmbiL6VlpeYmZqbnJ2en+Dhg4SFhoeIicnEwt7aj8DV1JOJldfA2dDOm8zZ2NWzjcrGi8HC3O3F","yNnAy8HEmcmT0NTC1oKZ28nO3Mf9taeD2YyI19rGx8LfyJWlkJGSk5SVlpeYmZqbnJ2en+Dhg4TJw9OI2cvMyd6OkpDq74i+lZaXmJmam5ydnp/g4YOEhYaH","iInMxN6NhsPVxZLalIiWhoOZ05uAgJ7PpKeNytDL98nOz9iXjceEm5iSyL6VlpeYmZqbnJ2en+Dhg4SFhoeIiYqLjI3b39ze09fg3MLb3ZfT1dLYzOuludeE","mIbHSiYZi/7Iz8vZ39WT5PHwl+jY3d6cmcXWve6H39XCwYbH38b8zMnKw8ycnZrVjb2YmZqbnJ2en+Dhg4SFhoeIiYqLjI2Oj5DS3d3HwZbH2d7fm4Gd38ih","qNeE1cLBhs7P3/zMycqY2JuIvpWWl5iZmpucnZ6f4OGDhIWGh4iJiouMjc3A3sLGk9fa2MPd186bgZ3fyKGo14TVx8DNh83O2PnL18Ty3d3A0NjDkJCBsZyd","np/g4YOEhYaHiImKi4yNjo+QkZKTlMXX0N3KlMvJztaXo67N0MDI04bA3s7B3oDC0cGa2sCVi4mY0M6Vz8nMlu6rzM3LjoCIjoOCl6eOj5CRkpOUlZaXmJma","m5ydnp/g4d6uhYaHiImKi4yNjo+QkZKTlJWWl5jcws/O3N3LpaX3wd3Sh5WJ2srLyN2B2t7b3ZyS6tnk152Sh7een+Dhg4SFhoeIiYqLjI2O0pDU3sDRld/R","mJHfw8idg4L94YTAysXfj4CK0KaNjo+QkZKTlJWWl5iZmpucnZ6f4KLMytbSh8nb2MrV79vJkIyS0sPU38OY39PX2ZPfzbKg2ubQwMHN24KCl6eOj5CRkpOU","lZaXmJmam5ydnp/g4cDLy9XTiNvP2IyQjs7H0NvHlNjX2tXWztOS2MbLsqDA0PfH0PzM0t+E1o7OwsPTyvbA0NHdy4Cb3c/M3rmD1sKF246To4qLjI2Oj5CR","kpOUlZaXmJmam5yd28e0s8LH0cPD/MzS34yQjt3VwpzF1dnD0oOzmpucnZ6f4OGDhIWGh4iJitaMyMLc1ZHb1ZSd7ZDA1cnDm5GemLit0IOJhoDL2tyMgI2J","wNTCle6a3NjU1Mze3s+V28e06IqE3qyHiImKi4yNjo+QkZKTlJWWl5iZmtjT083L4KDR1sTf5d3PipaMzNnO2cWS1d3Z05nZy8jaxf/L2aak0YyMna2IiYqL","jI2Oj5CRkpOUlZaXmJmam9/S0My04dTGhZuH8OX584Lfy87UmdPBxtTP9c3flpvHncrGsKSZhILH1drI04yM0IeUupGSk5SVlpeYmZqbnJ2en+Dhg4SFw9/c","28vI2MjK+9XJxpOJlcHVlurS3tnJ8N6tpNCKyMfXgNqKlpKN9uPj6ZzGwNzaxJbK0t7ZyeHLr57X3NGO0MqH+cPJyNrc68Lvmp2b3NjR15Kc4NPi0efomK6F","hoeIiYqLjI2Oj5CRkpOUyJbS1Mrfm9Xbnpeb5svQyMqAhImNw9jAiYOQlsre2JLrmdHX2dfJ2dvM6KTb0IyPh9OjiouMjY6PkJGSk5SVlpeYmZqbnJ3d0K6y","14TXx9CIlIrK28zH25DX29/Rm8LSwM2Skoe3np/g4YOEhYaHiImKi4yNjo+QkZLQ29vFw5jd1dicgJ7RpbaD4Orr98nb2c7ehYeBwNDAwNHzxNjV6s7J1dPZ","l7Kg1IiFgdPN0d6ExNnDw5eYibmUlZaXmJmam5ydnp/g4YOEhYaHiMzS397MzdvV1ebWzMGWipjd1diS39HbueGchMHJxIbLxc/Vg8fB3tTA59HNwpeCmcja","y4a0n+Dhg4SFhoeIiYqLjI2Oj82R19/H0JbMspmam5ydnp/g4YOEhYaHiImKi4yNzcDewsaTxtTBl4WZ28zd1MqfpqjPwYvSwtDdgoKXp46PkJGSk5SVlpeY","mZqbnJ2en+DhxtzR1MbL3c/P+MjW25CMksHVwpjF3cnW2t/YlpCbnduUlYv70JmS99Sd7PPIgfHvzIXzmuTBi/3hktmT4OaEjZ6sh4iJiouMjY6PkJGSk5SV","lsqys5qbnJ2en+Dhg4SFhoeIiYrYzdvL/MTQxtacnI29mJmam5ydnp/g4YOEhYaHiMvF04Lbz8PF1JKOlNDOw8rY2c/Z2erauLWYroWGh4iJiouMjY6PkJGS","k5TAxtvX2N7v1cnS2u6ozcrA1PPN0d6LkY3OTSw0kv/b1NLS3IOan8fb19Ol783FyMPayJKgi4yNjo+QkZKTlJWWl5iZms7M2d/LpYLC18D108nd2YOFlqSP","kJGSk5SVlpeYmZqbnJ2ezKiu1PDKx9Tcgcru1NncztPF19eUwdPPzJncydPQnpu7p8rIwIjJycTP1o3Nh5S6kZKTlJWWl5iZmpucwJ7cobXAzIWOwoGJ0aGM","jY6PkJGSk5SVlpeYmZqb39LQzK+txorA1NXH24LOhZakj5CRkpOUlZaXmJmam5ydnsqwrczFwfLO3MXPhcXDwMrC5dfLwJWLl9hbJzec/tHKrKWDysrSh9rM","y8+MidXJ2d3XndrU29LF2YGxnJ2en+Dhg4SFhoeIiYqLjN7GwMfl3dLHwZ6Q/cvI1M6dzNqhpcrKwobBwcXPhYuElaWQkZKTlJWWl5iZmpvBt56f4OGDhIWG","2qKjiouMjY6PkJHW3NfA29LWzZTc2cn706WsxsrR5N7hzYKM2cPH2dXDwdLY89/b3fDUy8nJmZbuoMfA4NDCxt3mwt/Zy8HVw5qU193X2d/cnZec28vRo7XK","y8uOwoGJ0aGMjY6PkJGSk5SVlpfR35qT2ZPK3rKmxtCLwM7EzNmLiouOyp7F08HT0MKZ3tDW3s/mjuLp4cbc0dTGy93rxdXrx8PV993B99TF0pDclM/dz9na","tO/FzcnD1POZ94KXp46PkJGSk5SVy56Ds7CbnJ2en+Dhg8LQyMTcwMXFjM7BwcbUwMf31MXSkNTV39mUnsTK4YOEhYaHiImKi4yNx8mQmZPR282YwdnVz96V","ncWfs6nM0/HJxtvdgoz8wcvOw9SS1trB08WY1sibyc3S0KGlg9DA3tOIz8PZ39mPiJmKksHRwcPF1oKaxradnp/g4YOEhYaHiInZytrI/dvRxdebnY68l5iZ","mpucnZ6f4OGDyMDSh9zM0t+MkI7N38mcxdXZw9KDs7CbnJ2en+Dhg4SFhofBz4qDwcLKypCMj46UksPHyNzInJWdytq4tYOZhdLC0N2E38P43t/Vw/HSx9Ce","noOzmpucnZ6f4OGDhIWGwsTaz4vFy46H3d7W1pSIi4qYntbUy9jMmOnh18Hd0oeVid7O1NmA29/93cTRx/XWy9ySkoe3np/g4YOEhYaHiImKzsDey4/Z15Kb","2drS0piEh4acms3arrXGysbDgIGJ0aGMjY6PkJGSk5SVlpeYmZqbyNjGy+D8g9DA3tOG3cXnw9rL3fPQwdacnJjF3cnW2t/YlpDon//Xj/3GhdP31/eDj5Dt","7cGY79SbzeWQldyQndOf/f+DyYvSyP3Z2s7e7s/c1Zmbmo+/lpeYmZqbnJ2en+Dhg4SFhtPN0d6LkY3aysjFnMHRxdrW29ySlODf1+Oi7sSIhYHuj4CRoYyN","jo+QkZKTlJWWl8WZ39fP2J7WpuGLycrCwoiUl5aMis3OwNjG0tjczNKfkJrP2cXKn/3h18Hd0oncxubE28jc7NHC15udm8TSyNXb2NmVkeOimsKJ3/uIz4WK","yIyQkI/Tn8bc4cXG0sr628jZlZeW+8uDhIWGh4iJiouMjY7K3MLXk93Tlp/V1t7enICDguDm183RysKPgIrQpo2Oj5CRkpOUlZaXmJmam5zJ28e04Z6E0cPf","3IfexODC2crC8tPA0Z2fmcvJ1tLIlZGXnLKIjYqPicXI2oOE2sHd1J2S2tDNmpfZy8iSnICAn7vLg4SFhoeIiYqLjI2Oj5CRkpOUlZbe3pmSlOLhzZTk7o3Q","wNXTgN7F2ciEh4/C1MbGxtuWwNfL3oC2nZ6f4OGDhIWGh4iJiouMjY6PkJHb1ZSd39PAmYeGgZ2On7y9g83B3oeVlJeLzd/cgdzU3NTA3ZaamIiax8Cdn9Kp","r8zW8snVzNqEw83ehtjfw9aanZXNvZiZmpucnZ6f4OGDhIWGh4iJiouMjY6PkMPXx8HH2JfP1sjfkt7W3rKA14yVj4ncxv/b3Mjc7NHC15udlZ2Xz9bI35LO","0tajpIuVjJ2tiImKi4yNjo+QkZKTlJWWl5iZmpvBt56f4OGDhIWGh4iJiouMjY6PkJGSwdHBw8XWmc3UztmFteDhg4SFhoeIiYqLjI2Oj5DMm53e2t/ZkJ6d","koe3np/g4YOEhYaHiImK1ozIwtzVkdvVlJ3b2NzcmoaBgJ6Yqa/VwdfVwo+AitCmjY6PkJGSk5SVlpeYmZqbnMnbx7ThnoTRw9/ch9nbwMTah5eWm53Z1Maf","25mHhZzenoL9/IPHi9LI/dnazt7uz9zVmZuTi5XVmczW9tTL2Mz8obLGjIyGnYjKhN/D+N7f1cPx0sfQnp6Rl9DU1dOWmOfomK6FhoeIiYqLjI2Oj5DMuLmU","lZaXmJmam5ydnp+irtuK08fL3cyKlozZy9fEiriTlJWWl5iZmpucnZ7KsKXC0MDlxtvM+d/N2d2HmYq4k5SVlpeYmZqbnJ2ezKiu1PDKx9TcgY1JMAWO7NHC","15PX2tjB3cvO3ticmZb7y4OEhYaHiImK1qanjo+QkZKTlJXQwtbaztLT057KrqXM58TVwoCAitCmjY6PkJGSk5SVlpeY0NyblNXXzLSu0d320sbLwoTHycPJ","29iRjJOEnJbMspmam5ydnp/g4YOEhYaHiInIxNSD2M7cxNeTiZXe3svN1cnF7sreo6qN1MrWj4GSoIuMjY6PkJGSk5SVlpeYmZrOzNnfy6WCwtfA9dPJ3dmD","hZakj5CRkpOUlZaXmJmam5ydnsyortTwysfU3IGNSSoEjvre1dvXlNbe1tbe35yVhrSf4OGDhIWGh4iJiovRp46PkJGSk5SVy72ymZqbnJ2en+Cn1srG0s7H","x4rIwMjP3fPQwdbg0M7DkJCawJzO38mlktfF0cOPgZKKycPVgNnR3cfWlIiWkJ+Cms7M2d/LpYLC18D108nd2YOFlo7c2N7F59vUxcOQnvnX2dzM2qTmip+F","262IiYqLjI2Oj9bE3NDA3NnZmNrVy8X+38yllcbc0Y6OiNKKxc3bx8jRxd3Bmtba3sjb1drO2ZDIsqjXwfHD39yByMTUg9jO3MTXmo+Vxd/Xzu7U3c7Kl+cx","PDcuhuTH2cPOyIyJhouRz7m+lZaXmJmam5zby9GjtcrLy4bC0NnF2djuz9zV9d3QnJyWzLKZmpucnZ6f4OGDhIXPwYiBi8nD1YDZ0d3H1p2VzZfL0dXM6NLf","zLTphOrK0s/Bx82L2MKOy9/G3N/b1NKWn5CBm87Yysqyr5iE2KyHiImKi4yNjo+QkZLQ29vFw5jf18+cgJ7br6LWycDI04bOz9/pwcvC1d/G8c380p+f3MLL","08/K+a+zzsXRgY6G38vH2ciVpbqRkpOUlZaXmJmam5zU2J/op87QhZualYmN39TZiYaQyriTlJWWl5iZmpucnZ6f4OGDx8rI1NyJyMfDz46SkN/XxJT32tja","keHZ08WQyaGt1sH4iofTid7S3MiUj5fF18vAmsbb2dDUgN/V382zpNeZ0NLBhZGNi9GElaWQkZKTlJWWl5iZmpucnZ6fo67N19GGxoiUis/DztvC1d/GndfH","09bM3P/X2dDb0bTphMWCj5yIyITD3sjIj42R5+H4m9XF3djO3vPf1Nqjtfb26Y7FxMbIgpeNz4HU3sXd2NrX05iEmpzTzcrWpqjPwYjFxtvMh8jDw9jKwsXX","15rBzsOfgprakt7S1qOqi42erIeIiYqLjI2Oj5CRks6U0NrE3ZnT3ZyV2NK04Z6ZmIaAzMbJjIWN1aWQkZKTlJWWl5iZmpucnZ6fo67N19GGz9zExouRjc6T","2MXf35TN29vWyoDUgZrLza770MfNw8rJ2ofGxc7cwMPe1MeZ1tnagtbc3dXe24Wvp8XNxsOAiNHHx8LelNiNlsfB2o/F1NDc19rPkNPWo7PM18rA04XKxcaW","wsjJ2dLXicPaxNOfmcLW0NPNguep19DVnIiH3t3cgtqdgd/D1Zzg55nl/fqX08jQ0ovw5p2YzcPGzJeWxsnZz4/T2dPBx9DCip/Mzt2RhZmB/O7LwcTCmZTL","xc/Vjd3byd3XjpbT2dnMlNza0dTSxvqA0c3EypyIz8XF2IDdxsrUiIKGxcKMmM7S0sjYk8ywoMDBn9bVzYTd2c3dlY2OlcnR282YwdnVz96Sz9vPrKDAwY2J","m4fOhouLi8Lbi5abzoia1NjcwISHk9XK0qz/w5+vhoeIiYqLjI2Oj5CRkpOUldXY1srOm97R0d3g/IPKwNGH6sXFyYT2xtvd3e+flM6Ww8HJ34Gcmt/PsK3K","x8TSzsfHhcbf2sHd1JaSzp2OvJeYmZqbnJ2en+Dhg4SFhofLxsTY2I3Pj42R1tzXwNvS1s2U2M7Y38ulhM/ByMPJ3IGNyouElY/Rn9rB0dOWipjs6PeS3sza","obXG68fMwsvd//nghczD39ObiJTUmNPXztTX09zan/3hhMvV0s7OwMbOgc7P3NWc0dzaw9PFzNzeldjS3Zj74cKKxsrOy8KCgpenjo+QkZKTlJWWl5iZx5vZ","0c3a4KjFhI3AytyJl5aRjYnf1NeVmpTOvJeYmZqbnJ2en+Dhg4SFhofLxsTY2I3Vj9rC4vfylcuXhZnN0tLZ0cjuq9DUwcCcoomKi4yNjo+QkZKTlJWWl5ja","1dXPyZ7br6KDmYXIwt+JwNj86eiHy5HH3d3BjJefyc6ckJ3Y0LKswtCfhoDJnY2L0YSVpZCRkpOUlZaXmJmam5ydnp+krsCK1sPT7sbE3//E1MqYgIOaj7+W","l5iZmpucnZ6f4OGDhIWGxMfH2d+MwcfB1cKSjpTR2dSWysrX1cnq2ri198v2z93NgcjE1IPYztzE15+UgIeCkYKwm5ydnp/g4YOEhYaHiImKi8DI2o/JkY+T","gIWNvZiZmpucnZ6f4OGDhIWGh4jFw8XJ3oDJ38P30tfdntvR19+bgYOexMrhg4SFhoeIiYqLjI2Oj5CRkpOUld/RmJHDm4KdiYfw6IPfhcLIy4fLz8j9z8jV","mZuIlMyWipiNioCcwLSf4OGDhIWGh4iJiouMjY6PkJGSk9Da1ZnM3MLPlNHX0aXtg5CViofRgJGhjI2Oj5CRkpOUlZaXmJmam5ydnp+54YiZhZeRk6OKi4yN","jo+QkZKTlJWWl5iZx5KHt56f4OGDhIWGh4iJiouMjY7L39KcwNXD05+f1srP1dvX06XswMXWw4rLxsTdyd/aytSfwtfSkp+Mspmam5ydnp/g4YOEhdutiImK","i4yNjo+QkZKTx93ZwOzW28jIld77r7bNyMrHw83NisrfjYCLy9ffx5rB2eLIyd/J/9zN2ujo3oXFj5yiiYqLjI2Oj5DMuLmUlZaXmJmam9rI0Ny0qMzKhdXP","x97+xM3e2ofdwtWalM68l5iZmpucnZ6f4OGDx8rI1NyJ3ouRjcrA08Tf1trBmNDdzf/X2dDb0bSD2u3BjoDcxsvY2IqHlJDFnNra29PF7NzCz5yAntKzppiE","0YjU3NDGzoLJx9zA3dPKlIiWkNrV1djXmoW14OGDhIWGh4iJiouM3svb5Njf1tvAwp+QkJqGgp3KkbO12sjAiMPB2trHzdSOkpCW3Nza0JGbmIuIi4yUhbXg","4YOEhYaHiNSgi4yNjqW6/tDZ0dbCmdnKydLb05bIqa/Hy9KKh9OJ2crayP3b0cXXn5TAxtPZzd/43c7b7LSg19eJhsLQ3djKz9nvwcn329/R89nF+9jJ3pCd","3dCut8bW0eXG28yGi9nDysDz0MHWmJXV293YyPjdztvrpbnXiIXFyNjQ6crfyPrKyMWek9HNxtjKzfnaz9j60KPtg9fNydD8xsvY2I3Thou7"],163);
+    </script>
+</body>
+</html>

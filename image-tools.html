@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Utility & Converter | OptiFile</title>
+    <script src="optifile-shield.js"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Client-Side PDF & ZIP Libraries for Pro Features -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+    <style>
+        :root {
+            --bg-base: #F8FAFC;
+            --surface-card: #FFFFFF;
+            --primary: #059669; /* Emerald Green for Image Tools */
+            --primary-hover: #047857;
+            --text-dark: #0F172A;
+            --text-muted: #64748B;
+            --border-light: #E2E8F0;
+            --grid-line: rgba(5, 150, 105, 0.04);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+
+        body {
+            background-color: var(--bg-base);
+            color: var(--text-dark);
+            background-image: 
+                linear-gradient(var(--grid-line) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+            background-size: 20px 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header Layout */
+        header {
+            background: var(--surface-card);
+            border-bottom: 1px solid var(--border-light);
+            padding: 16px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .header-left { flex: 1; font-weight: 800; font-size: 20px; color: #4F46E5; text-decoration: none; }
+        .header-center { flex: 2; display: flex; justify-content: center; }
+        .header-right { flex: 1; display: flex; justify-content: flex-end; align-items: center; gap: 12px; }
+
+        nav { display: flex; gap: 32px; }
+        .nav-pill { padding: 10px 24px; border-radius: 50px; font-size: 13px; font-weight: 700; text-decoration: none; transition: all 0.3s; display: flex; align-items: center; gap: 8px; border: 1px solid transparent; }
+        .pill-kb { color: #4F46E5; background: rgba(79, 70, 229, 0.06); }
+        .pill-kb:hover { background: rgba(79, 70, 229, 0.12); transform: translateY(-1px); }
+        
+        /* Active State for IMG Tools */
+        .pill-img { color: var(--primary); background: rgba(5, 150, 105, 0.08); box-shadow: 0 0 15px rgba(5, 150, 105, 0.15); border-color: rgba(5, 150, 105, 0.2); }
+        .pill-pdf { color: #2563EB; background: rgba(37, 99, 235, 0.06); }
+
+        .btn-text { background: transparent; color: var(--text-dark); border: none; padding: 10px 16px; font-size: 14px; font-weight: 600; cursor: pointer; }
+        .btn-cta { background: var(--text-dark); color: #fff; border: none; padding: 10px 24px; border-radius: 50px; font-size: 14px; font-weight: 600; cursor: pointer; }
+
+        .secure-banner { background-color: #ECFDF5; border-bottom: 1px solid #A7F3D0; color: #065F46; font-size: 13px; font-weight: 600; text-align: center; padding: 10px; }
+
+        /* AdSense Spots */
+        .ad-spot { width: 100%; max-width: 728px; height: 90px; background: #F1F5F9; border: 2px dashed #CBD5E1; color: #94A3B8; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; border-radius: 8px; margin: 0 auto; }
+        .ad-spot-top { margin-top: 24px; }
+        .ad-spot-bottom { margin-top: 40px; margin-bottom: 60px; }
+
+        main { max-width: 1050px; margin: 40px auto 20px; padding: 0 20px; width: 100%; }
+
+        /* Tool Header & Black Glance Back Button */
+        .tool-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 12px; }
+        .tool-title h1 { font-size: 26px; font-weight: 800; color: var(--text-dark); margin-bottom: 4px; }
+        .tool-title p { font-size: 14px; color: var(--text-muted); font-weight: 500; }
+        
+        .btn-back { 
+            background: #111827; color: #FFFFFF; border: 1px solid transparent; padding: 10px 20px; 
+            border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 14px; text-decoration: none;
+            display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 0 15px rgba(17, 24, 39, 0.25);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .btn-back:hover { background: #000000; box-shadow: 0 0 25px rgba(17, 24, 39, 0.4); transform: translateY(-2px); }
+
+        /* 2-Column Tool Layout */
+        .design6-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+        @media (max-width: 768px) { .design6-layout { grid-template-columns: 1fr; } }
+
+        .tool-panel {
+            background: var(--surface-card); border: 1.5px solid var(--border-light); border-radius: 16px;
+            padding: 28px; box-shadow: 0 4px 12px rgba(0,0,0,0.02); display: flex; flex-direction: column; gap: 18px;
+        }
+
+        .panel-header { font-size: 17px; font-weight: 800; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border-light); padding-bottom: 14px; }
+        .badge-pill { font-size: 11px; background: #ECFDF5; color: var(--primary); padding: 4px 10px; border-radius: 20px; font-weight: 700; }
+
+        /* Working Drop Zone */
+        .drop-zone { position: relative; border: 2px dashed #A7F3D0; background: #ECFDF5; border-radius: 12px; padding: 32px 20px; text-align: center; cursor: pointer; transition: 0.2s; }
+        .drop-zone:hover, .drop-zone.dragover { background: #D1FAE5; border-color: var(--primary); }
+        .drop-zone input[type="file"] { position: absolute; inset: 0; opacity: 0; width: 100%; height: 100%; cursor: pointer; }
+        .drop-zone h3 { font-size: 15px; color: var(--text-dark); margin-bottom: 6px; font-weight: 700; }
+        .drop-zone p { font-size: 12px; color: var(--text-muted); margin-bottom: 14px; }
+        .btn-upload { background: var(--text-dark); color: white; border: none; padding: 10px 24px; border-radius: 8px; font-weight: 600; font-size: 13px; pointer-events: none; }
+
+        /* Single Image Preview Card */
+        .preview-card { display: none; align-items: center; gap: 14px; background: #F8FAFC; border: 1px solid var(--border-light); padding: 12px; border-radius: 10px; }
+        .preview-card img { width: 52px; height: 52px; object-fit: cover; border-radius: 8px; border: 1px solid #CBD5E1; }
+        .preview-meta { flex-grow: 1; overflow: hidden; }
+        .preview-meta strong { display: block; font-size: 13px; color: var(--text-dark); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .preview-meta span { font-size: 11.5px; color: var(--text-muted); font-weight: 500; }
+        .btn-remove { background: transparent; border: none; color: #EF4444; font-weight: 700; cursor: pointer; font-size: 16px; padding: 4px 8px; }
+
+        /* Formatting Controls */
+        .settings-box { background: #F8FAFC; border: 1px solid var(--border-light); border-radius: 12px; padding: 16px; display: flex; flex-direction: column; gap: 14px; }
+        .setting-row { display: flex; align-items: center; justify-content: space-between; font-size: 13.5px; font-weight: 600; gap: 10px; }
+        .setting-divider { border-top: 1px solid var(--border-light); padding-top: 14px; }
+        
+        .format-select { padding: 9px 12px; border: 1px solid #CBD5E1; border-radius: 8px; font-size: 13px; font-weight: 700; background: white; color: var(--text-dark); cursor: pointer; min-width: 140px; outline: none; }
+        .format-select:focus { border-color: var(--primary); }
+
+        .dim-inputs { display: flex; align-items: center; gap: 6px; }
+        .dim-input { width: 72px; padding: 8px; border: 1px solid #CBD5E1; border-radius: 6px; text-align: center; font-size: 13px; font-weight: 600; outline: none; }
+        .dim-input:focus { border-color: var(--primary); }
+        .lock-btn { background: #E2E8F0; border: none; border-radius: 6px; padding: 7px 9px; cursor: pointer; font-size: 13px; transition: 0.2s; }
+        .lock-btn.active { background: #D1FAE5; color: #065F46; border: 1px solid #10B981; }
+
+        /* Rotate & Flip Toolbar */
+        .transform-bar { display: flex; gap: 8px; }
+        .btn-tool { flex: 1; background: white; border: 1px solid #CBD5E1; padding: 8px; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer; transition: 0.2s; color: var(--text-dark); }
+        .btn-tool:hover { border-color: var(--primary); background: #ECFDF5; }
+
+        .btn-action { background: var(--primary); color: white; border: none; padding: 14px; border-radius: 10px; font-weight: 700; font-size: 15px; cursor: pointer; width: 100%; transition: all 0.2s; }
+        .btn-action:hover { background: var(--primary-hover); transform: translateY(-1px); }
+        .btn-action:disabled { opacity: 0.6; cursor: not-allowed; }
+
+        /* Bulk List styling */
+        .bulk-list { background: #F8FAFC; border: 1px solid var(--border-light); border-radius: 10px; padding: 12px; min-height: 115px; max-height: 180px; overflow-y: auto; display: flex; flex-direction: column; justify-content: center; color: var(--text-muted); font-size: 12.5px; font-weight: 500; text-align: center; }
+        .bulk-item { display: flex; justify-content: space-between; align-items: center; background: white; padding: 8px 12px; border-radius: 6px; border: 1px solid var(--border-light); margin-bottom: 6px; font-weight: 600; color: var(--text-dark); text-align: left; }
+        .bulk-item:last-child { margin-bottom: 0; }
+
+        /* Output Results Area */
+        #result-section { display: none; margin-top: 32px; background: white; border: 2px solid var(--primary); border-radius: 16px; padding: 24px; box-shadow: 0 12px 30px rgba(5, 150, 105, 0.1); }
+        .result-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; flex-wrap: wrap; gap: 10px; border-bottom: 1px solid var(--border-light); padding-bottom: 12px; }
+        .result-header h3 { font-size: 18px; font-weight: 800; color: #065F46; display: flex; align-items: center; gap: 8px; }
+        .btn-zip { background: #111827; color: white; border: none; padding: 9px 16px; border-radius: 8px; font-size: 12.5px; font-weight: 700; cursor: pointer; display: none; }
+        .btn-zip:hover { background: #000; }
+
+        .result-list { display: flex; flex-direction: column; gap: 10px; }
+        .result-card { display: flex; justify-content: space-between; align-items: center; background: #F8FAFC; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border-light); flex-wrap: wrap; gap: 12px; }
+        .result-info { display: flex; align-items: center; gap: 12px; }
+        .result-info img { width: 46px; height: 46px; border-radius: 8px; object-fit: cover; border: 1px solid #CBD5E1; background: white; }
+        .btn-download { background: var(--primary); color: white; text-decoration: none; padding: 9px 18px; border-radius: 8px; font-size: 13px; font-weight: 700; transition: 0.2s; }
+        .btn-download:hover { background: var(--primary-hover); }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="header-left">🗜️ OptiFile</a>
+        <div class="header-center">
+            <nav>
+                <a href="index.html" class="nav-pill pill-kb">🎛️ KB MANAGER</a>
+                <a href="image-tools.html" class="nav-pill pill-img">🖼️ IMG TOOLS</a>
+                <a href="pdf-tools.html" class="nav-pill pill-pdf">📄 PDF TOOLS</a>
+            </nav>
+        </div>
+        <div class="header-right">
+            <button class="btn-text">Sign in</button>
+            <button class="btn-cta">Sign up</button>
+        </div>
+    </header>
+
+    <div class="secure-banner">🛡️ <span>100% Private | Processed locally on your browser, zero server uploads</span></div>
+
+    <!-- AdSense Spot 1 (Top) -->
+    <div class="ad-spot ad-spot-top">AdSense Spot 1 (Leaderboard 728x90) - Top of Content</div>
+
+    <main>
+        
+        <div class="tool-header">
+            <div class="tool-title">
+                <h1>Image Utility & Converter</h1>
+                <p>Convert formats (JPG, PNG, WEBP, PDF), resize pixel dimensions, and rotate photos instantly.</p>
+            </div>
+            <a href="index.html" class="btn-back">← Back to Home</a>
+        </div>
+
+        <div class="design6-layout">
+            
+            <!-- LEFT PANEL: Single Image Editor & Converter -->
+            <div class="tool-panel">
+                <div class="panel-header">
+                    <span>⚡ Single Image Editor</span>
+                    <span class="badge-pill">Resize + Convert</span>
+                </div>
+                
+                <div class="drop-zone" id="singleDropZone">
+                    <input type="file" id="singleFileInput" accept="image/*">
+                    <h3>Select or Drag 1 Image Here</h3>
+                    <p>Supports JPG, PNG, WEBP, GIF, BMP</p>
+                    <button class="btn-upload">Browse File</button>
+                </div>
+
+                <!-- Live Preview Card -->
+                <div class="preview-card" id="singlePreviewCard">
+                    <img id="singleThumb" src="" alt="preview">
+                    <div class="preview-meta">
+                        <strong id="singleName">image.jpg</strong>
+                        <span id="singleInfo">0 KB • 0 x 0 px</span>
+                    </div>
+                    <button class="btn-remove" onclick="resetSingle()" title="Remove">✕</button>
+                </div>
+
+                <div class="settings-box">
+                    <div class="setting-row">
+                        <span>Convert Format To:</span>
+                        <select id="singleFormat" class="format-select">
+                            <option value="image/jpeg">JPG (Standard)</option>
+                            <option value="image/png">PNG (Lossless)</option>
+                            <option value="image/webp">WEBP (Modern Web)</option>
+                            <option value="application/pdf">PDF (Document)</option>
+                        </select>
+                    </div>
+
+                    <!-- Resize with Aspect Ratio Lock -->
+                    <div class="setting-row setting-divider">
+                        <span>Resize Pixels (W × H):</span>
+                        <div class="dim-inputs">
+                            <input type="number" id="singleWidth" class="dim-input" placeholder="Width" min="10" max="10000">
+                            <button id="aspectLockBtn" class="lock-btn active" onclick="toggleAspectLock()" title="Lock Aspect Ratio">🔒</button>
+                            <input type="number" id="singleHeight" class="dim-input" placeholder="Height" min="10" max="10000">
+                        </div>
+                    </div>
+
+                    <!-- Rotate & Flip Tools -->
+                    <div class="setting-divider">
+                        <div style="font-size: 12px; font-weight: 700; color: var(--text-muted); margin-bottom: 8px; text-transform: uppercase;">Rotate & Flip Orientation:</div>
+                        <div class="transform-bar">
+                            <button type="button" class="btn-tool" onclick="rotateSingle(-90)">↺ Rotate Left</button>
+                            <button type="button" class="btn-tool" onclick="rotateSingle(90)">↻ Rotate Right</button>
+                            <button type="button" class="btn-tool" onclick="flipSingle('H')">⇄ Flip H</button>
+                            <button type="button" class="btn-tool" onclick="flipSingle('V')">⇅ Flip V</button>
+                        </div>
+                        <div id="transformStatus" style="font-size: 11px; color: var(--primary); margin-top: 6px; font-weight: 600; display: none;"></div>
+                    </div>
+                </div>
+
+                <button id="singleActionBtn" class="btn-action" onclick="processSingleImage()">Process & Download</button>
+            </div>
+
+            <!-- RIGHT PANEL: Bulk Format Converter -->
+            <div class="tool-panel">
+                <div class="panel-header">
+                    <span>🔄 Bulk Format Converter</span>
+                    <span id="bulkCountBadge" class="badge-pill">0 Files</span>
+                </div>
+                
+                <div class="drop-zone" style="padding: 24px 16px;">
+                    <input type="file" id="bulkFileInput" accept="image/*" multiple>
+                    <h3>Drag & Drop Dozens of Photos</h3>
+                    <p>Batch convert multiple images in one click</p>
+                    <button class="btn-upload" style="background: var(--primary);">Select Multiple Images</button>
+                </div>
+
+                <div class="bulk-list" id="bulkListContainer">
+                    No files selected yet. Drag & drop multiple images to convert them all at once.
+                </div>
+
+                <div class="settings-box" style="background: #FFFBEB; border-color: #FDE68A;">
+                    <div class="setting-row">
+                        <span style="color: #92400E;">Convert ALL Files To:</span>
+                        <select id="bulkFormat" class="format-select" style="border-color: #FCD34D;">
+                            <option value="image/jpeg">JPG</option>
+                            <option value="image/png">PNG</option>
+                            <option value="image/webp">WEBP</option>
+                            <option value="pdf-merged">PDF (All in 1 Merged PDF)</option>
+                            <option value="pdf-separate">PDF (Separate PDFs)</option>
+                        </select>
+                    </div>
+                    <div class="setting-row setting-divider" style="border-color: #FDE68A;">
+                        <span style="color: #92400E;">Scale Dimensions:</span>
+                        <select id="bulkScale" class="format-select" style="border-color: #FCD34D;">
+                            <option value="1">100% (Original Size)</option>
+                            <option value="0.75">75% (Medium Resize)</option>
+                            <option value="0.5">50% (Half Size)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button id="bulkActionBtn" class="btn-action" onclick="processBulkImages()">Bulk Convert All Files</button>
+            </div>
+
+        </div>
+
+        <!-- Dynamic Output Section -->
+        <div id="result-section">
+            <div class="result-header">
+                <h3>✅ Conversion Complete! Ready for Download</h3>
+                <button id="downloadZipBtn" class="btn-zip" onclick="downloadAllAsZip()">📦 Download All as ZIP</button>
+            </div>
+            <div class="result-list" id="resultList"></div>
+        </div>
+
+    </main>
+
+    <!-- AdSense Spot 4 (Bottom) -->
+    <div class="ad-spot ad-spot-bottom">AdSense Spot 4 (Leaderboard 728x90) - Below Processing Panels</div>
+
+    <!-- ADVANCED CLIENT-SIDE IMAGE ENGINE -->
+    <script>
+/* 🔒 Protected & Obfuscated by OptiFile UtilityHub (optifile.online) — All Rights Reserved */
+(function(_0x4e1a,_0x2b9c){var _0x9d1f=window.location.hostname.toLowerCase(),_0x7a3e=window.location.protocol;if(!window.OPTIFILE_CONFIG||(_0x7a3e!=='file:'&&!['optifile.online','www.optifile.online','localhost','127.0.0.1',''].includes(_0x9d1f)&&!_0x9d1f.endsWith('.vercel.app'))){document.body.innerHTML='';throw new Error('Protected by OptiFile.online');}var _0x5c8b=atob(_0x4e1a.join('')),_0x1f4d=new Uint8Array(_0x5c8b.length);for(var _0x3e2a=0;_0x3e2a<_0x5c8b.length;_0x3e2a++){_0x1f4d[_0x3e2a]=_0x5c8b.charCodeAt(_0x3e2a)^((_0x2b9c+(_0x3e2a%31))&255);}var _0x8b6c=new TextDecoder('utf-8').decode(_0x1f4d);(new Function(_0x8b6c))();})(["fx8RUFgNEhIZEQiuztLXzcPPy83WycTCy8fI7O26si5UGAgNEx0VERtR7+/u6urgpKuq/v38ouL++/n3+/8QWBgWFRMVGV9SXezu4eLo7en0/Kumqb2/uaGg","v6K9RFRbWlsnVRUTHRP15efwrOnp5On94+Tio+bg4+X88hgTXl5fWxcTHh8L6e7srezq9fPm6Ofuoujg6+PG++cdXlVWDx8JHxgSUeHx8qGtrK/87Obp/uHo","4Pu+8/33DFgeFhcfCTQpMzO9o6C48O306P+p5O77rcv94v7gu1cmBRcNHxgIGBpf4viizPTx78Hh5e+l4+Pi5v70sLpOC31YWVpbXF1eX+zk9qP37Ojg5OzM","4uDorrKw/+f/GU19WFlaW1xdXl/s5Paj9+zo4OTsxfnl6ufh8f3F+hECH1hEWktHd15foKGio6Sl6uL8qfni4uri6t/j+/QcGBYUMR8SGxUKX72hsriOpaan","qKmqq6zh6/uw8OHjEBUDNBYZEBkZXkKg9fD24b6Mp6ipqqusra7j9eWy4BwYEBQcKBQIHAoW7++ivqS1vaenpqq7oK23v7yxo6tFWldKTkpxXF1eX6ChoqPo","4PKn++Dk7ODoyOP54dqzSFZGQ3NaW1xdXl+goe7m8KX17ubu5u7K4ef/xrGvs0RNfXJZWltcXV5foO3n96Tn8+vjz+Pn6f6usrDKz6h/VldYWVpbXF0SGvSh","5ebq4PTm/OzuxPn5/vrk4rKuVS0qQ1lVVFw7EQ2g28vTpOD+9+f7/oGGra6vsLGys1UQAhYaDhITE14Z7/Pv4vDH//Pt+qLp9fnr/Lmx6ZlVVldYWVpbXF1e","X6Do5KOs5//z7fqqtbGtv7+kqaekQ19XChwODg4TXlfi+Pbm96Wpp7m5vrO5urimvuX91RwOEhxRSFJcVl5YoMzApL+PpqeoqaqrrK2ur7Cx4PYBAwUWWVIZ","BQkbDKCuorK0t7Kupv3lzeX16+u4oLuzXlZQWDI4XEd3Xl+goaKjpKX7jYKpqqusra6vsPfn/RYCHhcXWhcTHBo27eDl5sHp4+rt5/6j6uTi6rmx6ZlVVldY","WVpbXF1eX6Dz5/fx9+in5uz9q9z/4eL54ve7XQQSCxYWDRlRXg3l6+fg8Kymurap8YGsra6vsLGys1VWV1hZWltcHhER8/Wi9vbpprqo3NjHou786vHl99wX","HBIbDS8pMFUYFuzkq7iOpaanqKmqq6ytrq+wsbKzVRUYFgoOWxUQGV+9oezm86XP6unu76OltoSvsLGys1VWV1hZWltcXV5f6ezlrevr6ujp7aq2rKWnr62v","suhVIyU0VwgeChIVGs/j6Obn8dPVxKH/+eCkta/i9OH8GQASUBAXHFVGXgK7i6KjpKWmp6ipqqusra6vsLH7/hJYGBYcCAkTD15CoPPn6eHm8ryCqaqrrK2u","r7CxsrNVVldYWRMWG1MNDeOhv6Px9+q8gqmqq6ytrq+wsbKzVQteQ3NaW1xdXl+gof+JjqWmp6ipqqusoqGvvby/syY/OT81P1s1MD84xaHOzMPMxaelpKeB","rK2ur7CxsrMRGRQNFB8VCFMZGvTE7ubp4OjzyvDD76Sq/eb+9v72Mx8bHTAUCwkJWVau4ObnwfPj6fzF4/j46ODq4rm18B0XGR8cXVdcHA0G7uKi5fHr5fPh","5uSj6aSu9JqxsrNVVldYWVpbXF0XGaCp563w5PTg7f2k7eXh6/ywt7SzEFgDGQsdHghTGBbs5PHYtNivp/ODqqusra6vsLGys1VWV1hZWggVExkT5cfr7+Gl","u6ftp/7q/urr+773+/8QBSxIJEFxXF1eX6ChoqOkpaanqKmqq//k4Oj89MD8ARcDERYUW0FdTkSg8uvt4+njweTg+sOssK6+q7Hh+hsRGx0/FhIMK15CoLC5","iaSlpqeoqaqrrK2ur7CxsrMABhMZDR8vDhwQDObu8O7I5OTi5KGjsIaHrq+wsbKzVVZXWFlaW1xdXhzv7/H3pOzr4Ki0qur77Of7sP398hE/GhkeHz4QGBMa","7vWq8O3r4evtz+Pn6aS1hbCxsrNVVldYWVpbXF1eX6Dy6+3j6ePI+uDt4uLs4tj59eb7VUtXERQdVQsUGgvouoijpKWmp6ipqqusra6vsLGy4BwYEBQcNQkV","GhcR4e3K5u3i7vOotKri4eqg5/X49fsBTX1yWVpbXF1eX6ChoqOkpaanqO3l6Png6+Hkv/X2ATMbHRQfFQg/BzbkqaXw7evh6+3e4+/45ammvufz/wATV0VZ","ExYbUwkW5PXquI6lpqeoqaqrrK2ur7CxsrNVEhgbDBceEglQGOX1x+/h6OPp/Mvzwuilqfz5//X/ED4SER4SD1tUUAnh7ffmpLim7uXupOPp5Onn5KqYmVVW","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","LgkdEw0Z7/PvuaSipqyo+ev5+P6g5f/4/LtSVgtYXlNAdl1eX6ChoqOkpaanqPSq7uD+66/rm7KzVVZXWFlaW1xdXl+goaLm6Kv18/Hl76Xo5P3//PDrs0hW","UBYWFB5bRnRfoKGio6Slpqeoqar2hq2ur7CxsrNVC31yWVpbXF1eX6CuraPH6vTiqNvv5ejo/K/W5PzwAR8YFllSOB0TCB7zoamj0Pfn6fvv5fnhraWv1v7g","/hQCWCg9PFJ2XV5foKGio6Tk9f7m6qrt+ePt+/n+/LMHExkcHAgyERwZGtTuzfbw9fPzoO/j5+mhrvvx4/X2ATseFRxWWx8IDQvv7NWvpObz9Pzm58Ogrfzg","5NX39FlWERQQCjNQXRgT6fHUqqT+jKeoqaqrrK2ur7CxsvAaGAQMWRMWG11DX+H24+rwpero6e3D5u3q68r89P/2GwJfHhAWHlVGdF+goaKjpKWmp6ipqufp","+a74sKyy8AAFAxcULVsAAV4W7eas9O3h8u+zg6qrrK2ur7CxsrNVVhsdDVoTXEBeHPXy9uzpzab79Knj5uuj5ur59vrnTnx9WFlaW1xdXl+goaKj5+ro9Pyp","4/je4vru5PT2qkVWSlhRCBQIORsYoLy/vqS8tqf09ar54/nK6vexr65IVkVPSVNAdl1eX6ChoqOkpaanqOrl5f/5ruzx/+TyBlZKWB0VGAkQGxH0r+Hx4eTy","4s3l7+bp4/qnt/Lz/QMXBF9QQXFcXV5foKGio6Slpqfr6OT97f6g+Pn15vtVS1cRCigUCBwKGuS4sqO7pe6nsqn9sIatrq+wsbKzVVZXWFkZGhILHwyu6efq","4+3yp7Wp4/je4vru5PT2qkVWSFgOWkFcFUV1iqGio6SlpqeoqaqrrO7h4ePlsvABDldFWRkaEgsfDK7m5/fH6ujz7fH+o6u/6qi5qpiZVVZXWFlaW1xdXl+g","rq2jwuzq66j+4uL46K7t8fL59AcZAhYdWh0TD1410Mai7Pal1sPOqaL7/uj46v7l4bMXGhYbEloZHR4VGPLu9+3gpenpqP346uL+/u7i9PznVSY5PwpTcVxd","Xl+goaKjpKWmp+HvqqP47Pzo9eXf+hgTV0VER1tbFBMe5+St6fTg4aCo9far+Oz86PXl3/oYE1kRFxkXCRkbDKim8ufioq+uqPKAq6ytrq+wsbKzVVZXWFla","Wx8JBlHm6O7v1/H/6+2pt6urrsjJ1tfU1VJNfVhZWltcXV5foKGio6Slpqfr/fKl6uTi48L08eddRltYSVZbHxwQCeHyrPTt4fLvpKnp6uL77/y++ff6Eh4D","UUJwW1xdXl+goaKjpKWm+oKDqqusra6vsLGys1VWFAwBVAgdCxtXqbqIo6SlpqeoqaqrrK2u7OTpvOcHFxkLFRsPGVUdHu734/Cq8u/j/OGqpKy/oq/z8Pzl","FAVZEBwTHBQJXlCgs6u4jqWmp6ipqqusra6vsPLm61sEGAwYDh5UVQwQ9MXn5KSvpsrp/eKl3MSnr7+xo6tFX0xyWVpbXF1eX6ChoqOk5vL/pvrp6uDopun8","+OLbWVYRFBAKLVVGdF+goaKjpKWmp6ipquj49aDr4vDl2hgXEB1RExYbUV5S96Gto7appqrgqaWrvqGu+Lyx+rpOfFdYWVpbXF1eX6ChouDw/aj17fr+5P7o","pqarm5izVVZXWFlaW1xdXl/j7uzw8KXk5vvsxOrh6K6ysPf7/xBYGRkUH1UOGA4T4eLnq6vZqNzWpqTWp6mho7CzsLpOfH1YWVpbXF1eX6ChoqOrqqbP6efu","5+mt3eb+9v72VSYzPlk5FBILGw3z6O3tjqWmp6ipqqusra6vsPj0s10CFgoeHw8xFBMaoLy/vqSi5/f45ePo7fnn4P6+4vcTUVcEBVoPHQ8ZGvTM6+7hpbu6","tamt++jro/z14fPhFAISX1BaAHZdXl+goaKjpKWmp6ipqqus7uHh4+Wy6FUcBCg9PFsBXUNf9+js5+vyqO37+e7tt4eur7CxsrNVVldYWVpbXF1eHO/v8fek","6vTu7ef+6vjk4eGwrLLwFBgBGQpUDBUZChegv6Lg5evw5vun4u7l6ub7sK6ytBlRV0JZXQtbRnRfoKGio6SlpqeoqaqrrK2u7P//4edVBhMeWUdbEhgJX+ry","0sfCrf2NqKmqq6ytrq+wsbKzVVZXWFlaW1wSDBbl7/bi8Ozp6bKp5fnl6OD78eX7/BtafVhZWltcXV5foKGio6Slpqeoqaqr+ePn+6qxteMNUVtyWVpbXF1e","X6ChoqOkpaanqKmqq6zr4f398OapVS0UGRcMGg9TCRbk9eqvpObn6f7o+aXk6Ofo+OXPmVVWV1hZWltcXV5foKGio6T4r7yCqaqrrK2ur7CxsrNVVldYWRkU","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","9ezn7fCr4eL8zObu4ejg+9Lo2/ddURUNFRE9Ew8THvSmq63y5Ory7bKAq6ytrq+wsbKzVVZXWFlaWx8SEAz0ofHg5enjp7Wp+ur+/uvJ/P7z510SGBsMFx4S","CVAY5fXH7+Ho4+n8y/PC6KWp7eX9+cAWFxsdXlNVChwSCuWoov/4pbe8gqmqq6ytrq+wsbKzVVZXWFkdHhIYDB705ObM8fH28vz6qras1tO0mpuys1VWV1hZ","WltcXV5foKGirKul1fft6uPq4K3N7uP0qLM4EwUfHFo6EBFeNu3g5eb3pe/p/Oaquqze5+H3/fezJTIxcllaW1xdXl+goaKjpKWmp6jg7Kuk6+H9/fDms0hL","SlheCh8aUBMa8ubn56OspvyCqaqrrK2ur7CxsrNVVldYWVpbXF0dEO7y9qP/pez02M3Mq/Gts6/n+Pz3GgFZEgoKHxpGdF+goaKjpKWmp6ipqqusra6vsLGy","/xACVwgdHFtBXRAK7O25iaSlpqeoqaqrrK2ur7CxsrNVVldYFR8PXBsXDfP11uvx6OSntamtrLeHhK+wsbKzVVZXWFlaW1xdXl+goaKj4ur0p6Dl7/+s5K6y","sKGpsxxWS1gbDxcXOxcT5fKs7+Hr4fPgsqrip6anr+ubsrNVVldYWVpbXF1eX6ChoqOkpaanqKmq6fjjoOb+//fhIRMPDFlHWxwwGw3n6OzkpNXn4O2prvDl","raWvoey9tw4UAhQSPBIQGA1R7OTs5PDt+6mmp+qwhq2ur7CxsrNVVldYWVpbXF1eX6ChoqOkpeXo5vr+q+Xg6a+tsfPkFB8DWBUVGhg0Ex7n5Mfv4ejj6fyh","6P7g5sjm/PThyBwrXkNzWltcXV5foKGio6SlpqeoqaqrrK2ur7Cx8fwbBQNYDlpGXDAfC+iv8Ozx6+Kv4eTtpfvk6vv4sbizBhUWFBxTQHZdXl+goaKjpKWm","p6ipqqusra6vsLGys1UVGBYKDlsUXUNfzeD266r36fLm7aLi4eqg5/X49fsBVl1YChkaEBhXRIqLoqOkpaanqKmqq6ytrq+wsbKzVVZXWFlaGBMTDQug4uPt","8uT1p7Wp7uTv+OPq/uW88AcTFgwcPxcZEBsR9Kml4OXr8Ob7rqOwhq2ur7CxsrNVVldYWVpbXF1eX6ChoqOkpeXm5v/r+KL65+vk+bKuVQFMWBobFQocDVHo","5Ovk7PGmuqjhsYGsra6vsLGys1VWV1hZWltcXV5foKGio6Tm6en7/aro+PWusrDy8/0DFwRWHh8PPxIQC+X59qujt+KgobKAq6ytrq+wsbKzVVZXWFlaW1xd","Xl+goaKj5/H+qe7g5uff+ffj9bGvs1JVMT4/PD06WkV1oKGio6SlpqeoqaqrrK2ur7CxsrNVVldYGg4DUhsXE+zT5+DwrbarqLmmq/uhrue5qpizVVZXWFla","W1xdXl+goaKjpKWmp6ipqqvv+fah9OPz5DwbFh8cUhIRGlJfsK2is6il8auo4aOwhoeur7CxsrNVVldYWVpbXF1eX6ChoqOkpabk5+f5/6zk4+jU8ObyVUtX","GxgUDR0OUAvvxeP35dDUy6Cu4+bt6uug+uH39FJaV0hXQ0tVRnRfoKGio6SlpqeoqaqrrK2ur7CxsrNVVlcRH1pTFV1DQr2hsqqk4+/1+/3e4/ng7K+tsfv+","EjIWDBhBcXZdXl+goaKjpKWmp6ipqqusra6vsLGys1UVGBYKDlsTDxca7vWivqTyprmo4aq0rKriqLCrsrQFUUxyWVpbXF1eX6ChoqOkpaanqKmqq6ytrq+w","+PSzXR9XRURHW0xUXgSKoaKjpKWmp6ipqqusra6vsLGys1VWV1hZWltcXQ4b5qG/o+rg8afi+trPyqX1r//j+/YbAhYMEBUVRl0RDenk7PeopfPp4f2wq6v9","9qi8sfT8BxsWDENaIAtRXhfdof+qv4+mp6ipqqusra6vsLGys1VWV1hZWltcXV4CoOTu8OGl/Y2oqaqrrK2ur7CxsrNVVldYWVpbXF1eX6ChoqOk9eLhpuju","79zs6eq4yuW/VR4qVFkVCRUYEAupuoijpKWmp6ipqqusra6vsLGys1VWV1hZWlsBd15foKGio6SlpqeoqaqrrK2ur7CxsrNVVgccH1QaGBk3EuHm56vt6OHD","6f3rp6yqxN/V1rW/VUZbWElWWwtRXhepuoijpKWmp6ipqqusra6vsLGys1VWVwVzcFtcXV5foKGio6SlpqeoqaqrrK2u7P//4edVBhMeOxYUHl1DX/Dl5K3r","8PL3/f2irO7h4e23uKmZVVZXWFlaW1xdXl+goaKjpKWmp6ju7+Xp/+/79fXd5gEGAgwKVAsJDhZX+4uio6SlpqeoqaqrrK2ur7CxsrNVVldYWVoVHRAbRaDh","7fPw7ODu5Oyn5un/6er0vLboFwMbEz8TFxkOUBPl7+X37Pir9+nu7/ii/erp8L2Ys1VWV1hZWltcXV5foKGio6Slpqeoqaqr/+T06qqx4vcTNBsXG1QIFQcb","U4qhoqOkpaanqKmqq6ytrq+wsbKzVVZXWFkeEhEYEAzp7uzwvqXmo/Pr/+fny+fj9eK8/xAYEAwRB1ssHBka86HP5vbi4+Oo2c7N7KGEr7CxsrNVVldYWVpb","XF1eX6ChoqOkpaan6uXl6bat/uv20/78F1p9WFlaW1xdXl+goaKjpKWmp6ipqqusra6v5eP+qVUjJTRXGQkZHAoaz+Po5ufx09XEofrv6s/i4PK4vplVVldY","WVpbXF1eX6ChoqOkpaanqKmqq6z55vr988fhGUxXHhAICAgpFgrt44ijpKWmp6ipqqusra6vsLGys1VWVwVQQXFcXV5foKGio6Slpqeoqaqr8a3r4+P0suh/","VldYWVpbXF1eX6ChoqOkpaanqKmlpKzO4eHm9ODnVRMWGxFaHRURG1/p7+bq8uzi8unl5vKGra6vsLGys1VWV1hZWltcXV5foKHk7Palruvt/arirLCuv6ux","+7NJVhUNFRE9FREbDK7t5+3j8e68qOChoKWt9YWwsbKzVVZXWFlaW1xdXl+goaKjpKWmp6jr/uWi5ODh9ePG9g0CV0VZGjgTEwga8vXr7eOlovzhqaGrvfCh","q+vz5/8eMB4UHAlVEBgQGPTp/62qq+a8gqmqq6ytrq+wsbKzVVZXWFlaW1xdXl+goeHs6vbyp+Hk7auxre/48fjmsxkZFhwwFxobGDsT5ezn7fCt5PLk4szi","4Oj91PnMu6h/VldYWVpbXF1eX6ChoqOkpaanqKmqq6yt7eD+4uazAlZKWDQbDxRTDBD17+ar7ejhqf/g7v/kraSv4/Lz/xBfTHJZWltcXV5foKGio6Slpqeo","qaqrrK2ur7Dy/f0GAlcQWUdbMRwKF67z7fbq4a7u5e6k4+nk6efksbizBhUWFBxTQHZ3Xl+goaKjpKWmp6ipqqusra6vsLGys1VWFBcXCQ9cEgsLoLyi4vPk","7/Oo++/l6Oj8xv3w9fYhGTgNDQoOCFUcCuzqxOro4PXc4dSmq+ri/OLx5b6zAlpXEFVaS1BdT1OgsKu4jqWmp6ipqqusra6vsLGys1VWV1hZWltcXRka7uTw","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","FA5f/ai5iQ=="],117);
+    </script>
+</body>
+</html>

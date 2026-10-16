@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KB Manager - Pro Image Size Optimizer | OptiFile</title>
+    <script src="optifile-shield.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .dashed-border { border: 2px dashed #cbd5e1; }
+        .dashed-border:hover { border-color: #4f46e5; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col justify-between">
+
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="index.html" class="flex items-center space-x-2">
+                <div class="bg-indigo-600 text-white p-2 rounded-xl font-bold text-lg">
+                    <i class="fa-solid fa-bolt"></i>
+                </div>
+                <span class="text-xl font-bold tracking-tight text-slate-900">Opti<span class="text-indigo-600">File</span></span>
+            </a>
+            <div class="hidden md:flex space-x-6 text-sm font-medium text-slate-600">
+                <a href="kb-manager.html" class="text-indigo-600 font-bold cursor-pointer">KB Manager</a>
+                <a href="image-tools.html" class="hover:text-indigo-600 cursor-pointer">IMG Tools</a>
+                <a href="pdf-tools.html" class="hover:text-indigo-600 cursor-pointer">PDF Tools</a>
+            </div>
+            <div class="flex items-center space-x-3">
+                <button class="text-sm font-medium text-slate-700 hover:text-indigo-600 px-3 py-1.5">Sign In</button>
+                <button class="bg-slate-900 text-white text-sm font-medium px-4 py-2 rounded-xl hover:bg-slate-800 transition shadow-sm">Sign Up</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 py-8 w-full flex-grow">
+        <div class="border border-dashed border-slate-300 bg-white rounded-xl p-4 text-center text-xs text-slate-400 mb-8 shadow-sm">
+            AdSense Leaderboard Ad (728x90) - Top Banner
+        </div>
+
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
+            <div>
+                <h1 class="text-2xl sm:text-3xl font-bold text-slate-900">Reduce / Increase Image Size in KB</h1>
+                <p class="text-sm text-slate-500 mt-1">High-precision engine: Compress 20MB+ photos to exact KB or upscale small images effortlessly.</p>
+            </div>
+            <a href="index.html" class="bg-slate-900 hover:bg-black text-white px-5 py-2.5 rounded-xl text-sm font-semibold transition shadow-md flex items-center gap-2">
+                <i class="fa-solid fa-arrow-left"></i> Back to Home
+            </a>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            
+            <!-- Single Image Compressor Panel -->
+            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <h2 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+                            <i class="fa-solid fa-bolt text-amber-500"></i> Single Image Optimizer
+                        </h2>
+                        <span class="text-xs bg-indigo-50 text-indigo-600 px-2.5 py-1 rounded-full font-semibold">1 File Mode</span>
+                    </div>
+
+                    <div class="dashed-border rounded-xl p-6 text-center cursor-pointer transition bg-slate-50 mb-6 relative">
+                        <input type="file" id="singleFileInput" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer w-full h-full">
+                        <div class="flex flex-col items-center justify-center">
+                            <div class="w-12 h-12 rounded-full bg-indigo-50 text-indigo-600 flex items-center justify-center mb-3 text-lg">
+                                <i class="fa-solid fa-cloud-arrow-up"></i>
+                            </div>
+                            <p class="text-sm font-semibold text-slate-700">Select Or Drag Image (Up to 50MB)</p>
+                            <p class="text-xs text-slate-400 mt-1">Supports JPG, PNG, WEBP</p>
+                            <button class="mt-4 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold px-4 py-2 rounded-lg transition shadow-sm pointer-events-none">
+                                Select Image
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="singleFileInfo" class="border border-slate-200 rounded-xl p-3 bg-slate-50 mb-6 flex items-center gap-3 hidden">
+                        <img id="singlePreviewImg" src="" alt="preview" class="w-12 h-12 object-cover rounded-lg border border-slate-300">
+                        <div class="overflow-hidden flex-grow">
+                            <p id="singleFileName" class="text-xs font-semibold text-slate-800 truncate">filename.jpg</p>
+                            <p id="singleFileOriginalSize" class="text-[11px] text-slate-500">Original Size: 0 KB</p>
+                        </div>
+                        <button onclick="clearSingleFile()" class="text-slate-400 hover:text-red-500 p-1"><i class="fa-solid fa-xmark"></i></button>
+                    </div>
+
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 mb-6 space-y-3">
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-600 mb-1">Operation Mode</label>
+                                <select id="singleMode" class="w-full bg-white border border-slate-300 text-slate-700 text-xs rounded-lg px-3 py-2 outline-none focus:border-indigo-500 font-medium">
+                                    <option value="reduce">Reduce Size (Compress)</option>
+                                    <option value="increase">Increase Size (Exact Boost)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-600 mb-1">Target Unit</label>
+                                <select id="singleUnit" class="w-full bg-white border border-slate-300 text-slate-700 text-xs rounded-lg px-3 py-2 outline-none focus:border-indigo-500 font-medium">
+                                    <option value="KB">KB</option>
+                                    <option value="MB">MB</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-600 mb-1">Target Size Value</label>
+                            <div class="flex items-center gap-2">
+                                <input type="number" id="singleSizeValue" value="50" min="1" max="50000" class="w-full bg-white border border-slate-300 text-slate-800 text-sm rounded-lg px-3 py-2 outline-none focus:border-indigo-500 font-medium">
+                                <span id="singleSizeUnitLabel" class="text-xs font-semibold text-slate-500 bg-slate-200 px-3 py-2 rounded-lg">KB</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button id="singleActionBtn" onclick="handleSingleProcess()" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-semibold py-3 px-4 rounded-xl transition shadow-sm flex items-center justify-center gap-2 text-sm">
+                    <i class="fa-solid fa-sliders"></i> <span id="singleBtnText">Reduce Size</span>
+                </button>
+            </div>
+
+            <!-- Bulk Batch Mode Panel -->
+            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <h2 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+                            <i class="fa-solid fa-layer-group text-indigo-600"></i> Bulk Batch Mode (Multiple Files)
+                        </h2>
+                        <span id="bulkFileCountBadge" class="text-xs bg-indigo-50 text-indigo-600 px-2.5 py-1 rounded-full font-semibold">0 Files</span>
+                    </div>
+
+                    <div class="dashed-border rounded-xl p-6 text-center cursor-pointer transition bg-slate-50 mb-6 relative">
+                        <input type="file" id="bulkFileInput" accept="image/*" multiple class="absolute inset-0 opacity-0 cursor-pointer w-full h-full">
+                        <div class="flex flex-col items-center justify-center">
+                            <div class="w-12 h-12 rounded-full bg-indigo-50 text-indigo-600 flex items-center justify-center mb-3 text-lg">
+                                <i class="fa-solid fa-images"></i>
+                            </div>
+                            <p class="text-sm font-semibold text-slate-700">Drag and drop dozens of photos here</p>
+                            <p class="text-xs text-slate-400 mt-1">Select multiple heavy images at once</p>
+                            <button class="mt-4 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold px-4 py-2 rounded-lg transition shadow-sm pointer-events-none">
+                                Select Multiple Images
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="bulkFilesContainer" class="border border-slate-200 rounded-xl p-3 bg-slate-50 mb-6 max-h-36 overflow-y-auto text-xs text-slate-500 flex items-center justify-center">
+                        No files added yet. Drag and drop images above.
+                    </div>
+
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 mb-6 space-y-3">
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-600 mb-1">Batch Operation Mode</label>
+                                <select id="bulkMode" class="w-full bg-white border border-slate-300 text-slate-700 text-xs rounded-lg px-3 py-2 outline-none focus:border-indigo-500 font-medium">
+                                    <option value="reduce">Reduce Size (Compress)</option>
+                                    <option value="increase">Increase Size (Exact Boost)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-600 mb-1">Batch Unit</label>
+                                <select id="bulkUnit" class="w-full bg-white border border-slate-300 text-slate-700 text-xs rounded-lg px-3 py-2 outline-none focus:border-indigo-500 font-medium">
+                                    <option value="KB">KB</option>
+                                    <option value="MB">MB</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-600 mb-1">Target Size Value (All Files)</label>
+                            <div class="flex items-center gap-2">
+                                <input type="number" id="bulkSizeValue" value="50" min="1" max="50000" class="w-full bg-white border border-slate-300 text-slate-800 text-sm rounded-lg px-3 py-2 outline-none focus:border-indigo-500 font-medium">
+                                <span id="bulkSizeUnitLabel" class="text-xs font-semibold text-slate-500 bg-slate-200 px-3 py-2 rounded-lg">KB</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button id="bulkActionBtn" onclick="handleBulkProcess()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-4 rounded-xl transition shadow-sm flex items-center justify-center gap-2 text-sm">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> <span id="bulkBtnText">Bulk Optimize All to Target Size</span>
+                </button>
+            </div>
+
+        </div>
+
+        <div class="border border-dashed border-slate-300 bg-white rounded-xl p-4 text-center text-xs text-slate-400 my-8 shadow-sm">
+            AdSense Leaderboard Ad (728x90) - Processing Area
+        </div>
+
+        <div id="resultSection" class="mt-8 bg-white rounded-2xl border border-slate-200 shadow-sm p-6 hidden">
+            <h3 class="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+                <i class="fa-solid fa-circle-check text-emerald-500"></i> Optimization Complete & Download
+            </h3>
+            <div id="resultContent" class="space-y-4"></div>
+        </div>
+
+    </main>
+
+    <footer class="bg-white border-t border-slate-200 mt-12 py-6">
+        <div class="max-w-7xl mx-auto px-4 text-center text-xs text-slate-400">
+            &copy; 2026 OptiFile Utility Hub. All rights reserved. 100% Client-Side High-Precision Engine.
+        </div>
+    </footer>
+
+    <script>
+/* 🔒 Protected & Obfuscated by OptiFile UtilityHub (optifile.online) — All Rights Reserved */
+(function(_0x4e1a,_0x2b9c){var _0x9d1f=window.location.hostname.toLowerCase(),_0x7a3e=window.location.protocol;if(!window.OPTIFILE_CONFIG||(_0x7a3e!=='file:'&&!['optifile.online','www.optifile.online','localhost','127.0.0.1',''].includes(_0x9d1f)&&!_0x9d1f.endsWith('.vercel.app'))){document.body.innerHTML='';throw new Error('Protected by OptiFile.online');}var _0x5c8b=atob(_0x4e1a.join('')),_0x1f4d=new Uint8Array(_0x5c8b.length);for(var _0x3e2a=0;_0x3e2a<_0x5c8b.length;_0x3e2a++){_0x1f4d[_0x3e2a]=_0x5c8b.charCodeAt(_0x3e2a)^((_0x2b9c+(_0x3e2a%31))&255);}var _0x8b6c=new TextDecoder('utf-8').decode(_0x1f4d);(new Function(_0x8b6c))();})(["ie3jrqb/4OTv4/qgwMDF29Xd2dPI29bU3dXa4uOIgNim6vbz4e/j5+mj4eH8+Pz2trm04O/utPTs6ff5yc3mquro6+Hn76mgr+Lg8/D++/vm4rW0u6upq7Ou","sZCPsqappKXVp+Pl7+H76/Xiuv/79vfj8fb0tfTy7evOwO7hrKChqeXl6O355+D+v/r85+H49vX8tP7y+e3IydXrrKeo8e376e7go+//4LO7ur3u8vj77Pf+","8umw/c/F+qrs6Ont+8LfwcGzrbKq5vvm+uG39vztu9nv7PDSiaHU9+nz7er+7uit7Paw3uLn/dP/+/239fXw9PD6goi4+Y+mp6ipqqusreLq5LHh+vry+vLe","8Pb+vKC+8dXN77+PpqeoqaqrrK3i6uSx8Ob4/tD+9Pzpu6G9xcKbq4mkpaanqKmqq+/i4PzkseH6+vL68tX2/v7P+PL6w9WjuaXi6Ov85+7i+aDo9eXX//H4","8/ns2+PS+LW57MnP5Ojgy+js7K2it4eur7CxsrO0tfX49uruu+/08PjMxMHw69Li8P2qtqzp4ezl/Pf94Lvx8uzc9v7x+PDr4tjK4K2h9OHn7efpz/rhxPTq","57O8rZ24ubq7vL2+v8PO7ffxpvTh5+3n6djg5uTC9//x9uK3pbn+9P/o8/rO1a3j4PLC5Ozn7uL5zPbZ9bq05/z48PT8z/X16bm2m6ujpKWmp6ipqujj4/37","sOL7/fP588Tx4//O8vTq08HD5uilu6fs5un+4ejg+7729+fR+fP6/ffu2eXU+reH0urq4uri2+Dw7tnj5/vc8PD2+LK/rJKTuru8vb6/gIHw7evh6+3E5e/p","3uvj9fLmvfXx8tLu/PTv0PTt68XP5vatoeTg6OTs6aqir7j0u7Opq7bskrm6u7y9vr+AgaOkpfXu5u7m7s754Nv16ea9/fv48urN/+PovaO/xY/35ffh4vyn","/Org+Ouvrayvs7Pn8/Pt+v+8vKK+uPLE5/Hm46fb4PDuq620r7fY/PDm8Pfk/bnJ8ub4uaSqgaOkpaanqKn3oreHrq+wsbKztLXl/vb+9v7J8/fr88Tv4eby","qent7s766OD73Pjh5/H78+Wwvvnz/fP5+oeNo6zgr6e1t6rwhq2ur7CxsrO0tba3uOrz9fvx+8zJ2+bR6+/zxOjo7uCj5+H+9ODH8e3it6W5/7Xo/Oz4xdWt","8uTq8u2ygKusra6vsLGy7r2unJ24ubq7vL2+v8PO7ffxpuX95eHG4+nr3PX99/Dgtau3/Pb57vH48OuOxubwwOri5ezk/870x+u4tvDm+P7b+Pz8vbKnl76/","gIGjpKWm5Ofn+f+s7/vj+9Pm/cDw7uO4pLr/8/7r8sXP96ri4/PN5e/m6eP6zenY9ruz9+P789vu9cj45uuHiLiOpaanqKmqq6zu4eHj5bLx4fn9wvbw7sj5","8fv81IG+pOHp5P3k7+X4o+nq5NT+9vnw+OPa4NP/tLr86szK1urs8qChsoCrrK2ur7CxsvD7++XjuPvv9/fO9+XF9O3t8crm6uzmq7Gt6uDz5P/2+uG48P3t","3/f58Pvx1OP6zeGuoOr85uDf5PTqxf/759j09PL0vrOglpe+v4CBo6SlpuX95eHG4+nr3PX99/Dgu/fz/Nzs/vLp0vbT1ebq4PSvr+ri6uLq66i8sbr2vbWr","qbjikLu8vb6/gIGjpKWmp+r85uDO+eDb9enmvf37+PLqzf/j6L2jv8WP9+X34eL8p/zq4Pjrr62sr7Oz5/Pz7fr/vLyivrji1O/vpcn3/ODn4vbors78/bLn","+7XC9ur+/++8zvflxYajvqWhxf3l4avO4uH85LHT//i14vi4zfvp+/jqv/PI+eGivY2oqaqrrK2ur+24qZm0tba3uLm6u/7o8vT1z+rw1uPr7er+pe3p6srm","9Pzn2Pzl4/33/+m0uv33wc/k4aKqp6Dso6uxs670mrGys7S1tre4ubq7vP/r88vy6v7g0+nh/cbq7ujiofn//PbmwfPv7Lmnu/mz6v7Sxubwq/Dm5PzvsIat","rq+wsbKztOi/rJKTuru8vb6/gIHn6+bz6u3n/qXr6PrK/PT/9vrh1O7R/bK87/Tw+MzExe3p487m+f//q6Sg7vT11+Xx++Lb8eru/vL47LeHwuvl6+Hir6Wq","7fnj7fv5/vy78by27JK5uru8vb6/gIGjpKXv4aih76X47Pzo9eW89f358+S4v7y7+bPq/tLG5vCr4O7k7PnQvNCnr+ubsrO0tba3uLm6u7y9vr+AgfDt6+Hr","7c/j5+mts6/1v+by5vLz47b/8/f57sWv/ZqJpKWmp6ipqqusra6vsLGys/D69eL1/PTvsvr76+XN5ung6PPK8MPvpKr95v72/vbS/Pry0ff89Lu0sPzMwPD3","ye/0/Kf47uHi+Oq4tvr68PHz+b+woZG8vb6/gIGjpKWmp6ipqqus6eHs5fz3/eC78fLs3Pb+8fjw6+LYyuCtofTh5+3n6d386ub49+Td+PGwsbfp6f+9o7/1","88+q5vTi6f3vxO7n6+zkxMDfvOb/+f/1/9318fu2m6ujpKWmp6ipqqusra6vsLGy9/v24/r99+61+/jq2szE7uHr8sXxwO6jq/7n4ff999X9+fPZ+fT/vLWz","9/HOxPHQ4P7zqLSq+OXj6eP11/v/8bv49vX8oZG8vb6/gIGjpKWmp6ipqqus6eHs5fz3/eC78fLs3Pb+8fjw6+LYyuCtofTh5+3n6cvn4/Xe4Prz/Pj29Mrz","4fm6t7HJz+3h99Li8P2qtqztwf359vv99fm2xPHj/6G8ueX5z9Pu5fHV7vLsovjl4+nj9df7//G75f7i/LPm/KaUv4CBo6Slpqeoqaqr8Yeur7CxsrO0teu+","o5OQu7y9vr+AgaPi8Ojk/ODl5azu4urx48H6+vL68t7w9v60tL7kqoGjpKWmp6ipqqusrf3m/vb+9tL8+vK4pLr16fHypKqBo6SlpqeoqaqrrK3q4PPk//b6","4bjw/e3f9/nw+/HU4/rN4a6g++Dk7ODoyOb89Nv95ODisLG37Prw6Pu/nYGko76Mp6ipqqusra6vsLGy9/v24/r99+61+/jq2szE7uHr8sXxwO6jq/7n4ff9","99X9+fPe9v/1vLWz/fPB0vDI7PXzpuju76Sq5ub09ff9s7ytnbi5uru8vb6/3auJpKWmp6ipqqvo4u36/fT857ry8+Pd9f/2+fPq3dno56yi5PLk4szi4OjH","4eDk5rS9u/fz/Nzs/vLp0vbT1ebq4PSvr+ri6uLq66i8sfTm+vbi/vf3sv61veWVgIGjpKWmp6ipqqus5OivuPS85/Xn8fLst/zy8PjtsczE7ePx7qe2qbqi","rPaEr7CxsrO0tba3uLm6u7y9vv3VzejC7Ori+6m3q83//O7pv/Th+/i+8rbt++n7+Oqxxsjv4favvIKpqqusra6vsLGys7S1tre4/fX46fD78dSP5OHxw+vt","5O/l+M/3xvS5tfHh+f3R8fX/2PPo8OviwOfj4KGupuDk5en/2uro5bKutPWy7Prs9vDa9PL604/v4evh8+D0qs3l4ev8sML3//H24vL8+aGRvL2+v4CBo6Sl","pqeoqaqrrOHr+7Dy/f3g9P/5/eu6prz58fzVzObq8ajg7f3P5+ng6+Hk0+va8L2x9e318d318fvs487t8OTv6e37raK3h66vsLGys7S1tre4ubq7vL398M7V","4u3r4/Wm4OTl6f/G293dsq60srGskrm6u7y9vr+AgaOkpaanqKnp5OL57+b+9OC99/n35OvX+/b5vaO/gsPs9uHj9ajr5fno6Pyi4/3z5/G4pKeouej06fP6","+sSM++il9qq7qejsof7i7uT0v6aktfv1ta+69v3ls/eNkrWk6vDi+u/m5Pug96Lx5Ob8tOHz7+y04ui86fvn1Izw6OTy4qW+urus/v7u8/S/6rmkuKK6opC7","vL2+v4CBo6Slpqeoqaqrhq2ur7CxsrO0tba3uLm6u7z/6/PL5+ro4PWp7ub4zu3u5qe49/v/8bm2/vb9/+O1vaOhgNqJpKWmp6ipqqusra6vsLGys7S1trf0","/O67+PTov52B5+vm8+rt5/6l7//r7uT01//x+PP57LG9//Xrubabq6OkpaanqKmqq6ytrq+wsbKztLW28/HvtPjw/O3s7sDu4aW7p6rv5u70reT64+X79e24","9PLs7v/+8r3368XM8Knm4+n87Pir7uqj+Pj45va05buluOv17vL5+/uNzeSk5+n17Oz4q+7i/Ov147/g+PTi8rWrqqu+ppS/gIGjpKWmp6ipqqusra6vsLGy","s/D84Lnx9/T+7tXK0uyBvqTluvT46OSr7+Hv/OOssOfm4Pj0+e3/u+zvs62Ax+zq8avq7e3j/uGvsKvr+Pz38e22vLio57W8ueX5yc3mquvn6u30tqT//e/h","rq3h4/X7tvT0+Onoob/q+tjVrvfp5/PtpL67vK3o4P7lv/77+/m37Pzi77HGr67Q2d6mu6L87ub45u353ebq9Lr1/fnzuevw4P614KKw09Hi6rvmvIKpqqus","ra6vsLGys7S1tre4ubq7vP7x8dTA6urg9Knp+fru4unN5/n99rvw/OC+o5O6u7y9vr+AgaOkpaanqKmq9qW2hK+wsbKztLW2t7i5uuaWvb6/gIGjpKX7rrOD","gKusra6vsLGy9eH79ePx9vS7+vLs8sHV0O3/46/q8P7u/6Su9JqxsrO0tba3uLm6u7z0+L+Iw/rw4PWntrSqury5trqnp7uz5vDi4ur3urP+5Or604GspLS2","s7C8vb2lo/rg1vjq9vC9pL64srq8vNDcuJuro6SlpqeoqaqrrK2u/fXl5+H6tb714e3/6Lyyvq6Qk7etq/LozuDy7uilvKawurK0tN7UsKOTuru8vb6/gIH+","jo+mp6ipqqusrej6/vLm+vv7tvT59+z678nx3czO4azm5+n+6PmnrPz77vz45uq9te2duLm6u7y9vr+AgaOk9+Pz/fvkq+Lo+a/A4/3+/ebzv7Dr/+jz8ej6","iYG+uqX9jaipqqusra6vsLGys7S1trf7+PTt/e6w68/j7+vnrq/q5eXppa2zsbDqmLO0tba3uLm6u7y9vr+AgaOkpaan4e+qo+7h4e25semZtLW2t7i5uru8","vb6/gIGjpKWmp6ipqqus/+v8//3k9rz3+vj6sKGRvL2+v4CBo6SlpqeoqaqrrK2ur7Dssvb45vO345O6u7y9vr+AgaOkpaanqKmqq6ytrq+wsbLw+/vl47j9","++/9yOzzgJyj5+To8en6pP/jye/78cTA37yy//r5/v+09u37+IeNo/Xw5+vh/fOit4eur7CxsrO0tba3uLm6u7y9vr+AgaOkpabk5+f5/6zv9/v1wubh/fvx","t6W5++/z/7b7wdXi0ffqqfv55uL4pamjt7jJosm8rZ24ubq7vL2+v4CBo6SlpqeoqaqrrK2ur7Dy/f3n4bb2+rmnu/L46b/h0/Hl/MTy7u/v+aTv9/v1wubh","/fvxufT89Pzo9bekqoGjpKWmp6ipqqusra6vsLGys7S1tre4ufn08u7qv8nAo7ml6OL/qd/i4vm2zuLj8+q89PS+o5O6u7y9vr+AgaOkpaanqKmqq6ytrq+w","sbL1++e2v/T87rv1vaO/kJqj7aW6p+rw/u7f+fzm/va8//H78ePworryt7a3v8nA2O3Yprqo6/P/6d76/fn/9b33/ffl2/b+/t3ptvaJmomkpaanqKmqq6yt","rq+wsbKztLW2t7i5urvu+O3wzNfmrOvj8KjL5uTupdXu8sy+s++14u7o/KC7u/Tz/sfErO714+CvqfeipbaEr7CxsrO0tba3uLm6u7y9vr+AgaP5j6anqKmq","q6ytrq+wsbKztLXru7i+8/b9+vuwytHm46Kqp/n86+fl+femq5uys7S1tre4ubq7vL3jtpuro6Slpqeoqar2hoeur7CxsrO0tfDi9vru8vPzvvPPwOfN6Ofg","7aHs4uDop6/rm7KztLW2t7i5uru8vez61NTx6qXo4v+p2vnj4Of89bm64fHm+fvu/La77vj0+sPVqqS4uKfzg6qrrK2ur7CxsrO0tba3uLn59PLu6r/V0++k","uKbS2sWk6P7o7/v13vD58fbiwsrVsv318fu2m6ujpKWmp6ipqqusra6vsLGy8Pv75eO48Pf8vKC+8cXWo83o5+DtoaOwhq2ur7CxsrO0tba3uLm6u7z08/iO","zu3o6ufjqLSqo6Wts7Gw6rLGxtm45f3v9fD50vz1xcL30dfKr/375qK3rfzq4/7+5fG9//r/sKG74aaUv4CBo6SlpqeoqaqrrK2ur/n89b37+/Pl6vbou6G9","7PrKxODwvoynqKmqq6ytrq+wsbKztLW2/vX+tOju/r6igNTx6L6Mp6ipqqusra6vsLGy7r2unLe4ubq7vL2+4qqro6Slpqeoqarq//Tg7LD35/334f/49rn1","6+j08/baxMrp5OHizuDm7qTr5+P1vbLn9efx8uzb4+/57rK/zc7n4aym/IKpqqusra6vsLGys7T2+fnr7bry8fq+ooDA9OXs8qfk5uvvxeDv6PW59Pr48L+s","krm6u7y9vr+AgaOkperi/Knp6uL77/ywrLL3+/bj+v337rX/7/v+1MTG6ODr4ub9oqzv7OD58eK1uq+ftre4ubq7vL2+v4CB7+HxpuT88aq2rO7v4ebw4b3z","8OLU9/fu/uTptriSxaStvoyNqKmqq6ytrq+wsbKz/fO2v/X2/v68oKOigIbq6ub04un676ylrfWFsLGys7S1tre4ubq7vL2+v8PA7fLk9an/4O7/5K2zr/n8","9b3j/PLj8KKQu7y9vr+AgaOkpaanqKmqq+/s4Pnx4rz78fzx/+y5p7v18PmxyMTq4+3yvIKpqqusra6vsLGys7S1tre4+u7jsvv388zy9/3p46e1qaioysvI","ydbXsKietba3uLm6u7y9vr+AgaOkpeXz8Kfs4uDh3Orz5bqjuLWmu7j6+/Xq/O2x18jn8O2qp+vo5P3t/qDn9fj1++C8rZ24ubq7vL2+v4CBo6Slpqeo6v7z","oun87ufY//Lz8L7+9f62u6yxvq+JmomOpaanqKmqq6ytrq+wsbKztPnz47j7++j53/LwwoG+pOTx5uH9qujt4/ju48X90fj69L/7+PTt/e6yv5CPurysvY2o","qaqrrK2ur7CxsrO0tba38f+6s/r08vqO0ur+4Ka5qOvr+OnP4uDyv+H67vC2sb65/PLw+LDsydvmpLm7p/zo+Ozp+cz25PThurTunLe4ubq7vL2+v4CBo6Sl","pqeoqaqr7uz96tL9/fG0qLbx8fX/oJa9vr+AgaOkpaanqKmqq6yt84WwsbKztLW2t7i5uru8vb6/ycejrOfn9O3L5uTuo/3m6vSyr7Th9+X//O7Z5en77ImB","+I6lpqeoqaqrrK2ur7CxsrO0tba3uPr19e/pvvvJx+XG/PLi+6m3q/js/Oj15dDq4PDlt7W5+Prv+Nzzz8Ot9+z84rODqqusra6vsLGys7S1tre4ubq7vL39","8M7S96T15+Ps4OTsrLCu4fXmssb9++Kv2evo+uW1+vbGx8H98eP0obKAq6ytrq+wsbKztLW2t7i5uru8vb79wdLmxunp5ai0quXp+q7N/P7wu8/39+T92/b0","/rG+78HF5+3r4dqkqfGr+PT+6qqxtfr59PHyt/Pq/vu6vuKJmomkpaanqKmqq6ytrq+wsbKz6Z+ct7i5uru8vb6/gIGjpKWmp/rs/v7+4670mrGys7S1tre4","ubq7vL2+v4CBo6Sl6Obl7LCr6uTi6r7/8/7xu+Ty6PX7+Pm1scOO+t2rq9usrKamq66vp6+7sbC9/uXxtbSTuru8vb6/gIGjpKWmp6ipqqusra7g4vj1+vr0","+sTx4/+hvPv388WP8O3/46uCqaqrrK2ur7CxsrO0tba3uLm6u7zz++jzyPnhv6bl6frvyeDi7KHj+Oj2uJ+2t7i5uru8vb6/gIGjpKWmp6ipqung4uza4v2o","s8HH2rn76//66PjR/crE4PDQ1Mug6+v46c/i4PK4mLO0tba3uLm6u7y9vr+AgaP5voynqKmqq6ytrq+wsbLunp+2t7i5uru8vb6/gIHv4fGm8OHt/uOssK7m","/fa85P3x4v+jk7q7vL2+v4CBo6Slpuvt/arj6eTp5+Sxr7P9+PG58Pzz/PTppZWqgaOkpaanqKmqq6yt7eD+4uaz+fTu1vT19ez5+c722MTv96W7p6D96/nr","6PrN6eX34LS6tqaoq66yvLe+rpKRs7S+jKeoqaqrrK2ur7Cxsvrytb7g8f3u87y3vvfFyOTs8aa5qOTr883h4uDn9PbD/e3z++uwuuCWvb6/gIGjpKWmp6ip","qqusre3g/uLms+b04v73uae70fzq947S8vbxrurp8cvn4OL56vTB++vx+eW3t7my7PX56veAi6Ps4O/g4P2joreHrq+wsbKztLW2t7i5uru8ven2xNXrpLim","yun94qXh7PanqKG+s9n04v+2//b08++26MnF9+ylrKf66P7i46SntJqxsrO0tba3uLm6u7y9vr+Ayebt4u7zqLSqxu355qH98Oq7rKW6t9X47vOy+/Lwz9Or","7ODv4OD9qqGs/+/7+f67uq+ftre4ubq7vL2+v4CB/o6PpqeoqaqrrK2ur7Cx/vbgtfTy6+3Y9/P/vqKAz/bo6b2NqKmqq6ytrq+wsbKz+PDit+v6+/f5zur6","0IG+pLSot7ODgKusra6vsLGys7S1tvH367qz8Pjqv9DA8Pelu6e4sqr77f79r6yxo6Ovteb26+qxsLW95ZWAgaOkpaanqKmqq6ytrq+w8v395+G29O3rzbuh","vdP+1Mmt6eT+r7y5pqvB7Prnvvf+/PvnvuDx/e7zvLe+7MPA7+HW8uL4oKOwhq2ur7CxsrO0tba3uLm6u7z+8fHT1aPn8PTPqLSqxu355qH98Oq7oKW6t9X4","7vOy+/Lwz9Or7ODv4OD9qqGs/u3u/PTB5/Hlv76jk7q7vL2+v4CBo6Slpqeoqaro7eP47uO/5frw4f63pbn57u7KpZWAgaOkpaanqKmqq6ytrq+w8vP94vTl","ufD88/z06b6igML29s29jaipqqusra6vsLGys7S1trf77eK1+vTy8/PV+ujgprqoq6nNysvIydazqZm0tba3uLm6u7y9vr+AgaOk5vL/pu/j5+Df6+zkuaK/","tKW6t/vs6Mywvf3q0umqv4+mp6ipqqusra6vsLGys7S19ePgt/7p/erX8sHG5qzs6+CkqbqnrL2ir/Pk4MS4tfXi6tGzoJaXvr+AgaOkpaanqKmqq6ytruP1","5bL+/fvU+/f7uqa8/On+ydWj5+To8en63uTO4eHtuPLz/eL05bu4qbSqtaaUv4CBo6SlpqeoqaqrrK2ur/n3srv5/PjV9Pb4te/05PqAn6Pw5PTg7f3I8vjo","/aaw6piztLW2t7i5uru8vb6/gIGjpKWmp+vm5Pj4rf3n4vj8+Mb04v73uae70fzq947S8vbxrvPp++3u+M/3+/Xisry0+P/52vX1+bLu9+XFiKOupbapsLyx","gaytrq+wsbKztLW2t7i5uru8vb6/08Li6ODV8+35qqGxrcPu5Pm8/vXtvqe2qra70fzq947M6uqttqmwpar45P/n4fvD8+f9+r++o5O6u7y9vr+AgaOkpaan","qKmqq6ytru314ubR+Pr0t6W59/Ly3/LwwpqJpKWmp6ipqqusra6vsLGys7S1trf79vTv9fPr+puro6SlpqeoqaqrrK2ur7Cxsu6en7a3uLm6u7y9vr+AgaOk","pabr7f2q5+P6rrKwobyiuLX+/v/xuqa8rbCmlZqJpKWmp6ipqqusra6vsLGys/bw5ePa9fX5vKC+8snPwejq5LyCqaqrrK2ur7CxsrO0tba3uP/16by18vrU","gerw4PSntam6sKzk+urisa6zo662/uz86LC3tL7kqoGjpKWmp6ipqqusra6vsLGys7S1+vLsuffy+L2jv4jN7POlrafg4O3jpa2hr6KqmLO0tba3uLm6u7y9","vr+AgaOkpaan5Oz+q/jo/fvS/f3xtKi29u/48++8/v/x1sDw0OrE6+froujt4/ju472y/v3xv6ySubq7vL2+v4CBo6SlpqeoqaqrrK3n6bC55vbn4dT79/u0","6PXn+7+cnKPw5PTg7f3I8vjo/aaw6piztLW2t7i5uru8vb6/gIGjpKWmp6ipqqvu6P370v398bSotuP96u7Z8PL8pKqBo6SlpqeoqaqrrK2ur7CxsrO0tba3","uLn29Ou9o7/NyOe/j6anqKmqq6ytrq+wsbKztLW2t7i557v58e36gNqJpKWmp6ipqqusra6vsLGys7S1tre4ubq79PT594Cco+ns4ryCqaqrrK2ur7CxsrO0","tba3uLm6u7zglL+AgaOkpaanqKmqq6ytrq/tm7KztLW2t7i5uru8vb6/gIHh9uDn7LODqqusra6vsLGys7S1652Subq7vL2+v4CBo6Sl7+Gooeju//nM4//z","srWytfTy6+3Y9/P/sOzJ2+akuabz6fvt7vjP9/v14rK5tKW4rqqwuuCWvb6/gIGjpKWmp6ipqqusre3g/uLms+D05PD97cr6+L2jv+3A9+yr4Ovn5vij+Oz8","6PXl0Org8OW3srmqtaWlt7+NgeHh9vLF5Obopf/k9Oqrm7KztLW2t7i5uru8vb6/gIHq4qWu8+n77e743e/rsK+yo7217Z24ubq7vL2+v4CBo6Slpqeoqaqr","rO7h4ePlsuP18fL+9v66przz++iA9Orq8b7G+vvr8qT57/339ObD9fG/rJK5uru8vb6/gIGjpKWmp6ipqqusrezq4+XQ//v3tqq49//svN/y8MKJ2Obg9fPK","5eXpoK3+7vT1+/3zyLq347nu4uz4pL+HyO7l4uOo4vnv7Kut86arm7KztLW2t7i5uru8vb6/gIH+jqWmp6ipqqusra6vsOyYmbS1tre4ubq7vL2+v9LE9/H3","6Kfzg6qrrK2ur7CxsrO0tba3uLn0+vH4pL/GyO/hq+jm5eyk+en94u7z9Lq8yLvNybe3x7C4srK/goOqpK6mpabj+uyuoYSvsLGys7S1tre4ubq7vL2+8NLI","5O3r5+vb4PDutq3o5vz0vOD97/O7krm6u7y9vr+AgaOkpaanqKnk7vve5/X1q7Lx8ebi1fT2+LXv9OT6jKujpKWmp6ipqqusra6vsLGy8fj69MLq9aC7yc/S","scPT5uXx48jq4+/o+Njcw7jz9+Dg1/r4+rCQu7y9vr+AgaOkpaan9bKAq6ytrq+wsbLunp+2t7i5uru8vf/s2c/gpOPz6ev94+Tirebu/vX+9sf8+PD0/Mrp","8/777NOJqqT+jKeoqaqrrK2ur7Cxsvrytb626/D0/PD42PbMxKqk/qb04Ob93+Ps/fu4s8L/8fTl8rjq//f5/uq/wc+j7ejn4O2p7OL+/vqusrips+bw4uLq","96G74Ze+v4CBo6Slpqeoqaro4+P9+7Dz5v20qLbz9/rv9vnz6rHHxPfB6ePq7ef+yfXE6qe34vv98/nz1vvt8/Ty3+rxh4i4jqWmp6ipqqusra6vsPL9/efh","tvjq8P3T6PDyv52B4fDrqO7m5+/5xNnDw6ubsrO0tba3uLm6u7y9/OvOj+rq6+P1wN3Hx6ywru+s+LLw+PTl5KW7/Pqx7vHzycWj4uSr9Pjg5OXp/67p8bzh","4/37tKmktvOlvM3s8MPE8Pfs6OCmp6Trt4eur7CxsrO0tba3uLn47/Kz+vbTwOHo4OKntan++fnotYWasbKztLW2t7i5uru86ezmgNqJpKWmp6ipqqusra6v","sLGys/f6+OTsuff0+Pi+ooDF7Ofw6+Lm/aTs6fnL4/X89/3g1+/e/LG96PXz+fPF7Ozg4KGupv/r5/notYWwsbKztLW2t7i5uru8vb6/w87t9/Gm8+n77e74","2+/jsKyy4/Xn5fLe9fX66LX68MPU7uHr8qnv7P7O4Ojj6v7l0Ord8b6w6/D0/PD4zfbaxNXl6fPir6Ck/e3h++q5se7vtKCmrJK5uru8vb6/gIGjpKWmp6ip","6eTi/vqv5f/757SotvP3+u/2+fPqscfE98Hp4+rt5/7J9cTqp7fi+/3z+fPC9vDuvLWz6P7M1Oa/j6anqKmqq6ytrq+wsbKztLX1+Pbq7rvo/Oz4xdXB/fHj","9Ki0qsbt+eah9v39/Oa94/nx7bqmoaC+uO3jpKS6pvPp++3u+Nvv47C7sqKkoa6ir6+6obzp/+3HxPfS5Oqnoqm7u765p7Sam7KztLW2t7i5uru8vb6/gIHg","6+v186j77/j54fqvrbHz5PX84rf36e7y8fTk+unM4uPgwO7k7KL45ePp4/XX+//xubbj+ev9/ujf5+vF0q+k6Onj7aCxgaytrq+wsbKztLW2t7i5urvv9fHo","8sTw8enyr9P77/j54frSuaqYs7S1tre4ubq7vL2+4oDC4vDm7qeg7Pj5pa31hbCxsrO0tba3uLm6u7y9vr/Dzu336uripuz4+eP/puri47uonrW2t7i5uru8","vb6/gIGjpKX17+f+3uTt/vqnstTg4fvnrLe6ubG7+e/ssc3E8Pfk4eKhsoCrrK2ur7CxsrO0tbbquP/z9f3x8uaA2omkpaanqKmqq6ytrq+wsbKz9uH4ufH3","9P7u1crS7IG+pOr07u/B/ubgtoSvsLGys7S1tre4ubq7vL2+/dTPreDs9ebq5e/vrLCu6fH94favn7a3uLm6u7y9vr+Agf6OpaanqKmqq6zwhIWwsbKztLW2","t/nq4/X/vfjqzsL37erop+Do5O/g6Mz6/PrC4fv28+TrsbO755e+v4CBo6Slpqeoqari6q2m7eX9+dX9+fPktvX/9fvp9r+dnL6kta+n86n54+P62uDx4ua7","tsX68vnq/7vv+PL6w9Wj6fDq8+H55u6s5OPu9/Ths/L85OTsuLiyp73s+tTU8eq+pvqCqaqrrK2ur7CxsrO09vn56+26+ejzvqKAxezn8Ovi5v2k7On5y+P1","/Pf94Nfv3vyxvfnp8fXew9Xq6+vE8+auo7CGra6vsLGys7S1tre4+vX17+m+8NLI5Mzx6+uotKrp+OOg5v7/9+Hcwdvbo5O6u7y9vr+AgaOkpabl/Oek7+X+","7+389PazqbXi5e38oZGWvb6/gIGjpKWmp6ip/vn1rfWFsLGys7S1tre4ubq7vL2+v8PO7ffxpurn7e+rsa3q4PPk//b64bjw/e3f9/nw+/HU4/rN4a6g6vzm","4MHi6uq3uLzl9fnj8qOTuru8vb6/gIGjpKWmp6ipqujj4/37sOXz4fPw4sH59bqmvO3/7dPExejq5/Og7eXo+eDr4eS/9fbg0Pry9fz0797k1/uIhuHx6e3U","4fPv3e3h++q3uLzl9fnj8rG55ue8qK6kqoGjpKWmp6ipqqusra6vsLHx/Prm4rft9/PvvKC++8/C9ung6POm7u//yeHr4vX/5tHt3PK/v/vv9/fI8PbUhqqq","8+fr/eyxgaytrq+wsbKztLW2t7i5urv/8vDs1IH35ffh4vzL8//p/q6ysNzz5/y78Pv39uiz6fP364CcvrmlocrKrqq0rPnv/ff05sX1+ba9uKiqr6SoqamA","m6Pw5PTg7f3c6uCtpK+hoaCnva6cnbi5uru8vb6/gIGjpKWmp6jl7/+s/fzg8/Th4PHxxPLr7Pbv772jv/v8uI6lpqeoqaqrrK2ur7CxsrO08/nluLH2/ui9","97+dgbO/pe+ntKno/uDmyOb89OG9+PD48Ozxobv1trW2gNqJpKWmp6ipqqusra6vsLGys7S1trf67fS19fPw+tLp18nJprqo6bbirO7i7uPir7Hy9Lvk9/Xz","/7z7/7LT0erq6+P1qO/rpv/95+Gyr668/au2x+r2+f7v7vfxx4Gn/+ymrKi496So9uz6/PrU+vjw5bn0/PT86PXjsY6P47+PpqeoqaqrrK2ur7CxsrO0tba3","uLn59PLu6r/SxPCkuKbm/+jj/6zi/vv5/Pvp8dz79v/83PLw+Lb91c3owuzq4vvS49agrfru4vb359bs4vLrtbr28/n7tpuro6SlpqeoqaqrrK2ur7CxsrO0","tbbn6vb5/u/u+/vyxPDx6fL0pvn/+OSl/OrjuKmZtLW2t7i5uru8vb6/gIGjpPiMp6ipqqusra6vsLGys7S1tuTw9u3J+e7r89SJ8/bq5eL7+u/v3uj9+vzl","4bqvn7a3uLm6u7y9vr+Agf6k5ufz6+Gqo+n//Kaw6piztLW2t7i5uru8vb6/gIGj5+ro9Ofl76Xp//zg4rn34ea8rZ24ubq7vL2+v4CBo6Slpqeo+uLk+9nh","7uPlurHR5+T46qO6uby2vvrS063p4PX06e7voreHrq+wsbKztLW2t7i557v69PD+zM36pP6Mp6ipqqusra6vsLGys7S1tvXs97Ty8vP77ej1zsilu6fn++Ps","xPnj46ubsrO0tba3uLm6u7y9vr+AgeHw66jj4frr6eDo6q+tsfTy+ObzrJK5uru8vb6/gIGjpKX7jaipqqusra6v7ZuYs7S1tre4ubr96fP968nO7aT27uj/","2+/4+eH6p+L04eb44eW+uOKQu7y9vr+AgaOkpaan6+bk+Pit/erz5fv8+rWrt/z2+e7x+PDrjsbm8MDq4uXs5P/O9MfruLbg9ufg+uPL/Pnv9fLwuImaiaSl","pqeoqaqrrK2ur/P+/ODgtfX49u3/9ei9o7/EzuDx6OPp/Kft7vjI4ur99Pzn1uzf87C+6P7v6PLr487t8ODo86+gsYGsra6vsLGys7S1trf79vTv+fPqscnP","7eH3ztPFxaq2rKqptJqxsrO0tba3uLm6u7zu+/zUyOzqq+Xr6fr5x+X++qHi9P/84vC+sPDw/v/587m2m6uJpKWmp6ipqqusra6v4vTh5vjh5bn+9uje/f72","t4jT5vesprq2qfGBrK2ur7CxsrO0tba3uLm6u/D46r/DwPHgpbun7Obp/uHo4Pu+8uD29eHz0vT89/7y6ba4xMj1o6y9jaipqqusra6vsLGys7S1trf7+Oj/","sv7y/tPSzeXo46e1qajt4Oj2r/b99+u59vn7uOr3ofrx++eN0+zzpe/z7eT5pu/o4Pv147L54ebi/v7gt/n56en6xc+j9Kiyp+rup/jg7PrqvaSis/b65PP9","67r58+/6+tKM8Ojk8uKlu7q7rP/h+v719/e57fq3//jqtqi/pZWAgaOkpaanqKmqq6ytrq+w8vPh8Lv/+fb86NPI0NK/nYHjjqWmp6ipqqusra6vsLGys7S1","tre4pf7y6r3988HS8Lmn4Ovt8ari+Ojj/L3y9/3g8OS3//jqtq+96bLG1O/opfXqsv6n6vn54a//5/fh8vn54LXx8//4+PC9nqujpKWmp6ipqqusra6vsLGy","s7S1tre4ubqn9fD5v9PT4Lmnovz67Pml7uHh7cXj/u62tfX7+erppr7qs66SgeuptLSn5+vg7u/5o+z/5/fhtOf54vb9//+x8fm/ws7x4OD0p+rm+O/p/6P8","/PDm9rmmpqe4//b+5LDt99LI7e+otqW2g6qrrK2ur7CxsrO0tba3uLm6u7y9vr+Agb/g7PCn6+Xr+P+wrODm9OD1+PrhuvDw/v/587yhqoGjpKWmp6ipqqus","ra6vsLGys7S1tre4ubq7vL2i74DC7+X29bqq/e/z+KD2/LD3/f3guPT49P267/nl6rLTzeLw4Ku/uLmq//744Ozx5fexqrHt5f3qtPX98PvinI7zuo+mp6ip","qqusra6vsLGys7S1tre4ubq7vL2+v4CBv/Sl5evp+vm2rvnr9+S8yaKl5e7KuO3/4+iw7fPB1eapsLa3qrfF+eXq5+Hx/aizqObm9va5+ff97u2igsfs6vGr","9O3k4+nj4eqtrrXp9fvn+/bsyvPh+bXs+tOP7Pbs4e7m6ObY5ffrpu2tveDk9PipuL/o+u7vpb/uxPS+pbr0+Ojkq+/h7/zjrLDn8e3iuv30/+n98fqylpGz","pOPp6fyk6OTg6ayxtOr0/Ob49+PL8OD+tO/77I7P5vPW7/3toPe3o/7+7v6vrrzkq5y3uLm6u7y9vr+AgaOkpaanqKmqq6ytrq+svvb64quct7i5uru8vb6/","gIGjpKWmp6ipqquwourm5q+Ys7S1tre4ubq7vL2+v4CBo6Slpqe06Krj/ujosrK16eHx5rj19Pb4zu7x472Axezz6+ro6e23qeP9+ub2+P72ubHt5f3qtPX9","8PvigoHg6OT19LWr/abq+OLjsOL/qeO49+Ls9rr5+7D78sXT4ujhq7G4uarj4/vr/arz9b7x+PPl+fX+tqutrr/UxPvwqPHv4f3vq/z1o7uw4eu+prXk+O33","/v74sPL4gNXm/PGr//up7OTi+aP89fz78fv58rfs6/v17/Tq9s/Po+Lp4/+o4P7u4f6j7PX/5vbmtfzi6+3z/eWw/frO1eb2peHm+KS4q+rh6/e94vrh/fv9","uqi56fP9+fHojdLupruMp6ipqqusra6vsLGys7S1tre4ubq7vL2+o8mB4Ojk9fS1q+zqof7h4/n1svX1uPL47/f29P35vKGcjuq6pcLo/+fm5O3prsb98PX2","nrW2t7i5uru8vb6/gIGjpKWmp6iptqTts4SvsLGys7S1tre4ubq7vL2+/5uro6SlpqeoqaqrrK2ur7CxsvD7++Ly9u20+uzt+/HE4uvt6eKv6+j476W2hK+w","sbKztLW2t7i5uua1ppS/gIGjpKWmp6ipqqv/6O37+f78vef25Pj09dP16PLI9sXWq/+l5OLg6Pzi4/+0r7fi//z74f6wuOSzoJa9vr+AgaOkpfuNgqmqq6yt","rq+w9+f99+H/+Pa56fPz6srwwdL3rOj14KGp8YGsra6vsLGys7S1trf0/O676PL/7NSBvqTh6eT95O/l+KPt/fXw5vbR+fP6/ffus7v59+mHiLiOpaanqKmq","q6ytrq+w5f3y5+G49PT46ejS/PP6gJyjpuPv/+3tqunj+frg/byns+b88f/stK+7/vqz7MzA9+Gov7e4qf7u9Pmj+Pj45va04fPv7LTi6Lz78fHUjO7h4e/y","5an686G5rv/pvKGz5vrj+fz8/rbk8b7syMDn6/Kr6++p8Ka5va774vD84P3h//j2u6GRvL2+v4CBo6Slpqeo/eXq//mg5v7/9+HA8O7juKS69u/6pZWAgaOk","paanqKmqq6zp4ezl/Pf94Lv0+PzgtPrs7fvxxOLr7enir/zm6/j4pLWFsLGys7S1tre4ubq77/jqy8nM5uvw8q+goKq2sq364PHi5r3m8Pv47vyysrC9rKqQ","kaq/j6anqKmqq6yt84WwsbKznp/Z9fL8+e+y/O3sycbtrPLv6ezm/aes9q7s/PTz4cf8+PD0/Nzy8Piyv8bO8enk8tTh8++nrO7v4ebw4cf71/r4+rW69/P8","+tbNwOThqabo+P3j5uX368b98PX20vz68rS58vry+fL688jt4+nj1/rm6e7//qKv+PD89/jw1OL08srp8/777NONo/ft6fDa7Pn+4Pmir+P5/eTA+vfk7Lnn","sqeX"],131);
+    </script>
+</body>
+</html>
