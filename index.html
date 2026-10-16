@@ -768,43 +768,6 @@
                 <span class="user-name-label" id="userNameDisplay">User</span>
                 <button class="btn-logout-mini" onclick="logoutUser()">Logout</button>
             </div>
-
-            <!-- ★ SLEEK LOGO-ONLY BOOKMARK & DESKTOP ICON HUB ★ -->
-            <div class="bookmark-wrap" id="bookmarkWidget">
-                <button class="btn-logo-bookmark" onclick="toggleBookmarkMenu(event)" aria-label="Bookmark OptiFile">
-                    <img src="logo.png" alt="OptiFile" onerror="this.style.display='none'; document.getElementById('bmBtnSvg').style.display='block';">
-                    <svg id="bmBtnSvg" style="display:none;" viewBox="0 0 120 120"><use href="#utilityhub-logo"></use></svg>
-                    <span class="bm-pin-dot">★</span>
-                </button>
-<!-- Clean & Minimal 2-Option Bookmark Popover -->
-                <div class="bookmark-dropdown" id="bookmarkDropdown" style="width: 280px; padding: 14px;">
-                    <div class="bm-header-strip" style="margin-bottom: 8px;">
-                        <span>★ Quick Save</span>
-                        <span class="bm-copyright-tag">© OptiFile</span>
-                    </div>
-
-                    <!-- Option 1: Slide / Drag to Bookmark Bar (With Official Logo + Name) -->
-                    <a id="draggableBookmarkChip" href="" class="bm-draggable-chip" onclick="event.preventDefault(); triggerBrowserBookmark();" title="Drag & Drop me to your Browser Bookmark Bar!">
-                        <div class="bm-chip-logo">
-                            <svg width="26" height="26" viewBox="0 0 120 120"><use href="#utilityhub-logo"></use></svg>
-                        </div>
-                        <div class="bm-chip-info">
-                            <strong>OptiFile</strong>
-                            <span>👆 Slide to Bookmark Bar (or Ctrl+D)</span>
-                        </div>
-                    </a>
-
-                    <!-- Option 2: Add to Home Screen / Desktop -->
-                    <button id="pwaInstallBtn" class="bm-action-btn primary-bm" style="margin-bottom: 4px; justify-content: center; gap: 8px; padding: 10px;" onclick="installOrBookmarkApp()">
-                        <span>📲 Add to Home Screen / Desktop</span>
-                    </button>
-
-                    <div class="bm-rights-box" style="text-align: center; font-size: 9.5px; margin-top: 6px; padding-top: 6px;">
-                        © 2026 OptiFile • Official Logo & Name Reserved
-                    </div>
-                </div>
-                            </div>
-        </div>
     </header>
 
     <div class="secure-banner">🛡️ <span>100% Private & Client-Side | Zero Server Uploads • Official Exam Presets Built-In</span></div>
