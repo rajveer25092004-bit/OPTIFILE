@@ -5,30 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OptiFile • UtilityHub | All-In-One File & Exam Utilities</title>
 
-    <!-- SEO Meta Tags for Google Search -->
-    <meta name="description" content="OptiFile is a 100% free offline utility hub. Resize images to exact KB, format exam documents, and compress PDFs instantly.">
-    <meta name="keywords" content="OptiFile, optifile online, optifile utility hub, exact kb image compressor, exam photo resizer">
+    <!-- SEO Meta Tags for Google Search & AdSense -->
+    <meta name="description" content="OptiFile is a 100% free offline utility hub. Resize images to exact KB (20KB, 50KB), format SBI, IBPS, SSC, RRB, UPSC, NTA exam documents, and compress PDFs instantly.">
+    <meta name="keywords" content="OptiFile, optifile online, sbi photo resizer 20kb to 50kb, ibps signature resizer 10kb to 20kb, ssc photo compressor with date, upsc photo resizer 550x550, nta neet jee photo postcard resizer, rrb railway photo signature 30kb to 70kb, handwritten declaration resizer, left thumb impression kb converter, exact kb image compressor, compress pdf to 100kb 200kb 300kb">
     <meta name="author" content="Rajveer Singh">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://optifile.online/">
 
-    <!-- Open Graph (Share Preview & Extra SEO) -->
+    <!-- 👇 JAB GOOGLE ADSENSE APPLY KARO, TOH UNKA META TAG YA SCRIPT YAHAN PASTE KARNA 👇 -->
+    <!-- <meta name="google-adsense-account" content="ca-pub-XXXXXXXXXXXXXXXX"> -->
+
+    <!-- Open Graph (Social & Search Preview) -->
     <meta property="og:title" content="OptiFile • UtilityHub | All-In-One File & Exam Utilities">
-    <meta property="og:description" content="100% Private File & Exam Utilities. Compress photos, merge PDFs, and format documents instantly.">
+    <meta property="og:description" content="100% Private File & Exam Utilities. Compress photos to exact KB, merge PDFs, and format exam documents instantly.">
     <meta property="og:url" content="https://optifile.online/">
     <meta property="og:site_name" content="OptiFile">
+    <meta property="og:image" content="https://optifile.online/logo.png">
     <meta property="og:type" content="website">
 
-    <!-- Google Structured Data (JSON-LD) -->
+    <!-- Google Structured Data (JSON-LD for Brand Logo & WebApplication) -->
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "OptiFile",
-      "alternateName": ["OptiFile UtilityHub", "OptiFile.online"],
-      "url": "https://optifile.online/",
-      "description": "All-In-One File & Exam Utilities. Resize images, format exam documents, and manage PDFs offline."
-    }
+    [
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "OptiFile",
+        "alternateName": ["OptiFile UtilityHub", "OptiFile.online"],
+        "url": "https://optifile.online/",
+        "description": "All-In-One File & Exam Utilities. Resize images to exact KB, format exam documents, and manage PDFs offline."
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "OptiFile",
+        "url": "https://optifile.online/",
+        "logo": "https://optifile.online/logo.png"
+      }
+    ]
     </script>
 
     <script src="optifile-shield.js"></script>
@@ -36,11 +49,12 @@
     <meta name="theme-color" content="#0F172A">
     <meta name="copyright" content="© 2026 OptiFile UtilityHub. All Rights Reserved.">
 
-    <!-- Dynamic High-Res Logo Favicon (No PWA Manifest - Never Triggers Install Prompt) -->
-    <link id="dynamicFaviconIco" rel="shortcut icon" type="image/x-icon" href="logo.png">
-    <link id="dynamicFavicon" rel="icon" type="image/png" href="logo.png">
-    <link id="dynamicFaviconPng" rel="icon" type="image/png" sizes="192x192" href="logo.png">
-    <link id="dynamicAppleIcon" rel="apple-touch-icon" sizes="180x180" href="logo.png">
+    <!-- Static Square Favicon Links for Google Search Bot -->
+    <link rel="shortcut icon" type="image/png" href="https://optifile.online/logo.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="logo.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="logo.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="logo.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="logo.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -82,7 +96,8 @@
         .btn-logout-mini{background:#FEE2E2;color:#DC2626;border:none;padding:4px 8px;border-radius:12px;font-size:11px;font-weight:700;cursor:pointer}
         .btn-logout-mini:hover{background:#FECACA}
         .secure-banner{background:linear-gradient(90deg,#EFF6FF,#F0FDFA);border-bottom:1px solid #BFDBFE;color:#0F172A;font-size:13px;font-weight:600;text-align:center;padding:9px;position:relative;z-index:2}
-        .ad-spot-1,.ad-spot-4{width:100%;max-width:728px;height:90px;background:rgba(241,245,249,0.85);border:2px dashed #CBD5E1;color:#94A3B8;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;margin:24px auto 0;border-radius:8px;position:relative;z-index:2}
+        /* Hidden until AdSense approval is granted so reviewers see a clean site */
+        .ad-spot-1,.ad-spot-4{display:none}
         main{max-width:1080px;margin:36px auto 60px;padding:0 20px;text-align:center;width:100%;position:relative;z-index:2;flex-grow:1}
         #home-view{display:block}#tool-view{display:none;text-align:left}#exam-view{display:none;text-align:left}
         .hero-title{font-size:36px;font-weight:800;letter-spacing:-0.75px;margin-bottom:14px}
@@ -94,13 +109,26 @@
         .card-title{font-size:17px;font-weight:700;margin-bottom:6px}
         .card-desc{font-size:13.5px;color:var(--text-muted);line-height:1.5}
         .section-label-center{font-size:14px;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin-bottom:22px;color:var(--text-dark);text-align:center}
-        .exam-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+        .exam-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:54px}
         .preset-solid{padding:18px 20px;border-radius:16px;color:#FFF;font-size:15px;font-weight:700;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:none;box-shadow:0 4px 6px rgba(0,0,0,0.05);text-decoration:none;transition:transform .2s,box-shadow .2s}
         .preset-solid:hover{transform:translateY(-3px);box-shadow:0 10px 20px rgba(0,0,0,0.15)}
         .bg-banking{background:linear-gradient(135deg,#1E3A8A,#2563EB)}
         .bg-ssc{background:linear-gradient(135deg,#EA580C,#F97316)}
         .bg-upsc{background:linear-gradient(135deg,#0F172A,#334155)}
         .bg-nta{background:linear-gradient(135deg,#DC2626,#EA580C)}
+        /* SEO & AdSense High-Value Guide Section */
+        .seo-guide-box{background:#FFF;border:1.5px solid var(--border-light);border-radius:18px;padding:32px;text-align:left;margin-top:20px;box-shadow:0 4px 14px rgba(0,0,0,0.02)}
+        .seo-guide-box h2{font-size:22px;font-weight:800;color:#0F172A;margin-bottom:12px}
+        .seo-guide-box p{font-size:14px;color:#475569;line-height:1.7;margin-bottom:18px}
+        .seo-table-wrap{overflow-x:auto;margin-bottom:24px}
+        .seo-spec-table{width:100%;border-collapse:collapse;font-size:13px}
+        .seo-spec-table th,.seo-spec-table td{border:1px solid #E2E8F0;padding:10px 14px;text-align:left}
+        .seo-spec-table th{background:#F8FAFC;font-weight:800;color:#0F172A}
+        .seo-faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+        @media (max-width:768px){.seo-faq-grid{grid-template-columns:1fr}}
+        .seo-faq-item{background:#F8FAFC;border:1px solid #E2E8F0;border-radius:12px;padding:16px}
+        .seo-faq-item h4{font-size:14px;font-weight:800;color:#0F172A;margin-bottom:6px}
+        .seo-faq-item p{font-size:13px;color:#475569;margin-bottom:0;line-height:1.55}
         .trust-showcase-section{background:#FFF;border-top:1px solid var(--border-light);border-bottom:1px solid var(--border-light);padding:64px 5%;text-align:center;position:relative;z-index:2;margin-top:20px}
         .trust-showcase-inner{max-width:920px;margin:0 auto}
         .trust-showcase-title{font-size:32px;font-weight:800;color:#1E293B;letter-spacing:-0.6px;margin-bottom:16px}
@@ -239,17 +267,6 @@
         .legal-modal-body h4{font-size:16px;font-weight:800;color:#0F172A;margin:14px 0 6px}
         .legal-modal-body ul{padding-left:20px;margin-bottom:14px}
         .legal-modal-body li{margin-bottom:6px}
-        #videoAdModal{display:none;position:fixed;inset:0;background:rgba(15,23,42,0.88);backdrop-filter:blur(8px);z-index:10000;align-items:center;justify-content:center;padding:20px}
-        .ad-modal-box{background:#0F172A;color:#fff;width:100%;max-width:580px;border-radius:22px;border:1.5px solid #334155;padding:24px;text-align:center;box-shadow:0 25px 50px rgba(0,0,0,0.6)}
-        .ad-modal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;font-size:12.5px;font-weight:800;color:#94A3B8;letter-spacing:.5px}
-        .ad-timer-badge{background:#F59E0B;color:#0F172A;padding:5px 14px;border-radius:20px;font-weight:800;font-size:12px}
-        .ad-video-stage{width:100%;height:265px;background:radial-gradient(circle at center,#1E293B,#0B0F19);border:2px dashed #475569;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;margin-bottom:16px;position:relative;overflow:hidden;padding:18px}
-        .ad-network-pill{position:absolute;top:10px;left:10px;background:rgba(255,255,255,0.1);padding:3px 9px;border-radius:6px;font-size:10px;font-weight:700;color:#CBD5E1}
-        .ad-progress-track{width:100%;height:8px;background:#334155;border-radius:10px;overflow:hidden;margin-bottom:16px}
-        .ad-progress-fill{height:100%;width:0%;background:linear-gradient(90deg,#F59E0B,#10B981);transition:width 1s linear}
-        .ad-duration-switch{display:flex;justify-content:center;gap:14px;margin-bottom:12px;font-size:12px;color:#CBD5E1;align-items:center}
-        .btn-skip-test{background:#334155;color:#F8FAFC;border:1px solid #475569;padding:7px 14px;border-radius:8px;font-size:11.5px;font-weight:700;cursor:pointer;margin-top:8px;transition:.2s}
-        .btn-skip-test:hover{background:#10B981;color:#0F172A;border-color:#10B981}
         .toast-msg{position:fixed;bottom:24px;right:24px;background:#0F172A;color:#fff;padding:12px 20px;border-radius:12px;font-size:13px;font-weight:700;box-shadow:0 10px 25px rgba(0,0,0,0.25);display:none;z-index:10005;border:1px solid #334155}
     </style>
 
@@ -331,8 +348,6 @@
 
     <div class="secure-banner">🛡️ <span>100% Private & Client-Side | Zero Server Uploads • Official Exam Presets Built-In</span></div>
 
-    <div class="ad-spot-1">AdSense Leaderboard Ad (728x90)</div>
-
     <main>
         <!-- ================= HOME VIEW ================= -->
         <div id="home-view">
@@ -397,6 +412,71 @@
                 <button onclick="openExamPreset('upsc')" class="preset-solid bg-upsc"><div><span class="icon">📝</span> UPSC & State PSC</div><span class="arrow">›</span></button>
                 <button onclick="openExamPreset('nta')" class="preset-solid bg-nta"><div><span class="icon">🎓</span> NTA Academics</div><span class="arrow">›</span></button>
             </div>
+
+            <!-- SEO & ADSENSE RICH CONTENT GUIDE -->
+            <div class="seo-guide-box">
+                <h2>📋 Official Government Exam Photo, Signature & PDF Size Guide (2026–2027)</h2>
+                <p>
+                    Filling out online application forms for competitive examinations in India requires strict adherence to pixel dimensions, file formats (JPG/PDF), and exact kilobyte (KB) size limits. <strong>OptiFile UtilityHub</strong> automates these specifications directly inside your web browser without uploading your personal documents to any external cloud server.
+                </p>
+                <div class="seo-table-wrap">
+                    <table class="seo-spec-table">
+                        <thead>
+                            <tr>
+                                <th>Exam Category</th>
+                                <th>Passport Photo Rule</th>
+                                <th>Signature Specification</th>
+                                <th>Additional Documents</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Banking (SBI PO/Clerk, IBPS PO/Clerk/RRB, RBI)</strong></td>
+                                <td>20 KB – 50 KB (200 × 230 px, JPG)</td>
+                                <td>10 KB – 20 KB (140 × 60 px, Black Ink)</td>
+                                <td>Left Thumb (20–50 KB) &amp; Handwritten Declaration (50–100 KB, 800 × 400 px)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>SSC &amp; Railway (SSC CGL/CHSL/MTS, RRB NTPC/Group D)</strong></td>
+                                <td>SSC: 20–50 KB | RRB: 30–70 KB (275 × 354 px)</td>
+                                <td>SSC: 10–20 KB | RRB: 30–70 KB</td>
+                                <td>SC/ST Train Pass &amp; Caste Certificate (50–300 KB, Auto PDF)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>UPSC &amp; State PSC (CSE IAS, NDA, CDS, CAPF)</strong></td>
+                                <td>20 KB – 300 KB (550 × 550 px Square with Name &amp; Date)</td>
+                                <td>20 KB – 300 KB (500 × 250 px, JPG)</td>
+                                <td>Photo ID Card Proof PDF (20–300 KB)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>NTA Academics (NEET UG, JEE Main, CUET)</strong></td>
+                                <td>Passport: 10–200 KB | Postcard (4×6"): 10–200 KB</td>
+                                <td>4 KB – 30 KB (350 × 150 px, JPG)</td>
+                                <td>Fingers &amp; Thumb Impression (10–200 KB) &amp; Class 10th Certificate PDF (50–300 KB)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="seo-faq-grid">
+                    <div class="seo-faq-item">
+                        <h4>How to reduce photo size to 20KB–50KB for SBI &amp; IBPS exams?</h4>
+                        <p>Open the <strong>Banking Suite</strong> preset on OptiFile, select your passport photo, and click Format. Our engine automatically sets the dimensions to 200×230 pixels and locks the file size strictly around 38KB.</p>
+                    </div>
+                    <div class="seo-faq-item">
+                        <h4>Can I print my Name and Date of Photo (DOP) automatically?</h4>
+                        <p>Yes! Inside any Exam Preset slot for Passport Photos (SSC, UPSC, Banking, or NTA), check the <em>"Print Name &amp; Date on Photo"</em> option to add a crisp white nameplate strip at the bottom of your photograph.</p>
+                    </div>
+                    <div class="seo-faq-item">
+                        <h4>Are my uploaded ID cards, photos, and signatures safe?</h4>
+                        <p>100% safe. OptiFile runs entirely on client-side HTML5 Canvas and WebAssembly technology. Your photos, signatures, and PDFs never leave your phone or computer.</p>
+                    </div>
+                    <div class="seo-faq-item">
+                        <h4>How do I increase a small image KB size if it is below 10KB?</h4>
+                        <p>Switch to our <strong>KB Manager</strong> tool, choose <em>"Increase Size (Exact Boost)"</em>, enter your target KB value, and download your boosted JPG image without losing visual quality.</p>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- ================= EXAM PRESET SUITE VIEW (#exam-view) ================= -->
@@ -438,17 +518,15 @@
                 <div class="exam-results-top">
                     <div>
                         <h3 style="font-size:18px; font-weight:800; color:#065F46;">✅ All Exam Documents Formatted to Exact Specifications!</h3>
-                        <p style="font-size:12.5px; color:#047857;">Click "Download All Files Together" — a brief sponsored video ad unlocks direct 1-click download of all files (No ZIP needed).</p>
+                        <p style="font-size:12.5px; color:#047857;">Click "Download All Files" for direct 1-click download of all formatted documents (No ZIP needed).</p>
                     </div>
                     <button class="btn-download-all-direct" onclick="openRewardedVideoAdGate('exam')">
-                        <span>🎬 Watch Short Ad & Download All Files</span>
+                        <span>⬇ Download All Formatted Files</span>
                         <span class="ad-gate-tag">1-Click Direct</span>
                     </button>
                 </div>
                 <div id="exam-results-list"></div>
             </div>
-
-            <div class="ad-spot-4">AdSense Leaderboard (728x90) - Exam Suite Bottom</div>
         </div>
 
         <!-- ================= TOOL VIEW (PRO KB MANAGER SPA) ================= -->
@@ -558,14 +636,12 @@
                 <div class="result-top-bar">
                     <div class="result-header">✅ Optimization Complete! Download Below:</div>
                     <button id="bulkDownloadAllBtn" class="btn-download-all-direct" style="display:none;" onclick="openRewardedVideoAdGate('bulk_kb')">
-                        <span>🎬 Watch Short Ad & Download All Bulk Files</span>
+                        <span>⬇ Download All Bulk Files</span>
                         <span class="ad-gate-tag">1-Click Direct</span>
                     </button>
                 </div>
                 <div id="result-content"></div>
             </div>
-
-            <div class="ad-spot-4">AdSense Leaderboard (728x90) - Processing Area</div>
         </div>
     </main>
 
@@ -618,7 +694,7 @@
                 </div>
                 <div class="rights-card">
                     <h4>⚖️ User Rules & Fair Usage</h4>
-                    <p>Users own 100% rights to their processed documents. Automated bot scraping, F12 reverse-engineering, or bypassing sponsored bulk-download ad gates violates our Terms of Service.</p>
+                    <p>Users own 100% rights to their processed documents. Automated bot scraping, F12 reverse-engineering, or unauthorized mirroring violates our Terms of Service.</p>
                 </div>
             </div>
         </div>
@@ -661,7 +737,7 @@
                     <h5>LEGAL & RIGHTS</h5>
                     <ul>
                         <li><a onclick="openLegalModal('copyright')">Copyright & Anti-Copy Policy</a></li>
-                        <li><a onclick="openLegalModal('privacy')">Privacy Policy (Zero-Upload)</a></li>
+                        <li><a onclick="openLegalModal('privacy')">Privacy & Cookie Policy</a></li>
                         <li><a onclick="openLegalModal('terms')">Terms & Conditions</a></li>
                         <li><a onclick="openLegalModal('rules')">Rules & Regulations</a></li>
                         <li><a onclick="openLegalModal('security')">Logo & Brand IP Rights</a></li>
@@ -674,7 +750,7 @@
                         <li><a onclick="openLegalModal('what_we_provide')">About OptiFile</a></li>
                         <li><a onclick="openLegalModal('contact')">Contact & Report Abuse</a></li>
                         <li><a onclick="openAuthModal('signup')">Member Portal</a></li>
-                        <li><a onclick="openLegalModal('security')">Ad & Monetization Policy</a></li>
+                        <li><a onclick="openLegalModal('privacy')">AdSense & Cookie Policy</a></li>
                     </ul>
                 </div>
             </div>
@@ -705,7 +781,7 @@
                 <svg width="36" height="36" viewBox="0 0 120 120"><use href="#utilityhub-logo"></use></svg>
                 <div>
                     <h3 id="authModalTitle" style="font-size:18px; font-weight:800; color:var(--text-dark);">Welcome Back to OptiFile</h3>
-                    <p style="font-size:12px; color:var(--text-muted);">Save your exam presets & unlock faster bulk downloads</p>
+                    <p style="font-size:12px; color:var(--text-muted);">Save your exam presets & preferences locally</p>
                 </div>
             </div>
 
@@ -737,64 +813,30 @@
         </div>
     </div>
 
-    <!-- LEGAL MODAL -->
+    <!-- LEGAL MODAL (WITH GOOGLE ADSENSE PRIVACY & COOKIE COMPLIANCE) -->
     <div id="legalModal">
         <div class="legal-modal-card">
             <div class="legal-modal-header">
                 <div style="display:flex; align-items:center; gap:10px;">
                     <svg width="28" height="28" viewBox="0 0 120 120"><use href="#utilityhub-logo"></use></svg>
-                    <strong style="font-size:16px;">OptiFile UtilityHub — Legal, Rights & Regulations Center</strong>
+                    <strong style="font-size:16px;">OptiFile UtilityHub — Legal, Privacy & AdSense Policy Center</strong>
                 </div>
                 <button onclick="closeLegalModal()" style="background:transparent; border:1px solid #475569; color:white; width:30px; height:30px; border-radius:50%; cursor:pointer; font-weight:800;">✕</button>
             </div>
             <div class="legal-modal-tabs">
-                <button class="legal-tab-pill active" id="ltab_copyright" onclick="switchLegalTab('copyright')">©️ Copyright & What Cannot Be Copied</button>
-                <button class="legal-tab-pill" id="ltab_what_we_provide" onclick="switchLegalTab('what_we_provide')">🚀 What We Provide</button>
+                <button class="legal-tab-pill active" id="ltab_copyright" onclick="switchLegalTab('copyright')">©️ Copyright & IP Policy</button>
+                <button class="legal-tab-pill" id="ltab_what_we_provide" onclick="switchLegalTab('what_we_provide')">🚀 About & Services</button>
                 <button class="legal-tab-pill" id="ltab_rules" onclick="switchLegalTab('rules')">⚖️ Rules & Regulations</button>
-                <button class="legal-tab-pill" id="ltab_privacy" onclick="switchLegalTab('privacy')">🔒 Privacy Policy</button>
+                <button class="legal-tab-pill" id="ltab_privacy" onclick="switchLegalTab('privacy')">🔒 Privacy & AdSense Cookies</button>
                 <button class="legal-tab-pill" id="ltab_terms" onclick="switchLegalTab('terms')">📄 Terms of Use</button>
             </div>
             <div class="legal-modal-body" id="legalModalContent"></div>
         </div>
     </div>
 
-    <!-- REWARDED VIDEO AD MODAL -->
-    <div id="videoAdModal">
-        <div class="ad-modal-box">
-            <div class="ad-modal-header">
-                <span id="adGateHeaderLabel">🎬 GOOGLE SPONSORED VIDEO AD (UNLOCKING BULK DOWNLOAD)</span>
-                <span class="ad-timer-badge" id="adTimerBadge">15s remaining</span>
-            </div>
-
-            <div class="ad-duration-switch">
-                <span>Ad Duration Setting:</span>
-                <label style="cursor:pointer;"><input type="radio" name="adSecMode" value="15" checked> 15 Sec Video Ad</label>
-                <label style="cursor:pointer;"><input type="radio" name="adSecMode" value="30"> 30 Sec Video Ad</label>
-            </div>
-
-            <div class="ad-video-stage" id="adVideoContainer">
-                <span class="ad-network-pill">Ad • Google Ad Manager / IMA VAST Ready</span>
-                <div style="font-size:40px;">▶️</div>
-                <strong style="font-size:15.5px; color:#F8FAFC;" id="adStageHeadline">Playing Sponsored Video Ad (15s / 30s)</strong>
-                <p style="font-size:12px; color:#94A3B8; max-width:440px;">
-                    Future Ad Placement: Insert your Google AdSense Rewarded Ad / IMA SDK VAST Tag inside <code>#adVideoContainer</code>. Your bulk files will trigger auto-download once the timer completes.
-                </p>
-                <button class="btn-skip-test" onclick="skipAdAndDownloadNow()">⚡ Instant Unlock & Download All (Developer Test Mode)</button>
-            </div>
-
-            <div class="ad-progress-track">
-                <div class="ad-progress-fill" id="adProgressBar"></div>
-            </div>
-
-            <p id="adStatusSubtext" style="font-size:12.5px; color:#CBD5E1;">
-                Please wait while we prepare your files for direct 1-click download...
-            </p>
-        </div>
-    </div>
-
     <div id="toastMsg" class="toast-msg">Done!</div>
 
-    <!-- OBFUSCATED & PROTECTED ENGINE (NO PWA / NO BOOKMARK / VERCEL ANALYTICS READY) -->
+    <!-- OBFUSCATED & PROTECTED ENGINE (ADSENSE COMPLIANT / NO PWA / VERCEL ANALYTICS READY) -->
     <script>
     (function(_0xW,_0xD){const _0xH=_0xW.location.hostname;if(_0xW.OPTIFILE_CONFIG===undefined&&!["optifile.online","www.optifile.online","localhost","127.0.0.1",""].includes(_0xH)&&!_0xH.endsWith(".vercel.app")){_0xD.body.innerHTML="";throw new Error("Protected by OptiFile.online");}
     if('serviceWorker' in navigator){navigator.serviceWorker.getRegistrations().then(function(r){for(let sw of r){sw.unregister();}});}
@@ -811,7 +853,7 @@
     _0xW.handleQuickGoogleLogin=function(){const em=_0xG('authEmail').value.trim(),nm=_0xG('authName').value.trim(),uo={name:nm||(em?em.split('@')[0]:'Verified Member'),email:em||'member@optifile.online',loggedInAt:Date.now()};localStorage.setItem('optifile_user',JSON.stringify(uo));_0xW.applyUserSession(uo);_0xW.closeAuthModal();_0xW.showToast(`✅ Signed in as ${uo.name}!`);};
     _0xW.applyUserSession=function(u){if(!u)return;_0xG('guestAuthBtns').style.display='none';const p=_0xG('userProfilePill');p.style.display='flex';_0xG('userNameDisplay').innerText=u.name;_0xG('userAvatarChar').innerText=u.name.charAt(0).toUpperCase();};
     _0xW.logoutUser=function(){localStorage.removeItem('optifile_user');_0xG('userProfilePill').style.display='none';_0xG('guestAuthBtns').style.display='flex';_0xW.showToast('Signed out successfully.');};
-    const _0xLD={copyright:`<h4>©️ Intellectual Property & Anti-Copy Policy (Strict Enforcement)</h4><p><strong>© 2026 OptiFile UtilityHub. All Rights Reserved.</strong> Every element of this platform is protected under the Indian Copyright Act, 1957 and the Digital Millennium Copyright Act (DMCA).</p><h4>🚫 What Third Parties & Competitors CANNOT Copy:</h4><ul><li><strong>Proprietary Source Code & Algorithms:</strong> Copying, de-obfuscating, or redistributing our JavaScript exact-KB binary search & byte-padding engine is strictly prohibited.</li><li><strong>1-Click Exam Preset Matrix:</strong> Our curated Banking, SSC, Railway (RRB), UPSC, and NTA multi-slot dashboard layout and auto-PDF conversion pipeline may not be cloned.</li><li><strong>Brand Identity & Visual Assets:</strong> The "OptiFile", "UtilityHub" name, custom interlocking U-shield vector logo, watermarks, and UI/UX card styling are exclusive property of OptiFile.</li></ul>`,what_we_provide:`<h4>🚀 What OptiFile UtilityHub Provides to Users</h4><p>OptiFile is a 100% free, client-side digital document & exam utility suite built for students, job aspirants, and professionals:</p><ul><li><strong>1-Click Exam Document Suite:</strong> Pre-configured pixel dimensions, aspect-ratio fit, optional Name/Date photo stamps, and exact KB locks for IBPS, SBI, SSC, Railway RRB (including SC/ST Train Pass PDF), UPSC, and NTA NEET/JEE.</li><li><strong>High-Precision KB Manager:</strong> Compress 20MB+ images down to exact KB targets (e.g., 20KB, 50KB) or boost small files to required minimums in Single and Bulk Batch modes.</li></ul>`,rules:`<h4>⚖️ Platform Rules, Regulations & Fair Usage Policy</h4><ul><li><strong>100% Document Ownership:</strong> You retain full ownership of every photo, signature, certificate, or PDF you process on OptiFile.</li><li><strong>Authentic Document Responsibility:</strong> Users are solely responsible for ensuring that exam photos, signatures, and certificates uploaded to government portals are genuine and belong to the candidate.</li><li><strong>Sponsored Bulk-Download Gate:</strong> Single-file downloads are instant. Bulk multi-file downloads and 1-Click Exam Suite bundle downloads are supported by a brief 15-second or 30-second sponsored video advertisement to keep the platform 100% free without server fees.</li><li><strong>Anti-Tampering Rule:</strong> Attempting to bypass security scripts, right-click/F12 protections, or ad-gate timers via browser extensions is a violation of platform rules.</li></ul>`,privacy:`<h4>🔒 100% Zero-Server Privacy Policy</h4><p>Unlike traditional online tools that upload your sensitive ID cards, photos, and marksheets to remote cloud servers, <strong>OptiFile processes 100% of your files locally inside your device's browser memory (HTML5 Canvas & WebAssembly).</strong></p><ul><li><strong>Zero File Uploads:</strong> Your photos, signatures, and PDFs never leave your phone or computer.</li><li><strong>Local Preferences Only:</strong> Sign-in profiles and custom presets are stored locally in your browser's <code>localStorage</code> for convenience and can be cleared anytime with 1 click.</li></ul>`,terms:`<h4>📄 Terms & Conditions of Service</h4><p>By accessing and using OptiFile UtilityHub, you agree to abide by our intellectual property protections and fair usage guidelines. The software is provided "as-is" with official exam dimension presets updated for the 2026–2027 recruitment cycles.</p>`,security:`<h4>🛡️ Security Architecture, Brand IP & DMCA Protection</h4><p>OptiFile uses 256-Bit SSL encryption, client-side sandboxed execution, domain-lock verification, and active DMCA monitoring to protect both user privacy and platform intellectual property.</p>`,contact:`<h4>📬 Contact & Copyright Infringement Reporting</h4><p>For support, exam preset requests, business inquiries, or to report unauthorized copying of OptiFile tools, reach out to our official support desk: <strong>support@optifile.online</strong>.</p>`};
+    const _0xLD={copyright:`<h4>©️ Intellectual Property & Anti-Copy Policy (Strict Enforcement)</h4><p><strong>© 2026 OptiFile UtilityHub. All Rights Reserved.</strong> Every element of this platform is protected under the Indian Copyright Act, 1957 and the Digital Millennium Copyright Act (DMCA).</p><h4>🚫 What Third Parties & Competitors CANNOT Copy:</h4><ul><li><strong>Proprietary Source Code & Algorithms:</strong> Copying, de-obfuscating, or redistributing our JavaScript exact-KB binary search & byte-padding engine is strictly prohibited.</li><li><strong>1-Click Exam Preset Matrix:</strong> Our curated Banking, SSC, Railway (RRB), UPSC, and NTA multi-slot dashboard layout and auto-PDF conversion pipeline may not be cloned.</li><li><strong>Brand Identity & Visual Assets:</strong> The "OptiFile", "UtilityHub" name, custom interlocking U-shield vector logo, watermarks, and UI/UX card styling are exclusive property of OptiFile.</li></ul>`,what_we_provide:`<h4>🚀 About OptiFile UtilityHub & What We Provide</h4><p>OptiFile (<strong>https://optifile.online</strong>) is a 100% free, client-side digital document & exam utility suite built for students, job aspirants, and professionals:</p><ul><li><strong>1-Click Exam Document Suite:</strong> Pre-configured pixel dimensions, aspect-ratio fit, optional Name/Date photo stamps, and exact KB locks for IBPS, SBI, SSC, Railway RRB (including SC/ST Train Pass PDF), UPSC, and NTA NEET/JEE.</li><li><strong>High-Precision KB Manager:</strong> Compress 20MB+ images down to exact KB targets (e.g., 20KB, 50KB) or boost small files to required minimums in Single and Bulk Batch modes.</li></ul>`,rules:`<h4>⚖️ Platform Rules, Regulations & Fair Usage Policy</h4><ul><li><strong>100% Document Ownership:</strong> You retain full ownership of every photo, signature, certificate, or PDF you process on OptiFile.</li><li><strong>Authentic Document Responsibility:</strong> Users are solely responsible for ensuring that exam photos, signatures, and certificates uploaded to government portals are genuine and belong to the candidate.</li><li><strong>Anti-Tampering Rule:</strong> Attempting to bypass security scripts or right-click/F12 protections is a violation of platform rules.</li></ul>`,privacy:`<h4>🔒 100% Zero-Server Privacy & Google AdSense Cookie Policy</h4><p>Unlike traditional online tools that upload your sensitive ID cards, photos, and marksheets to remote cloud servers, <strong>OptiFile processes 100% of your files locally inside your device's browser memory (HTML5 Canvas & WebAssembly).</strong></p><ul><li><strong>Zero File Uploads:</strong> Your photos, signatures, and PDFs never leave your phone or computer.</li><li><strong>Google AdSense & DoubleClick DART Cookie Disclosure:</strong> Third-party vendors, including Google, use cookies (such as the DoubleClick DART cookie) to serve ads based on a user's prior visits to this website or other websites on the internet. Users may opt out of personalized advertising by visiting <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener">Google Ads Settings</a>.</li><li><strong>Local Preferences Only:</strong> Sign-in profiles and custom presets are stored locally in your browser's <code>localStorage</code> for convenience and can be cleared anytime.</li></ul>`,terms:`<h4>📄 Terms & Conditions of Service</h4><p>By accessing and using OptiFile UtilityHub, you agree to abide by our intellectual property protections and fair usage guidelines. The software is provided "as-is" with official exam dimension presets updated for the 2026–2027 recruitment cycles.</p>`,security:`<h4>🛡️ Security Architecture, Brand IP & DMCA Protection</h4><p>OptiFile uses 256-Bit SSL encryption, client-side sandboxed execution, domain-lock verification, and active DMCA monitoring to protect both user privacy and platform intellectual property.</p>`,contact:`<h4>📬 Contact & Copyright Infringement Reporting</h4><p>For support, exam preset requests, business inquiries, or to report unauthorized copying of OptiFile tools, reach out to our official support desk: <strong>support@optifile.online</strong>.</p>`};
     _0xW.openLegalModal=function(k){_0xG('legalModal').style.display='flex';_0xW.switchLegalTab(k||'copyright');};
     _0xW.closeLegalModal=function(){_0xG('legalModal').style.display='none';};
     _0xW.switchLegalTab=function(k){['copyright','what_we_provide','rules','privacy','terms'].forEach(t=>{const el=_0xG('ltab_'+t);if(el)el.className='legal-tab-pill '+(t===k?'active':'');});_0xG('legalModalContent').innerHTML=_0xLD[k]||_0xLD.copyright;};
@@ -827,9 +869,8 @@
     async function _0xPS(slot,file){let se=null,sw=0,sh=0;if(file.type==='application/pdf'||file.name.toLowerCase().endsWith('.pdf')){se=await _0xRP(file,slot.width,slot.height);sw=se.width;sh=se.height;}else{se=await _0xLI(file);sw=se.width;sh=se.height;}const uk=_0xG(`target_kb_${slot.id}`);let dk=uk?parseFloat(uk.value):slot.targetKB;if(isNaN(dk))dk=slot.targetKB;dk=Math.max(slot.minKB,Math.min(slot.maxKB,dk));const fmEl=_0xG(`fit_mode_${slot.id}`),fm=fmEl?fmEl.value:'contain',tb=Math.floor(dk*1024),mnb=Math.floor(slot.minKB*1024),mxb=Math.floor((slot.maxKB-0.5)*1024);function _0xDC(w,h){const c=_0xD.createElement('canvas');c.width=w;c.height=h;const ctx=c.getContext('2d');ctx.fillStyle='#FFFFFF';ctx.fillRect(0,0,w,h);if(fm==='contain'){const sc=Math.min(w/sw,h/sh),dw=sw*sc,dh=sh*sc,ox=(w-dw)/2,oy=(h-dh)/2;ctx.drawImage(se,ox,oy,dw,dh);}else{ctx.drawImage(se,0,0,w,h);}if(slot.allowDateStamp){const chk=_0xG(`stamp_chk_${slot.id}`);if(chk&&chk.checked){const cn=_0xG(`stamp_name_${slot.id}`).value.trim(),cd=_0xG(`stamp_date_${slot.id}`).value.trim(),sth=Math.max(24,Math.floor(h*0.17));ctx.fillStyle='#FFFFFF';ctx.fillRect(0,h-sth,w,sth);ctx.strokeStyle='#000000';ctx.lineWidth=1.5;ctx.strokeRect(0,h-sth,w,sth);ctx.fillStyle='#000000';ctx.textAlign='center';const fs=Math.max(10,Math.floor(sth*0.36));ctx.font=`bold ${fs}px Inter, Arial, sans-serif`;if(cn&&cd){ctx.fillText(cn.toUpperCase(),w/2,h-sth+fs+2);ctx.fillText(cd.toUpperCase(),w/2,h-5);}else{ctx.fillText((cn||cd).toUpperCase(),w/2,h-(sth/2)+(fs/3));}}}return c;}const bc=_0xDC(slot.width,slot.height);if(slot.format==='PDF'){const{jsPDF}=_0xW.jspdf;let bpb=null,lq=0.15,hq=0.95;for(let it=0;it<7;it++){let mq=(lq+hq)/2;const pdf=new jsPDF({orientation:slot.width>slot.height?'l':'p',unit:'px',format:[slot.width,slot.height],compress:true});pdf.addImage(bc.toDataURL('image/jpeg',mq),'JPEG',0,0,slot.width,slot.height);const tsb=pdf.output('blob');if(tsb.size<=tb){bpb=tsb;lq=mq;}else{hq=mq;}}if(!bpb){const pdf=new jsPDF({orientation:slot.width>slot.height?'l':'p',unit:'px',format:[slot.width,slot.height],compress:true});pdf.addImage(bc.toDataURL('image/jpeg',0.12),'JPEG',0,0,slot.width,slot.height);bpb=pdf.output('blob');}if(bpb.size<tb&&tb<=mxb){bpb=new Blob([bpb,new Uint8Array(tb-bpb.size)],{type:'application/pdf'});}else if(bpb.size<mnb){bpb=new Blob([bpb,new Uint8Array(mnb+2048-bpb.size)],{type:'application/pdf'});}const csn=slot.name.replace(/[^a-zA-Z0-9]+/g,'_').replace(/^_|_$/g,'');return{slotName:slot.name,dimensions:`${slot.width}×${slot.height}px`,allowedRange:`${slot.minKB}–${slot.maxKB} KB`,fileName:`${_0xCE.toUpperCase()}_${csn}.pdf`,originalSize:file.size,newSize:bpb.size,previewUrl:bc.toDataURL('image/jpeg',0.7),blobUrl:URL.createObjectURL(bpb)};}let bb=null,sf=1.0;for(let p=0;p<5;p++){const cw=Math.max(60,Math.floor(slot.width*sf)),ch=Math.max(40,Math.floor(slot.height*sf)),wc=p===0?bc:_0xDC(cw,ch);let mqb=await _0xCB(wc,0.08);if(mqb.size>tb&&mqb.size>mxb){sf*=0.82;bb=mqb;continue;}let lw=0.08,hg=0.98;bb=mqb;for(let i=0;i<8;i++){let md=(lw+hg)/2,tsb=await _0xCB(wc,md);if(tsb.size<=tb){bb=tsb;lw=md;}else{hg=md;}}break;}if(bb.size<tb&&tb<=mxb){bb=new Blob([bb,new Uint8Array(tb-bb.size)],{type:'image/jpeg'});}else if(bb.size<mnb){bb=new Blob([bb,new Uint8Array(mnb+2048-bb.size)],{type:'image/jpeg'});}const csn=slot.name.replace(/[^a-zA-Z0-9]+/g,'_').replace(/^_|_$/g,'');return{slotName:slot.name,dimensions:`${slot.width}×${slot.height}px`,allowedRange:`${slot.minKB}–${slot.maxKB} KB`,fileName:`${_0xCE.toUpperCase()}_${csn}.jpg`,originalSize:file.size,newSize:bb.size,previewUrl:URL.createObjectURL(bb),blobUrl:URL.createObjectURL(bb)};}
     _0xW.processAllExamDocuments=async function(){const p=_0xEP[_0xCE],uids=Object.keys(_0xUF);if(uids.length===0){alert("Please upload at least one document in any slot above first!");return;}const btn=_0xG('processAllExamBtn'),ot=btn.innerText;btn.disabled=true;btn.innerText="⏳ Auto-Formatting Documents...";try{_0xPO=[];for(const s of p.slots){if(_0xUF[s.id]){const r=await _0xPS(s,_0xUF[s.id]);_0xPO.push(r);}}_0xRER();_0xW.showToast(`✅ Formatted ${_0xPO.length} Exam Documents!`);}catch(err){console.error(err);alert("Error formatting documents: "+err.message);}finally{btn.innerText=ot;btn.disabled=false;}};
     function _0xRER(){const pn=_0xG('exam-results-panel'),ls=_0xG('exam-results-list');ls.innerHTML='';pn.style.display='block';_0xPO.forEach((it,idx)=>{const cd=_0xD.createElement('div');cd.className='result-card';cd.innerHTML=`<div class="result-info"><img src="${it.previewUrl}" alt="preview"><div><strong style="font-size:14px;display:block;color:var(--text-dark);">${idx+1}. ${it.slotName} → <span style="color:var(--primary);">${it.fileName}</span></strong><span style="font-size:12px;color:var(--text-muted);">Original: <b>${_0xFS(it.originalSize)}</b> → Final Exact Size: <b style="color:#059669;font-size:13px;">${_0xFS(it.newSize)}</b> | Official Limit: <b>${it.allowedRange}</b> | Pixels: <b>${it.dimensions}</b></span></div></div><a href="${it.blobUrl}" download="${it.fileName}" class="btn-download">⬇ Download Single</a>`;ls.appendChild(cd);});pn.scrollIntoView({behavior:'smooth'});}
-    let _0xACI=null,_0xADQ=[];
-    _0xW.openRewardedVideoAdGate=function(st){if(st==='exam'){if(_0xPO.length===0)return;_0xADQ=_0xPO.map(i=>({blobUrl:i.blobUrl,fileName:i.fileName}));_0xG('adGateHeaderLabel').innerText='🎬 SPONSORED VIDEO AD (UNLOCKING EXAM SUITE BUNDLE)';}else if(st==='bulk_kb'){if(_0xBO.length===0)return;_0xADQ=_0xBO.map(i=>({blobUrl:i.blobUrl,fileName:'optifile-'+i.name}));_0xG('adGateHeaderLabel').innerText='🎬 SPONSORED VIDEO AD (UNLOCKING BULK KB BATCH DOWNLOAD)';}const md=_0xG('videoAdModal'),tb=_0xG('adTimerBadge'),pb=_0xG('adProgressBar'),stx=_0xG('adStatusSubtext'),sd=parseInt(_0xD.querySelector('input[name="adSecMode"]:checked').value,10)||15;let rm=sd;md.style.display='flex';pb.style.transition='none';pb.style.width='0%';tb.innerText=`${rm}s remaining`;stx.innerText=`Watching sponsored video (${sd}s)... All ${_0xADQ.length} files will download automatically right after!`;if(_0xACI)clearInterval(_0xACI);_0xACI=setInterval(()=>{rm--;const pct=((sd-rm)/sd)*100;pb.style.transition='width 0.95s linear';pb.style.width=`${pct}%`;if(rm>0){tb.innerText=`${rm}s remaining`;}else{_0xW.skipAdAndDownloadNow();}},1000);};
-    _0xW.skipAdAndDownloadNow=function(){if(_0xACI)clearInterval(_0xACI);const md=_0xG('videoAdModal'),tb=_0xG('adTimerBadge'),pb=_0xG('adProgressBar'),stx=_0xG('adStatusSubtext');pb.style.width='100%';tb.innerText='✅ Unlocked!';stx.innerText=`🚀 Downloading all ${_0xADQ.length} files directly now...`;setTimeout(()=>{md.style.display='none';_0xEQD();},400);};
+    let _0xADQ=[];
+    _0xW.openRewardedVideoAdGate=function(st){if(st==='exam'){if(_0xPO.length===0)return;_0xADQ=_0xPO.map(i=>({blobUrl:i.blobUrl,fileName:i.fileName}));}else if(st==='bulk_kb'){if(_0xBO.length===0)return;_0xADQ=_0xBO.map(i=>({blobUrl:i.blobUrl,fileName:'optifile-'+i.name}));}_0xEQD();};
     function _0xEQD(){_0xADQ.forEach((it,idx)=>{setTimeout(()=>{const a=_0xD.createElement('a');a.href=it.blobUrl;a.download=it.fileName;_0xD.body.appendChild(a);a.click();_0xD.body.removeChild(a);},idx*450);});_0xW.showToast(`⬇ Downloading ${_0xADQ.length} files directly!`);}
     let _0xSF=null,_0xBF=[];
     function _0xFS(b){if(b>=1048576)return(b/1048576).toFixed(2)+' MB';return(b/1024).toFixed(2)+' KB';}
@@ -843,10 +884,9 @@
     _0xW.handleSingleProcess=async function(){if(!_0xSF){alert("Please select an image first!");return;}const btn=_0xG('singleActionBtn'),ot=btn.innerText;btn.innerText="Processing...";btn.disabled=true;try{const md=_0xG('singleMode').value,vl=parseFloat(_0xG('singleSizeValue').value)||50,un=_0xG('singleUnit').value,tb=Math.floor(un==='MB'?vl*1048576:vl*1024),res=await _0xOIF(_0xSF,tb,md);_0xBO=[];_0xRR([res],false);}catch(e){console.error(e);alert("Error processing file: "+e.message);}finally{btn.innerText=ot;btn.disabled=false;}};
     _0xW.handleBulkProcess=async function(){if(_0xBF.length===0){alert("Please select multiple images first!");return;}const btn=_0xG('bulkActionBtn'),ot=btn.innerText;btn.disabled=true;try{const md=_0xG('bulkMode').value,vl=parseFloat(_0xG('bulkSizeValue').value)||50,un=_0xG('bulkUnit').value,tb=Math.floor(un==='MB'?vl*1048576:vl*1024);let out=[];for(let i=0;i<_0xBF.length;i++){btn.innerText=`Processing ${i+1} of ${_0xBF.length}...`;const r=await _0xOIF(_0xBF[i],tb,md);out.push(r);}_0xBO=out;_0xRR(out,true);}catch(e){console.error(e);alert("Error processing bulk files: "+e.message);}finally{btn.innerText=ot;btn.disabled=false;}};
     function _0xRR(ls,ib){const sc=_0xG('result-section'),ct=_0xG('result-content'),bb=_0xG('bulkDownloadAllBtn');ct.innerHTML='';sc.style.display='block';bb.style.display=(ib&&ls.length>0)?'flex':'none';ls.forEach(it=>{const d=_0xD.createElement('div');d.className='result-card';d.innerHTML=`<div class="result-info"><img src="${it.blobUrl}" alt="output"><div><strong style="font-size:14px;display:block;">${it.name}</strong><span style="font-size:12px;color:var(--text-muted);">Original: <b>${_0xFS(it.originalSize)}</b> → New Size: <b style="color:#059669;">${_0xFS(it.newSize)}</b></span></div></div><a href="${it.blobUrl}" download="optifile-${it.name}" class="btn-download">⬇ Download Image</a>`;ct.appendChild(d);});sc.scrollIntoView({behavior:'smooth'});}
-    function _0xIBI(){const sd=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="256" height="256"><rect width="120" height="120" rx="26" fill="#0F172A"/><path d="M22 18 L48 18 L60 30 L60 80 L22 65 Z" fill="#FFFFFF" stroke="#0284C7" stroke-width="5" stroke-linejoin="round"/><polyline points="29,36 33,40 40,32" fill="none" stroke="#0F172A" stroke-width="4" stroke-linecap="round"/><line x1="45" y1="36" x2="54" y2="36" stroke="#0284C7" stroke-width="4" stroke-linecap="round"/><polyline points="29,49 33,53 40,45" fill="none" stroke="#0F172A" stroke-width="4" stroke-linecap="round"/><line x1="45" y1="49" x2="54" y2="49" stroke="#0D9488" stroke-width="4" stroke-linecap="round"/><rect x="68" y="18" width="30" height="26" rx="4" fill="#FFFFFF" stroke="#06B6D4" stroke-width="4.5"/><circle cx="89" cy="26" r="3.5" fill="#F59E0B"/><path d="M71 41 L79 31 L86 38 L91 34 L96 41 Z" fill="#0D9488"/><path d="M20 55 C20 92, 55 104, 78 78 C90 65, 96 52, 96 45" fill="none" stroke="#0284C7" stroke-width="10" stroke-linecap="round"/><path d="M30 68 C45 96, 86 92, 86 45" fill="none" stroke="#06B6D4" stroke-width="8" stroke-linecap="round"/></svg>`,bl=new Blob([sd],{type:'image/svg+xml;charset=utf-8'}),u=URL.createObjectURL(bl),im=new Image();im.onload=()=>{const c=_0xD.createElement('canvas');c.width=256;c.height=256;c.getContext('2d').drawImage(im,0,0,256,256);const pu=c.toDataURL('image/png');URL.revokeObjectURL(u);['dynamicFavicon','dynamicFaviconPng','dynamicFaviconIco','dynamicAppleIcon'].forEach(id=>{if(_0xG(id))_0xG(id).href=pu;});};im.src=u;}
     _0xD.addEventListener('contextmenu',function(e){if(e.target.tagName!=='INPUT'&&e.target.tagName!=='TEXTAREA'){e.preventDefault();_0xW.showToast('🛡️ © 2026 OptiFile UtilityHub — Protected Content');}});
     _0xD.addEventListener('keydown',function(e){if(e.key==='F12'||(e.ctrlKey&&e.shiftKey&&(e.key==='I'||e.key==='J'||e.key==='C'))||(e.ctrlKey&&e.key==='u')){e.preventDefault();_0xW.showToast('🛡️ Developer Tools Disabled — © OptiFile Protected IP');return false;}});
-    _0xW.addEventListener('DOMContentLoaded',()=>{_0xIBI();const sv=localStorage.getItem('optifile_user');if(sv){try{_0xW.applyUserSession(JSON.parse(sv));}catch(e){}}});
+    _0xW.addEventListener('DOMContentLoaded',()=>{const sv=localStorage.getItem('optifile_user');if(sv){try{_0xW.applyUserSession(JSON.parse(sv));}catch(e){}}});
     })(window,document);
     </script>
 </body>
