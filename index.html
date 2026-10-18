@@ -7,20 +7,26 @@
 
     <!-- SEO Meta Tags for Google Search -->
     <meta id="metaDesc" name="description" content="Built for Indian Exam Aspirants — 100% Client-Side Processing. Resize photos & signatures to exact KB (20KB, 50KB) for SBI, IBPS, SSC, RRB, UPSC, NTA exams and compress PDFs offline.">
-    <meta name="keywords" content="OptiFile, optifile online, sbi photo resizer 20kb to 50kb, ibps signature resizer 10kb to 20kb, ssc photo compressor with date, upsc photo resizer 550x550, nta neet jee photo postcard resizer, rrb railway photo signature 30kb to 70kb, handwritten declaration resizer, left thumb impression kb converter, exact kb image compressor, compress pdf to 100kb 200kb 300kb">
+    <meta name="keywords" content="OptiFile, optifile online, sbi photo resizer 20kb to 50kb, ibps signature resizer 10kb to 20kb, ssc photo compressor with date, upsc photo resizer 550x550, nta neet jee photo postcard resizer, rrb railway photo signature 30kb to 70kb, handwritten declaration resizer, left thumb impression kb converter, exact kb image compressor, increase image size in kb, compress pdf to 100kb 200kb 300kb">
     <meta name="author" content="Rajveer Singh">
-    <meta name="robots" content="index, follow">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
     <link id="canonicalLink" rel="canonical" href="https://optifile.online/">
 
     <!-- Open Graph (Social, WhatsApp, Telegram & Reddit Preview) -->
-    <meta property="og:title" content="OptiFile • 1-Click Exam Photo, Signature & PDF Formatter">
-    <meta property="og:description" content="Built for Indian Exam Aspirants — 100% Client-Side Processing. Format Banking, SSC, Railway, UPSC & NTA documents to exact KB in 1 click. Zero sign-up, zero server upload.">
-    <meta property="og:url" content="https://optifile.online/">
+    <meta id="ogTitle" property="og:title" content="OptiFile • 1-Click Exam Photo, Signature & PDF Formatter">
+    <meta id="ogDesc" property="og:description" content="Built for Indian Exam Aspirants — 100% Client-Side Processing. Format Banking, SSC, Railway, UPSC & NTA documents to exact KB in 1 click. Zero sign-up, zero server upload.">
+    <meta id="ogUrl" property="og:url" content="https://optifile.online/">
     <meta property="og:site_name" content="OptiFile">
     <meta property="og:image" content="https://optifile.online/logo.png">
     <meta property="og:type" content="website">
 
-    <!-- Google Structured Data (JSON-LD for Brand Logo & WebApplication) -->
+    <!-- Twitter / X Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="OptiFile • 1-Click Exam Photo, Signature & PDF Formatter">
+    <meta name="twitter:description" content="100% Free & Offline-First Exam Document Formatter (Banking, SSC, RRB, UPSC, NTA) & Exact KB Image Manager.">
+    <meta name="twitter:image" content="https://optifile.online/logo.png">
+
+    <!-- Google Structured Data (WebSite + Organization + WebApplication + FAQPage Rich Results) -->
     <script type="application/ld+json">
     [
       {
@@ -37,11 +43,70 @@
         "name": "OptiFile",
         "url": "https://optifile.online/",
         "logo": "https://optifile.online/logo.png"
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "OptiFile UtilityHub — Exam Photo, Signature & KB Resizer",
+        "url": "https://optifile.online/",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "All",
+        "browserRequirements": "Requires HTML5 Canvas and JavaScript",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "INR"
+        },
+        "featureList": [
+          "1-Click Banking Exam Formatter (IBPS, SBI PO/Clerk, RRB Photo, Signature, Left Thumb & Handwritten Declaration)",
+          "SSC & Railway RRB Photo (30-70KB), Signature & SC/ST Train Pass PDF Formatter",
+          "UPSC Square 550x550px Photo Resizer with Automatic Name & Date of Photo Stamp",
+          "NTA NEET, JEE & CUET Passport, Postcard (4x6) & Thumb Impression Resizer",
+          "Exact KB Image Compressor & Binary-Padding KB Size Booster (10KB, 20KB, 50KB)"
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How to reduce photo size to 20KB–50KB for SBI & IBPS exams?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Open the Banking Suite preset on OptiFile (optifile.online/?suite=banking), select your passport photo, signature, left thumb impression, and handwritten declaration, and click Format. Our engine automatically sets the dimensions (200x230px for photo, 140x60px for signature, 800x400px for declaration) and locks exact KB limits."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I print my Name and Date of Photo (DOP) automatically on my exam photo?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Inside any Exam Preset slot for Passport Photos (SSC, UPSC, Banking, or NTA), check the 'Print Name & Date on Photo' option to add a crisp white nameplate strip at the bottom of your photograph automatically."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Are my uploaded ID cards, photos, and signatures safe on OptiFile?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "100% safe. OptiFile runs entirely on client-side HTML5 Canvas and WebAssembly technology inside your browser. Your photos, signatures, and PDFs never leave your phone or computer."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I increase a small image KB size if it is below 10KB or 20KB?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Open the KB Manager tool on OptiFile, select 'Increase Size (Exact Boost)', enter your target KB value (such as 20KB or 50KB), and download your boosted JPG image immediately without losing visual quality."
+            }
+          }
+        ]
       }
     ]
     </script>
 
-    <script src="optifile-shield.js"></script>
+    <script defer src="optifile-shield.js"></script>
     <meta name="application-name" content="OptiFile">
     <meta name="theme-color" content="#0F172A">
     <meta name="copyright" content="© 2026 OptiFile UtilityHub. All Rights Reserved.">
@@ -109,8 +174,10 @@
         .seo-guide-box p{font-size:14px;color:#475569;line-height:1.7;margin-bottom:18px}
         .seo-table-wrap{overflow-x:auto;margin-bottom:24px}
         .seo-spec-table{width:100%;border-collapse:collapse;font-size:13px}
-        .seo-spec-table th,.seo-spec-table td{border:1px solid #E2E8F0;padding:10px 14px;text-align:left}
+        .seo-spec-table th,.seo-spec-table td{border:1px solid #E2E8F0;padding:10px 14px;text-align:left;vertical-align:middle}
         .seo-spec-table th{background:#F8FAFC;font-weight:800;color:#0F172A}
+        .table-action-link{display:inline-block;background:#EFF6FF;color:#1D4ED8;border:1px solid #BFDBFE;padding:5px 10px;border-radius:6px;font-size:11.5px;font-weight:800;text-decoration:none;white-space:nowrap;transition:.2s}
+        .table-action-link:hover{background:#1D4ED8;color:#FFF}
         .seo-faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
         @media (max-width:768px){.seo-faq-grid{grid-template-columns:1fr}}
         .seo-faq-item{background:#F8FAFC;border:1px solid #E2E8F0;border-radius:12px;padding:16px}
@@ -170,6 +237,9 @@
         .control-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
         .control-label{display:block;font-size:11px;font-weight:700;color:var(--text-muted);margin-bottom:6px;text-transform:uppercase}
         .select-full,.size-input-full{width:100%;padding:9px 12px;border:1px solid #CBD5E1;border-radius:8px;font-size:13px;font-weight:600;color:var(--text-dark);background:#fff;outline:none}
+        .quick-kb-chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+        .kb-chip{background:#FFF;border:1px solid #CBD5E1;color:#334155;padding:4px 9px;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer;transition:.15s}
+        .kb-chip:hover{background:#EEF2FF;border-color:#4F46E5;color:#4F46E5}
         .btn-action-primary{width:100%;background:var(--text-dark);color:#fff;border:none;padding:12px 16px;border-radius:10px;font-weight:700;cursor:pointer;font-size:14px;transition:.2s}
         .btn-action-primary:hover{background:var(--primary)}
         .bulk-list{max-height:150px;overflow-y:auto;padding:12px;color:var(--text-muted);font-size:12px;border:1px solid var(--border-light);border-radius:10px;background:#F8FAFC;margin-bottom:16px}
@@ -177,11 +247,14 @@
         #result-section{display:none;margin-top:28px;background:#fff;border:2px solid #10B981;border-radius:16px;padding:24px;box-shadow:0 10px 25px rgba(16,185,129,0.08)}
         .result-top-bar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--border-light)}
         .result-header{font-size:18px;font-weight:800;color:#065F46;display:flex;align-items:center;gap:8px}
+        .result-actions-group{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
         .result-card{display:flex;justify-content:space-between;align-items:center;background:#F8FAFC;padding:14px 16px;border-radius:12px;border:1px solid var(--border-light);margin-bottom:10px;gap:12px;flex-wrap:wrap}
         .result-info{display:flex;align-items:center;gap:14px}
         .result-info img{width:52px;height:52px;border-radius:8px;object-fit:contain;background:#fff;border:1px solid #CBD5E1;padding:2px}
         .btn-download{background:#10B981;color:#fff;text-decoration:none;padding:10px 18px;border-radius:8px;font-size:13px;font-weight:700;transition:.2s;display:inline-block;border:none;cursor:pointer}
         .btn-download:hover{background:#059669;transform:translateY(-1px)}
+        .btn-whatsapp-share{background:#25D366;color:#fff;border:none;padding:12px 18px;border-radius:12px;font-size:13.5px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;gap:8px;text-decoration:none;box-shadow:0 6px 16px rgba(37,211,102,0.28);transition:.2s}
+        .btn-whatsapp-share:hover{background:#1DA851;transform:translateY(-2px)}
         .exam-switcher-tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
         @media (max-width:720px){.exam-switcher-tabs{grid-template-columns:1fr 1fr}}
         .exam-tab-btn{padding:13px 14px;border-radius:12px;font-size:13.5px;font-weight:800;border:2px solid var(--border-light);background:#fff;color:var(--text-dark);cursor:pointer;transition:.2s;display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none}
@@ -297,7 +370,7 @@
 
         <div class="header-center">
             <nav>
-                <a href="kb-manager.html" onclick="openTool('kb'); return false;" class="nav-pill pill-kb">🎛️ KB MANAGER</a>
+                <a href="/?tool=kb" onclick="openTool('kb'); return false;" class="nav-pill pill-kb">🎛️ KB MANAGER</a>
                 <a href="image-tools.html" class="nav-pill pill-img">🖼️ IMG TOOLS</a>
                 <a href="pdf-tools.html" class="nav-pill pill-pdf">📄 PDF TOOLS</a>
             </nav>
@@ -317,7 +390,7 @@
             <p class="hero-desc">The ultimate 100% free offline-first utility hub. Compress, convert, edit, and optimize your images, PDFs, and exam documents instantly without uploading to any server.</p>
 
             <div class="tool-grid">
-                <a href="kb-manager.html" onclick="openTool('kb'); return false;" class="card">
+                <a href="/?tool=kb" onclick="openTool('kb'); return false;" class="card">
                     <div class="card-icon" style="background:#EEF2FF; color:var(--primary-indigo);">📉</div>
                     <div>
                         <h3 class="card-title">KB Manager (Reduce &amp; Exact Boost)</h3>
@@ -389,6 +462,7 @@
                                 <th>Passport Photo Rule</th>
                                 <th>Signature Specification</th>
                                 <th>Additional Documents</th>
+                                <th>1-Click Tool</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -397,24 +471,28 @@
                                 <td>20 KB – 50 KB (200 × 230 px, JPG)</td>
                                 <td>10 KB – 20 KB (140 × 60 px, Black Ink)</td>
                                 <td>Left Thumb (20–50 KB) &amp; Handwritten Declaration (50–100 KB, 800 × 400 px)</td>
+                                <td><a href="/?suite=banking" onclick="openExamPreset('banking'); return false;" class="table-action-link">Format Banking →</a></td>
                             </tr>
                             <tr>
                                 <td><strong>SSC &amp; Railway (SSC CGL/CHSL/MTS, RRB NTPC/Group D)</strong></td>
                                 <td>SSC: 20–50 KB | RRB: 30–70 KB (275 × 354 px)</td>
                                 <td>SSC: 10–20 KB | RRB: 30–70 KB</td>
                                 <td>SC/ST Train Pass &amp; Caste Certificate (50–300 KB, Auto PDF)</td>
+                                <td><a href="/?suite=ssc" onclick="openExamPreset('ssc'); return false;" class="table-action-link">Format SSC/RRB →</a></td>
                             </tr>
                             <tr>
                                 <td><strong>UPSC &amp; State PSC (CSE IAS, NDA, CDS, CAPF)</strong></td>
                                 <td>20 KB – 300 KB (550 × 550 px Square with Name &amp; Date)</td>
                                 <td>20 KB – 300 KB (500 × 250 px, JPG)</td>
                                 <td>Photo ID Card Proof PDF (20–300 KB)</td>
+                                <td><a href="/?suite=upsc" onclick="openExamPreset('upsc'); return false;" class="table-action-link">Format UPSC →</a></td>
                             </tr>
                             <tr>
                                 <td><strong>NTA Academics (NEET UG, JEE Main, CUET)</strong></td>
                                 <td>Passport: 10–200 KB | Postcard (4×6"): 10–200 KB</td>
                                 <td>4 KB – 30 KB (350 × 150 px, JPG)</td>
                                 <td>Fingers &amp; Thumb Impression (10–200 KB) &amp; Class 10th Certificate PDF (50–300 KB)</td>
+                                <td><a href="/?suite=nta" onclick="openExamPreset('nta'); return false;" class="table-action-link">Format NTA →</a></td>
                             </tr>
                         </tbody>
                     </table>
@@ -445,7 +523,7 @@
         <div id="exam-view">
             <div class="tool-header">
                 <div class="tool-title">
-                    <h2>🎯 1-Click Exam Document Formatter Suite</h2>
+                    <h2 id="examMainHeading">🎯 1-Click Exam Document Formatter Suite</h2>
                     <p>Upload all your exam documents together — we automatically resize pixels, lock exact KB limits, and download all at once with zero sign-up!</p>
                 </div>
                 <a href="/" class="btn-back" onclick="closeTool(); return false;">← Back to Home</a>
@@ -482,10 +560,15 @@
                         <h3 style="font-size:18px; font-weight:800; color:#065F46;">✅ All Exam Documents Formatted to Exact Specifications!</h3>
                         <p style="font-size:12.5px; color:#047857;">Click "Download All Formatted Files" for instant 1-click download of all documents (No ZIP, No Sign-Up).</p>
                     </div>
-                    <button class="btn-download-all-direct" onclick="downloadAllDirect('exam')">
-                        <span>⬇ Download All Formatted Files</span>
-                        <span class="direct-dl-tag">Instant 1-Click</span>
-                    </button>
+                    <div class="result-actions-group">
+                        <button class="btn-download-all-direct" onclick="downloadAllDirect('exam')">
+                            <span>⬇ Download All Formatted Files</span>
+                            <span class="direct-dl-tag">Instant 1-Click</span>
+                        </button>
+                        <button class="btn-whatsapp-share" onclick="shareOnWhatsApp('exam')">
+                            <span>📲 Share Tool on WhatsApp</span>
+                        </button>
+                    </div>
                 </div>
                 <div id="exam-results-list"></div>
             </div>
@@ -495,7 +578,7 @@
         <div id="tool-view">
             <div class="tool-header">
                 <div class="tool-title">
-                    <h2>Reduce / Increase Image Size in KB</h2>
+                    <h2 id="kbMainHeading">Reduce / Increase Image Size in KB</h2>
                     <p>High-precision engine: Compress 20MB+ photos to exact KB or boost small images effortlessly.</p>
                 </div>
                 <a href="/" class="btn-back" onclick="closeTool(); return false;">← Back to Home</a>
@@ -544,6 +627,14 @@
                         <div>
                             <label class="control-label">Target Size Value</label>
                             <input type="number" id="singleSizeValue" class="size-input-full" value="50" min="1" max="50000">
+                            <div class="quick-kb-chips">
+                                <button type="button" class="kb-chip" onclick="applyQuickKB(15,'reduce')">15 KB (Sign)</button>
+                                <button type="button" class="kb-chip" onclick="applyQuickKB(20,'reduce')">20 KB</button>
+                                <button type="button" class="kb-chip" onclick="applyQuickKB(35,'reduce')">35 KB (Photo)</button>
+                                <button type="button" class="kb-chip" onclick="applyQuickKB(50,'reduce')">50 KB</button>
+                                <button type="button" class="kb-chip" onclick="applyQuickKB(100,'reduce')">100 KB</button>
+                                <button type="button" class="kb-chip" onclick="applyQuickKB(25,'increase')">⚡ Boost to 25 KB</button>
+                            </div>
                         </div>
                     </div>
 
@@ -597,10 +688,15 @@
             <div id="result-section">
                 <div class="result-top-bar">
                     <div class="result-header">✅ Optimization Complete! Download Below:</div>
-                    <button id="bulkDownloadAllBtn" class="btn-download-all-direct" style="display:none;" onclick="downloadAllDirect('bulk_kb')">
-                        <span>⬇ Download All Bulk Files</span>
-                        <span class="direct-dl-tag">Instant 1-Click</span>
-                    </button>
+                    <div class="result-actions-group">
+                        <button id="bulkDownloadAllBtn" class="btn-download-all-direct" style="display:none;" onclick="downloadAllDirect('bulk_kb')">
+                            <span>⬇ Download All Bulk Files</span>
+                            <span class="direct-dl-tag">Instant 1-Click</span>
+                        </button>
+                        <button class="btn-whatsapp-share" onclick="shareOnWhatsApp('kb')">
+                            <span>📲 Share Tool on WhatsApp</span>
+                        </button>
+                    </div>
                 </div>
                 <div id="result-content"></div>
             </div>
@@ -666,10 +762,11 @@
         <div class="mega-footer-container">
             <div class="mega-footer-grid">
                 <div class="footer-col">
-                    <h5>PRODUCT</h5>
+                    <h5>PRODUCT &amp; KB TOOLS</h5>
                     <ul>
                         <li><a href="/" onclick="closeTool(); return false;">Home</a></li>
-                        <li><a href="kb-manager.html">Pro KB Manager</a></li>
+                        <li><a href="/?tool=kb" onclick="openTool('kb'); return false;">Compress Image to 20KB / 50KB</a></li>
+                        <li><a href="/?tool=kb&mode=increase" onclick="openTool('kb', false, 25, 'increase'); return false;">Increase Image Size in KB</a></li>
                         <li><a href="image-tools.html">Image Utility Suite</a></li>
                         <li><a href="pdf-tools.html">PDF Tools Suite</a></li>
                     </ul>
@@ -757,7 +854,7 @@
 
     <div id="toastMsg" class="toast-msg">Done!</div>
 
-    <!-- OBFUSCATED & PROTECTED ENGINE (DEEP-LINK SEO ROUTER + INSTANT 0.5s BULK DOWNLOAD) -->
+    <!-- PROTECTED ENGINE (DYNAMIC CANONICAL SEO ROUTER + WHATSAPP VIRAL LOOP + INSTANT 0.5s BULK DOWNLOAD) -->
     <script>
     (function(_0xW,_0xD){const _0xH=_0xW.location.hostname;if(_0xW.OPTIFILE_CONFIG===undefined&&!["optifile.online","www.optifile.online","localhost","127.0.0.1",""].includes(_0xH)&&!_0xH.endsWith(".vercel.app")){_0xD.body.innerHTML="";throw new Error("Protected by OptiFile.online");}
     if('serviceWorker' in navigator){navigator.serviceWorker.getRegistrations().then(function(r){for(let sw of r){sw.unregister();}});}
@@ -765,15 +862,18 @@
     if(_0xW.pdfjsLib){_0xW.pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';}
     const _0xG=id=>_0xD.getElementById(id);
     _0xW.showToast=function(m){const t=_0xG('toastMsg');if(!t)return;t.innerText=m;t.style.display='block';setTimeout(()=>{t.style.display='none';},3200);};
+    function _0xSM(t,d,u){_0xD.title=t;const md=_0xG('metaDesc'),cl=_0xG('canonicalLink'),ot=_0xG('ogTitle'),od=_0xG('ogDesc'),ou=_0xG('ogUrl');if(md)md.setAttribute('content',d);if(cl)cl.setAttribute('href',u);if(ot)ot.setAttribute('content',t);if(od)od.setAttribute('content',d);if(ou)ou.setAttribute('content',u);}
     const _0xLD={copyright:`<h4>©️ Intellectual Property & Anti-Copy Policy (Strict Enforcement)</h4><p><strong>© 2026 OptiFile UtilityHub. All Rights Reserved.</strong> Every element of this platform is protected under the Indian Copyright Act, 1957 and the Digital Millennium Copyright Act (DMCA).</p><h4>🚫 What Third Parties & Competitors CANNOT Copy:</h4><ul><li><strong>Proprietary Source Code & Algorithms:</strong> Copying, de-obfuscating, or redistributing our JavaScript exact-KB binary search & byte-padding engine is strictly prohibited.</li><li><strong>1-Click Exam Preset Matrix:</strong> Our curated Banking, SSC, Railway (RRB), UPSC, and NTA multi-slot dashboard layout and auto-PDF conversion pipeline may not be cloned.</li><li><strong>Brand Identity & Visual Assets:</strong> The "OptiFile", "UtilityHub" name, custom interlocking U-shield vector logo, watermarks, and UI/UX card styling are exclusive property of OptiFile.</li></ul>`,what_we_provide:`<h4>🚀 About OptiFile UtilityHub & What We Provide</h4><p>OptiFile (<strong>https://optifile.online</strong>) is a 100% free, client-side digital document & exam utility suite built for Indian exam aspirants, students, and professionals:</p><ul><li><strong>1-Click Exam Document Suite:</strong> Pre-configured pixel dimensions, aspect-ratio fit, optional Name/Date photo stamps, and exact KB locks for IBPS, SBI, SSC, Railway RRB (including SC/ST Train Pass PDF), UPSC, and NTA NEET/JEE.</li><li><strong>High-Precision KB Manager:</strong> Compress 20MB+ images down to exact KB targets (e.g., 20KB, 50KB) or boost small files to required minimums in Single and Bulk Batch modes.</li></ul>`,rules:`<h4>⚖️ Platform Rules, Regulations & Fair Usage Policy</h4><ul><li><strong>100% Document Ownership:</strong> You retain full ownership of every photo, signature, certificate, or PDF you process on OptiFile.</li><li><strong>Authentic Document Responsibility:</strong> Users are solely responsible for ensuring that exam photos, signatures, and certificates uploaded to government portals are genuine and belong to the candidate.</li><li><strong>Anti-Tampering Rule:</strong> Attempting to bypass security scripts or right-click/F12 protections is a violation of platform rules.</li></ul>`,privacy:`<h4>🔒 100% Zero-Server Privacy & Cookie Policy</h4><p>Unlike traditional online tools that upload your sensitive ID cards, photos, and marksheets to remote cloud servers, <strong>OptiFile processes 100% of your files locally inside your device's browser memory (HTML5 Canvas & WebAssembly).</strong></p><ul><li><strong>Zero File Uploads:</strong> Your photos, signatures, and PDFs never leave your phone or computer.</li><li><strong>Third-Party Analytics & Cookie Disclosure:</strong> Third-party vendors, including Google, may use cookies to serve relevant content or measure anonymous site traffic. Users may manage preferences via <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener">Google Settings</a>.</li></ul>`,terms:`<h4>📄 Terms & Conditions of Service</h4><p>By accessing and using OptiFile UtilityHub, you agree to abide by our intellectual property protections and fair usage guidelines. The software is provided "as-is" with official exam dimension presets updated for the 2026–2027 recruitment cycles.</p>`,security:`<h4>🛡️ Security Architecture, Brand IP & DMCA Protection</h4><p>OptiFile uses 256-Bit SSL encryption, client-side sandboxed execution, domain-lock verification, and active DMCA monitoring to protect both user privacy and platform intellectual property.</p>`,contact:`<h4>📬 Contact & Copyright Infringement Reporting</h4><p>For support, exam preset requests, business inquiries, or to report unauthorized copying of OptiFile tools, reach out to our official support desk: <strong>support@optifile.online</strong>.</p>`};
     _0xW.openLegalModal=function(k){_0xG('legalModal').style.display='flex';_0xW.switchLegalTab(k||'copyright');};
     _0xW.closeLegalModal=function(){_0xG('legalModal').style.display='none';};
     _0xW.switchLegalTab=function(k){['copyright','what_we_provide','rules','privacy','terms'].forEach(t=>{const el=_0xG('ltab_'+t);if(el)el.className='legal-tab-pill '+(t===k?'active':'');});_0xG('legalModalContent').innerHTML=_0xLD[k]||_0xLD.copyright;};
-    const _0xEP={banking:{seoTitle:"SBI & IBPS Banking Exam Photo, Signature, Thumb & Declaration Resizer | OptiFile",title:"🏦 Banking Exam Suite (IBPS PO/Clerk, SBI PO/JA, RBI, IBPS RRB)",desc:"Official IBPS & SBI rules pre-locked: Photo (20–50 KB, 200×230px), Signature (10–20 KB, 140×60px), Left Thumb (20–50 KB, 240×240px), Declaration (50–100 KB, 800×400px).",themeClass:"bg-banking",tabClass:"active-banking",slots:[{id:"bank_photo",name:"Passport Size Photograph",icon:"📸",minKB:20,maxKB:50,targetKB:38,width:200,height:230,format:"JPG",allowDateStamp:true},{id:"bank_sign",name:"Candidate Signature (Black Ink)",icon:"✍️",minKB:10,maxKB:20,targetKB:16,width:140,height:60,format:"JPG",allowDateStamp:false},{id:"bank_thumb",name:"Left Thumb Impression",icon:"👆",minKB:20,maxKB:50,targetKB:38,width:240,height:240,format:"JPG",allowDateStamp:false},{id:"bank_decl",name:"Handwritten Declaration",icon:"📝",minKB:50,maxKB:100,targetKB:82,width:800,height:400,format:"JPG",allowDateStamp:false}]},ssc:{seoTitle:"SSC & Railway RRB Photo (30-70KB), Signature & SC/ST Pass PDF Resizer | OptiFile",title:"🏛️ SSC & Railway Suite (CGL, CHSL, MTS, GD & RRB NTPC / Group D / ALP)",desc:"Complete SSC (20–50 KB Photo, 10–20 KB Sign) + Railway RRB (30–70 KB Photo/Sign & SC/ST Free Train Pass PDF) pre-locked!",themeClass:"bg-ssc",tabClass:"active-ssc",slots:[{id:"ssc_photo",name:"SSC Passport Photograph (3.5cm × 4.5cm)",icon:"📸",minKB:20,maxKB:50,targetKB:38,width:275,height:354,format:"JPG",allowDateStamp:true},{id:"ssc_sign",name:"SSC Horizontal Signature (4.0cm × 2.0cm)",icon:"✍️",minKB:10,maxKB:20,targetKB:16,width:315,height:157,format:"JPG",allowDateStamp:false},{id:"rrb_photo",name:"Railway (RRB) Passport Photo (30–70 KB Rule)",icon:"🚆",minKB:30,maxKB:70,targetKB:52,width:275,height:354,format:"JPG",allowDateStamp:true},{id:"rrb_sign",name:"Railway (RRB) Signature (30–70 KB Rule)",icon:"✒️",minKB:30,maxKB:70,targetKB:48,width:300,height:130,format:"JPG",allowDateStamp:false},{id:"rrb_pass_pdf",name:"Railway SC/ST Train Pass / Caste Certificate (Auto PDF)",icon:"🎫",minKB:50,maxKB:300,targetKB:185,width:850,height:1150,format:"PDF",allowDateStamp:false}]},upsc:{seoTitle:"UPSC IAS, NDA & CDS Photo (550x550px with Name/Date) & ID PDF Resizer | OptiFile",title:"📝 UPSC & State PSC Suite (CSE, IAS, NDA, CDS, CAPF)",desc:"Official UPSC rules pre-locked: Square 550×550px Photo (with Name & Date option), Signature (20–300 KB), and Photo ID Card PDF.",themeClass:"bg-upsc",tabClass:"active-upsc",slots:[{id:"upsc_photo",name:"UPSC Photograph (With Name & Date Stamp)",icon:"📸",minKB:20,maxKB:300,targetKB:145,width:550,height:550,format:"JPG",allowDateStamp:true},{id:"upsc_sign",name:"UPSC Candidate Signature",icon:"✍️",minKB:20,maxKB:300,targetKB:95,width:500,height:250,format:"JPG",allowDateStamp:false},{id:"upsc_id",name:"Photo ID Card Proof (PAN / Voter / Govt ID -> Auto PDF)",icon:"🪪",minKB:20,maxKB:300,targetKB:180,width:850,height:1100,format:"PDF",allowDateStamp:false}]},nta:{seoTitle:"NTA NEET UG, JEE Main & CUET Passport, Postcard Photo & Sign Resizer | OptiFile",title:"🎓 NTA Academics Suite (NEET UG, JEE Main, CUET)",desc:"Official NTA rules pre-locked: Passport Photo (10–200 KB), Postcard Photo (4×6 inch), Signature (4–30 KB), Thumb Impression, and Class 10th Certificate PDF.",themeClass:"bg-nta",tabClass:"active-nta",slots:[{id:"nta_photo",name:"Passport Size Photograph (80% Face Visible)",icon:"📸",minKB:10,maxKB:200,targetKB:95,width:413,height:531,format:"JPG",allowDateStamp:true},{id:"nta_postcard",name:"NTA Postcard Size Photo (4\" × 6\" Inch)",icon:"🖼️",minKB:10,maxKB:200,targetKB:135,width:600,height:900,format:"JPG",allowDateStamp:true},{id:"nta_sign",name:"Candidate Signature (4–30 KB Strict)",icon:"✍️",minKB:4,maxKB:30,targetKB:19,width:350,height:150,format:"JPG",allowDateStamp:false},{id:"nta_thumb",name:"Left & Right Hand Fingers & Thumb Impression",icon:"🖐️",minKB:10,maxKB:200,targetKB:85,width:600,height:300,format:"JPG",allowDateStamp:false},{id:"nta_cert",name:"Class 10th / Category Certificate (Auto PDF)",icon:"📜",minKB:50,maxKB:300,targetKB:190,width:850,height:1150,format:"PDF",allowDateStamp:false}]}};
+    const _0xEP={banking:{seoTitle:"SBI & IBPS Banking Exam Photo, Signature, Thumb & Declaration Resizer | OptiFile",seoDesc:"1-Click Banking Exam Document Formatter for IBPS PO/Clerk, SBI PO/Clerk, RBI & IBPS RRB. Resize photo (20-50KB, 200x230px), signature (10-20KB, 140x60px), left thumb & handwritten declaration (50-100KB, 800x400px) offline.",title:"🏦 Banking Exam Suite (IBPS PO/Clerk, SBI PO/JA, RBI, IBPS RRB)",desc:"Official IBPS & SBI rules pre-locked: Photo (20–50 KB, 200×230px), Signature (10–20 KB, 140×60px), Left Thumb (20–50 KB, 240×240px), Declaration (50–100 KB, 800×400px).",themeClass:"bg-banking",tabClass:"active-banking",slots:[{id:"bank_photo",name:"Passport Size Photograph",icon:"📸",minKB:20,maxKB:50,targetKB:38,width:200,height:230,format:"JPG",allowDateStamp:true},{id:"bank_sign",name:"Candidate Signature (Black Ink)",icon:"✍️",minKB:10,maxKB:20,targetKB:16,width:140,height:60,format:"JPG",allowDateStamp:false},{id:"bank_thumb",name:"Left Thumb Impression",icon:"👆",minKB:20,maxKB:50,targetKB:38,width:240,height:240,format:"JPG",allowDateStamp:false},{id:"bank_decl",name:"Handwritten Declaration",icon:"📝",minKB:50,maxKB:100,targetKB:82,width:800,height:400,format:"JPG",allowDateStamp:false}]},ssc:{seoTitle:"SSC & Railway RRB Photo (30-70KB), Signature & SC/ST Pass PDF Resizer | OptiFile",seoDesc:"Format SSC CGL, CHSL, MTS, GD (20-50KB photo, 10-20KB signature) and Railway RRB NTPC, Group D, ALP (30-70KB photo/sign & SC/ST Train Pass PDF) in 1 click.",title:"🏛️ SSC & Railway Suite (CGL, CHSL, MTS, GD & RRB NTPC / Group D / ALP)",desc:"Complete SSC (20–50 KB Photo, 10–20 KB Sign) + Railway RRB (30–70 KB Photo/Sign & SC/ST Free Train Pass PDF) pre-locked!",themeClass:"bg-ssc",tabClass:"active-ssc",slots:[{id:"ssc_photo",name:"SSC Passport Photograph (3.5cm × 4.5cm)",icon:"📸",minKB:20,maxKB:50,targetKB:38,width:275,height:354,format:"JPG",allowDateStamp:true},{id:"ssc_sign",name:"SSC Horizontal Signature (4.0cm × 2.0cm)",icon:"✍️",minKB:10,maxKB:20,targetKB:16,width:315,height:157,format:"JPG",allowDateStamp:false},{id:"rrb_photo",name:"Railway (RRB) Passport Photo (30–70 KB Rule)",icon:"🚆",minKB:30,maxKB:70,targetKB:52,width:275,height:354,format:"JPG",allowDateStamp:true},{id:"rrb_sign",name:"Railway (RRB) Signature (30–70 KB Rule)",icon:"✒️",minKB:30,maxKB:70,targetKB:48,width:300,height:130,format:"JPG",allowDateStamp:false},{id:"rrb_pass_pdf",name:"Railway SC/ST Train Pass / Caste Certificate (Auto PDF)",icon:"🎫",minKB:50,maxKB:300,targetKB:185,width:850,height:1150,format:"PDF",allowDateStamp:false}]},upsc:{seoTitle:"UPSC IAS, NDA & CDS Photo (550x550px with Name/Date) & ID PDF Resizer | OptiFile",seoDesc:"Official UPSC CSE IAS, NDA, CDS & State PSC formatter. Resize square 550x550px photo with automatic Name & Date stamp, signature (20-300KB), and ID Card PDF.",title:"📝 UPSC & State PSC Suite (CSE, IAS, NDA, CDS, CAPF)",desc:"Official UPSC rules pre-locked: Square 550×550px Photo (with Name & Date option), Signature (20–300 KB), and Photo ID Card PDF.",themeClass:"bg-upsc",tabClass:"active-upsc",slots:[{id:"upsc_photo",name:"UPSC Photograph (With Name & Date Stamp)",icon:"📸",minKB:20,maxKB:300,targetKB:145,width:550,height:550,format:"JPG",allowDateStamp:true},{id:"upsc_sign",name:"UPSC Candidate Signature",icon:"✍️",minKB:20,maxKB:300,targetKB:95,width:500,height:250,format:"JPG",allowDateStamp:false},{id:"upsc_id",name:"Photo ID Card Proof (PAN / Voter / Govt ID -> Auto PDF)",icon:"🪪",minKB:20,maxKB:300,targetKB:180,width:850,height:1100,format:"PDF",allowDateStamp:false}]},nta:{seoTitle:"NTA NEET UG, JEE Main & CUET Passport, Postcard Photo & Sign Resizer | OptiFile",seoDesc:"Format NTA NEET UG, JEE Main & CUET documents in 1 click: Passport photo (10-200KB), Postcard 4x6 photo, signature (4-30KB), thumb impression & Class 10th PDF.",title:"🎓 NTA Academics Suite (NEET UG, JEE Main, CUET)",desc:"Official NTA rules pre-locked: Passport Photo (10–200 KB), Postcard Photo (4×6 inch), Signature (4–30 KB), Thumb Impression, and Class 10th Certificate PDF.",themeClass:"bg-nta",tabClass:"active-nta",slots:[{id:"nta_photo",name:"Passport Size Photograph (80% Face Visible)",icon:"📸",minKB:10,maxKB:200,targetKB:95,width:413,height:531,format:"JPG",allowDateStamp:true},{id:"nta_postcard",name:"NTA Postcard Size Photo (4\" × 6\" Inch)",icon:"🖼️",minKB:10,maxKB:200,targetKB:135,width:600,height:900,format:"JPG",allowDateStamp:true},{id:"nta_sign",name:"Candidate Signature (4–30 KB Strict)",icon:"✍️",minKB:4,maxKB:30,targetKB:19,width:350,height:150,format:"JPG",allowDateStamp:false},{id:"nta_thumb",name:"Left & Right Hand Fingers & Thumb Impression",icon:"🖐️",minKB:10,maxKB:200,targetKB:85,width:600,height:300,format:"JPG",allowDateStamp:false},{id:"nta_cert",name:"Class 10th / Category Certificate (Auto PDF)",icon:"📜",minKB:50,maxKB:300,targetKB:190,width:850,height:1150,format:"PDF",allowDateStamp:false}]}};
     let _0xCE='banking',_0xUF={},_0xPO=[],_0xBO=[];
-    _0xW.openTool=function(t,skipPush){_0xG('home-view').style.display='none';_0xG('exam-view').style.display='none';if(t==='kb'){_0xG('tool-view').style.display='block';_0xD.title='Reduce or Increase Image Size in Exact KB (10KB, 20KB, 50KB) | OptiFile';if(!skipPush&&_0xW.history&&_0xW.history.pushState){_0xW.history.pushState({view:'kb'},'','/?tool=kb');}_0xW.scrollTo({top:0,behavior:'smooth'});}};
-    _0xW.closeTool=function(skipPush){_0xG('tool-view').style.display='none';_0xG('exam-view').style.display='none';_0xG('home-view').style.display='block';_0xD.title='OptiFile • UtilityHub | All-In-One Exam Photo, Signature & PDF Resizer';if(!skipPush&&_0xW.history&&_0xW.history.pushState){_0xW.history.pushState({view:'home'},'','/');}_0xW.scrollTo({top:0,behavior:'smooth'});};
-    _0xW.openExamPreset=function(k,skipPush){if(!_0xEP[k])return;_0xCE=k;_0xUF={};_0xPO=[];_0xG('home-view').style.display='none';_0xG('tool-view').style.display='none';_0xG('exam-view').style.display='block';_0xG('exam-results-panel').style.display='none';const p=_0xEP[k];_0xD.title=p.seoTitle;['banking','ssc','upsc','nta'].forEach(x=>{_0xG('tab-'+x).className='exam-tab-btn '+(x===k?p.tabClass:'');});const b=_0xG('examBanner');b.className='exam-suite-banner '+p.themeClass;_0xG('examBannerTitle').innerText=p.title;_0xG('examBannerDesc').innerText=p.desc;if(!skipPush&&_0xW.history&&_0xW.history.pushState){_0xW.history.pushState({view:'exam',suite:k},'','/?suite='+k);}_0xRS();_0xW.scrollTo({top:0,behavior:'smooth'});};
+    _0xW.applyQuickKB=function(val,mode){_0xG('singleSizeValue').value=val;_0xG('singleUnit').value='KB';_0xG('singleMode').value=mode||'reduce';_0xW.updateSingleBtnText();_0xW.showToast(`🎯 Target set to ${val} KB (${mode==='increase'?'Exact Boost':'Compress'})`);};
+    _0xW.openTool=function(t,skipPush,presetKB,presetMode){_0xG('home-view').style.display='none';_0xG('exam-view').style.display='none';if(t==='kb'){_0xG('tool-view').style.display='block';if(presetKB){_0xG('singleSizeValue').value=presetKB;_0xG('bulkSizeValue').value=presetKB;}if(presetMode){_0xG('singleMode').value=presetMode;_0xG('bulkMode').value=presetMode;_0xW.updateSingleBtnText();_0xW.updateBulkBtnText();}const isInc=presetMode==='increase'||_0xG('singleMode').value==='increase';const seoT=isInc?'Increase Image Size in KB Online (Boost 5KB Photo to 20KB or 50KB) | OptiFile':'Compress Image to 20KB, 50KB or Exact KB Online (100% Free) | OptiFile';const seoD=isInc?'Boost small images or signatures from 5KB to 20KB, 50KB, or exact KB size online without losing quality. 100% client-side and free.':'Compress photos and signatures to exact KB limits (10KB, 20KB, 50KB, 100KB) in Single or Bulk mode. 100% offline inside your browser.';const qUrl=isInc?'/?tool=kb&mode=increase':'/?tool=kb';_0xSM(seoT,seoD,'https://optifile.online'+qUrl);if(!skipPush&&_0xW.history&&_0xW.history.pushState){_0xW.history.pushState({view:'kb',mode:presetMode||''},'',qUrl);}_0xW.scrollTo({top:0,behavior:'smooth'});}};
+    _0xW.closeTool=function(skipPush){_0xG('tool-view').style.display='none';_0xG('exam-view').style.display='none';_0xG('home-view').style.display='block';_0xSM('OptiFile • UtilityHub | All-In-One Exam Photo, Signature & PDF Resizer','Built for Indian Exam Aspirants — 100% Client-Side Processing. Resize photos & signatures to exact KB (20KB, 50KB) for SBI, IBPS, SSC, RRB, UPSC, NTA exams and compress PDFs offline.','https://optifile.online/');if(!skipPush&&_0xW.history&&_0xW.history.pushState){_0xW.history.pushState({view:'home'},'','/');}_0xW.scrollTo({top:0,behavior:'smooth'});};
+    _0xW.openExamPreset=function(k,skipPush){if(!_0xEP[k])return;_0xCE=k;_0xUF={};_0xPO=[];_0xG('home-view').style.display='none';_0xG('tool-view').style.display='none';_0xG('exam-view').style.display='block';_0xG('exam-results-panel').style.display='none';const p=_0xEP[k];_0xSM(p.seoTitle,p.seoDesc,'https://optifile.online/?suite='+k);['banking','ssc','upsc','nta'].forEach(x=>{_0xG('tab-'+x).className='exam-tab-btn '+(x===k?p.tabClass:'');});const b=_0xG('examBanner');b.className='exam-suite-banner '+p.themeClass;_0xG('examBannerTitle').innerText=p.title;_0xG('examBannerDesc').innerText=p.desc;if(!skipPush&&_0xW.history&&_0xW.history.pushState){_0xW.history.pushState({view:'exam',suite:k},'','/?suite='+k);}_0xRS();_0xW.scrollTo({top:0,behavior:'smooth'});};
+    _0xW.shareOnWhatsApp=function(ctx){let msg='Bhai exam form ke liye Photo, Signature, Thumb aur Declaration 1 click mein exact KB & pixel mein set ho jata hai ispe (100% free & zero upload): https://optifile.online/';if(ctx==='exam'&&_0xCE){msg=`Bhai ${_0xCE.toUpperCase()} exam form ke liye Photo, Signature, Thumb aur Declaration 1 click mein exact KB & pixel mein set kar le ispe (100% free): https://optifile.online/?suite=${_0xCE}`;}else if(ctx==='kb'){msg='Bhai kisi bhi photo ya signature ko exact 20KB, 50KB mein compress ya increase karne ke liye ye free tool best hai: https://optifile.online/?tool=kb';}_0xW.open('https://api.whatsapp.com/send?text='+encodeURIComponent(msg),'_blank','noopener');};
     function _0xRS(){const p=_0xEP[_0xCE],c=_0xG('examSlotsList');c.innerHTML='';const td=new Date().toLocaleDateString('en-GB');p.slots.forEach(s=>{const r=_0xD.createElement('div');r.className='exam-slot-row';r.id=`row_${s.id}`;const ac=s.format==='PDF'?'image/*,.pdf':'image/*',ul=s.format==='PDF'?'📂 Upload Image / PDF':'📂 Upload Photo',sh=s.allowDateStamp?`<div class="photo-stamp-box"><label style="display:flex;align-items:center;gap:6px;font-weight:700;cursor:pointer;"><input type="checkbox" id="stamp_chk_${s.id}"> Print Name & Date on Photo</label><input type="text" id="stamp_name_${s.id}" placeholder="Candidate Name (Optional)"><input type="text" id="stamp_date_${s.id}" value="DOP: ${td}"></div>`:'';r.innerHTML=`<div class="slot-left"><div class="slot-icon">${s.icon}</div><div class="slot-meta"><h4>${s.name}</h4><div class="spec-pills"><span class="spec-pill kb-pill">⚖️ Official Limit: ${s.minKB}–${s.maxKB} KB</span><span class="spec-pill dim-pill">📐 Size: ${s.width} × ${s.height} px</span><span class="spec-pill">📄 Format: .${s.format}</span></div><div class="slot-custom-controls"><span>🎯 Exact Target KB:</span><input type="number" id="target_kb_${s.id}" class="slot-kb-input" value="${s.targetKB}" min="${s.minKB}" max="${s.maxKB}"><span>KB</span><select id="fit_mode_${s.id}" class="slot-fit-select"><option value="contain">Smart Fit (No Distortion)</option><option value="stretch">Exact Stretch (${s.width}×${s.height})</option></select></div>${sh}</div></div><div class="slot-right"><div class="slot-file-status"><img id="thumb_${s.id}" class="slot-thumb" src="" alt="thumb"><div class="slot-status-text"><strong id="fname_${s.id}">Not uploaded yet</strong><span id="fsize_${s.id}">Waiting for file...</span></div></div><button class="btn-slot-upload">${ul}<input type="file" accept="${ac}" onchange="handleSlotFileSelect('${s.id}', this)"></button></div>`;c.appendChild(r);});_0xUC();}
     _0xW.handleSlotFileSelect=async function(id,inp){if(inp.files&&inp.files[0]){const f=inp.files[0];_0xUF[id]=f;_0xG(`row_${id}`).classList.add('slot-uploaded');const th=_0xG(`thumb_${id}`);if(f.type==='application/pdf'||f.name.toLowerCase().endsWith('.pdf')){try{const pc=await _0xRP(f,150,200);th.src=pc.toDataURL('image/jpeg',0.8);th.style.display='block';}catch(e){th.style.display='none';}}else{th.src=URL.createObjectURL(f);th.style.display='block';}_0xG(`fname_${id}`).innerText=f.name;_0xG(`fsize_${id}`).innerText=`Original: ${_0xFS(f.size)} ✅`;_0xUC();_0xW.showToast(`Loaded ${f.name}`);}};
     function _0xUC(){const tot=_0xEP[_0xCE].slots.length,cnt=Object.keys(_0xUF).length;_0xG('examUploadCountPill').innerText=`${cnt} / ${tot} Documents Uploaded`;}
@@ -796,7 +896,7 @@
     _0xW.handleSingleProcess=async function(){if(!_0xSF){alert("Please select an image first!");return;}const btn=_0xG('singleActionBtn'),ot=btn.innerText;btn.innerText="Processing...";btn.disabled=true;try{const md=_0xG('singleMode').value,vl=parseFloat(_0xG('singleSizeValue').value)||50,un=_0xG('singleUnit').value,tb=Math.floor(un==='MB'?vl*1048576:vl*1024),res=await _0xOIF(_0xSF,tb,md);_0xBO=[];_0xRR([res],false);}catch(e){console.error(e);alert("Error processing file: "+e.message);}finally{btn.innerText=ot;btn.disabled=false;}};
     _0xW.handleBulkProcess=async function(){if(_0xBF.length===0){alert("Please select multiple images first!");return;}const btn=_0xG('bulkActionBtn'),ot=btn.innerText;btn.disabled=true;try{const md=_0xG('bulkMode').value,vl=parseFloat(_0xG('bulkSizeValue').value)||50,un=_0xG('bulkUnit').value,tb=Math.floor(un==='MB'?vl*1048576:vl*1024);let out=[];for(let i=0;i<_0xBF.length;i++){btn.innerText=`Processing ${i+1} of ${_0xBF.length}...`;const r=await _0xOIF(_0xBF[i],tb,md);out.push(r);}_0xBO=out;_0xRR(out,true);}catch(e){console.error(e);alert("Error processing bulk files: "+e.message);}finally{btn.innerText=ot;btn.disabled=false;}};
     function _0xRR(ls,ib){const sc=_0xG('result-section'),ct=_0xG('result-content'),bb=_0xG('bulkDownloadAllBtn');ct.innerHTML='';sc.style.display='block';bb.style.display=(ib&&ls.length>0)?'flex':'none';ls.forEach(it=>{const d=_0xD.createElement('div');d.className='result-card';d.innerHTML=`<div class="result-info"><img src="${it.blobUrl}" alt="output"><div><strong style="font-size:14px;display:block;">${it.name}</strong><span style="font-size:12px;color:var(--text-muted);">Original: <b>${_0xFS(it.originalSize)}</b> → New Size: <b style="color:#059669;">${_0xFS(it.newSize)}</b></span></div></div><a href="${it.blobUrl}" download="optifile-${it.name}" class="btn-download">⬇ Download Image</a>`;ct.appendChild(d);});sc.scrollIntoView({behavior:'smooth'});}
-    function _0xRT(){const pr=new URLSearchParams(_0xW.location.search),st=pr.get('suite'),tl=pr.get('tool');if(st&&_0xEP[st]){_0xW.openExamPreset(st,true);}else if(tl==='kb'){_0xW.openTool('kb',true);}else{_0xW.closeTool(true);}}
+    function _0xRT(){const pr=new URLSearchParams(_0xW.location.search),st=pr.get('suite'),tl=pr.get('tool'),kb=parseFloat(pr.get('kb')),md=pr.get('mode');if(st&&_0xEP[st]){_0xW.openExamPreset(st,true);}else if(tl==='kb'){_0xW.openTool('kb',true,kb||null,md||null);}else{_0xW.closeTool(true);}}
     _0xW.addEventListener('popstate',_0xRT);
     _0xD.addEventListener('contextmenu',function(e){if(e.target.tagName!=='INPUT'&&e.target.tagName!=='TEXTAREA'){e.preventDefault();_0xW.showToast('🛡️ © 2026 OptiFile UtilityHub — Protected Content');}});
     _0xD.addEventListener('keydown',function(e){if(e.key==='F12'||(e.ctrlKey&&e.shiftKey&&(e.key==='I'||e.key==='J'||e.key==='C'))||(e.ctrlKey&&e.key==='u')){e.preventDefault();_0xW.showToast('🛡️ Developer Tools Disabled — © OptiFile Protected IP');return false;}});
