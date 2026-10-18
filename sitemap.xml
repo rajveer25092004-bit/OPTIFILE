@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  <!-- 1. Main Homepage & 1-Click Exam Presets (SBI, IBPS, SSC, RRB, UPSC, NTA) -->
+  <url>
+    <loc>https://optifile.online/</loc>
+    <lastmod>2026-10-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://optifile.online/logo.png</image:loc>
+      <image:title>OptiFile 1-Click Exam Photo, Signature &amp; Document Resizer (SBI, IBPS, SSC, UPSC, NTA, RRB)</image:title>
+      <image:caption>Free online exam photo and signature resizer to exact KB for SBI PO, SBI Clerk, IBPS PO, IBPS Clerk, IBPS RRB, SSC CGL, SSC CHSL, SSC MTS, SSC GD, Railway RRB NTPC, Group D, UPSC CSE IAS, NDA, CDS, and NTA NEET UG, JEE Main, CUET form filling.</image:caption>
+    </image:image>
+  </url>
+
+  <!-- 2. Pro KB Manager (20KB, 50KB, 100KB Exact Photo & Sign Compressor) -->
+  <url>
+    <loc>https://optifile.online/kb-manager.html</loc>
+    <lastmod>2026-10-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://optifile.online/logo.png</image:loc>
+      <image:title>Reduce or Increase Image Size in Exact KB - 10KB, 20KB, 50KB, 100KB Photo Resizer</image:title>
+      <image:caption>Compress or boost JPG, JPEG, PNG images to exact KB for government job exams: Banking passport photo 20-50KB, Signature 10-20KB, Left thumb impression, Handwritten declaration 50-100KB, and Railway 30-70KB photo resizer.</image:caption>
+    </image:image>
+  </url>
+
+  <!-- 3. Image Tools Suite (Crop, Pixel Resize 200x230, 140x60, 3.5x4.5cm & Convert) -->
+  <url>
+    <loc>https://optifile.online/image-tools.html</loc>
+    <lastmod>2026-10-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://optifile.online/logo.png</image:loc>
+      <image:title>Exam Photo Dimensions Resizer (200x230px, 140x60px, 3.5cm x 4.5cm, UPSC 550x550px)</image:title>
+      <image:caption>Resize photo pixels, add Name and Date stamp on passport photo for SSC, UPSC, NTA Postcard photo 4x6 inch, IBPS, and SBI exams. Convert PNG, WEBP to JPG offline.</image:caption>
+    </image:image>
+  </url>
+
+  <!-- 4. PDF Tools Suite (Merge, Split, Compress PDF under 100KB / 200KB / 300KB) -->
+  <url>
+    <loc>https://optifile.online/pdf-tools.html</loc>
+    <lastmod>2026-10-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://optifile.online/logo.png</image:loc>
+      <image:title>Exam Certificate PDF Compressor, Merger &amp; Image to PDF Converter (50KB to 300KB)</image:title>
+      <image:caption>Convert and compress Railway RRB SC/ST Train Pass PDF, Caste Certificate, Class 10th Marksheet, and UPSC Photo ID Card PDF to exact KB size limits.</image:caption>
+    </image:image>
+  </url>
+
+  <!-- 5. Fast Formatter -->
+  <url>
+    <loc>https://optifile.online/fast-formatter.html</loc>
+    <lastmod>2026-10-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://optifile.online/logo.png</image:loc>
+      <image:title>Fast Text &amp; Document Formatter Utility - OptiFile</image:title>
+      <image:caption>Clean, format, and optimize text and digital files instantly in browser.</image:caption>
+    </image:image>
+  </url>
+
+  <!-- 6. Word & Character Counter -->
+  <url>
+    <loc>https://optifile.online/word-counter.html</loc>
+    <lastmod>2026-10-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://optifile.online/logo.png</image:loc>
+      <image:title>Online Word &amp; Character Counter for Descriptive Exams, Essays &amp; Applications</image:title>
+      <image:caption>Count words, characters, sentences, and paragraphs for SBI PO Descriptive Paper, IBPS PO Mains letter/essay writing, SSC, and UPSC practice.</image:caption>
+    </image:image>
+  </url>
+
+  <!-- 7. Case Converter -->
+  <url>
+    <loc>https://optifile.online/case-converter.html</loc>
+    <lastmod>2026-10-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://optifile.online/logo.png</image:loc>
+      <image:title>Text Case Converter - UPPERCASE, lowercase, Title Case &amp; Sentence case</image:title>
+      <image:caption>Instantly convert text case for official forms, handwritten declaration templates, and document formatting.</image:caption>
+    </image:image>
+  </url>
+
+</urlset>
