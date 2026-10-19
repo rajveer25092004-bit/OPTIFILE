@@ -1,98 +1,148 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-  
-  <!-- 1. Main Homepage -->
+
+  <!-- 1. Main Homepage & All-In-One Exam Utility Hub -->
   <url>
     <loc>https://optifile.online/</loc>
-    <lastmod>2026-10-18</lastmod>
+    <lastmod>2026-10-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <image:image>
       <image:loc>https://optifile.online/logo.png</image:loc>
-      <image:title>OptiFile 1-Click Exam Photo, Signature &amp; Document Resizer</image:title>
-      <image:caption>Built for Indian Exam Aspirants — 100% Client-Side Photo, Signature and PDF Formatter.</image:caption>
+      <image:title>OptiFile 1-Click Exam Photo, Signature &amp; Document Resizer (SBI, IBPS, SSC, UPSC, NTA, RRB)</image:title>
+      <image:caption>Built for Indian Exam Aspirants — 100% Client-Side Photo, Signature, Thumb Impression, Handwritten Declaration and PDF Formatter to exact KB for SBI, IBPS, SSC, Railway RRB, UPSC, and NTA NEET/JEE/CUET.</image:caption>
     </image:image>
   </url>
 
-  <!-- 2. Banking Exam Suite URL -->
+  <!-- 2. Banking Exam Suite (IBPS PO/Clerk, SBI PO/Clerk, RBI, IBPS RRB) -->
   <url>
     <loc>https://optifile.online/?suite=banking</loc>
-    <lastmod>2026-10-18</lastmod>
+    <lastmod>2026-10-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://optifile.online/logo.png</image:loc>
+      <image:title>SBI &amp; IBPS Banking Exam Photo (20-50KB), Signature (10-20KB), Thumb &amp; Declaration (50-100KB) Resizer</image:title>
+      <image:caption>1-Click Banking Exam Document Formatter with pre-locked dimensions: Passport Photo 200x230px, Signature 140x60px, Left Thumb Impression 240x240px, and Handwritten Declaration 800x400px.</image:caption>
+    </image:image>
   </url>
 
-  <!-- 3. SSC & Railway Exam Suite URL -->
+  <!-- 3. SSC & Railway RRB Exam Suite -->
   <url>
     <loc>https://optifile.online/?suite=ssc</loc>
-    <lastmod>2026-10-18</lastmod>
+    <lastmod>2026-10-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://optifile.online/logo.png</image:loc>
+      <image:title>SSC CGL/CHSL/MTS Photo (20-50KB) &amp; Railway RRB Photo/Signature (30-70KB) + SC/ST Train Pass PDF Resizer</image:title>
+      <image:caption>Format SSC passport photo (3.5cm x 4.5cm with optional Name &amp; Date stamp), SSC signature (10-20KB), Railway RRB photo/signature (30-70KB), and SC/ST Train Pass or Caste Certificate PDF (50-300KB).</image:caption>
+    </image:image>
   </url>
 
-  <!-- 4. UPSC & State PSC Exam Suite URL -->
+  <!-- 4. UPSC & State PSC Exam Suite -->
   <url>
     <loc>https://optifile.online/?suite=upsc</loc>
-    <lastmod>2026-10-18</lastmod>
+    <lastmod>2026-10-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://optifile.online/logo.png</image:loc>
+      <image:title>UPSC CSE IAS, NDA, CDS &amp; CAPF Photo (550x550px Square with Name &amp; Date) &amp; ID Card PDF Formatter</image:title>
+      <image:caption>Official UPSC and State PSC document formatter: Square 550x550px photograph with Name &amp; Date of Photo stamp (20-300KB), signature 500x250px, and Photo ID Card Proof PDF.</image:caption>
+    </image:image>
   </url>
 
-  <!-- 5. NTA NEET / JEE / CUET Exam Suite URL -->
+  <!-- 5. NTA Academics Exam Suite (NEET UG, JEE Main, CUET) -->
   <url>
     <loc>https://optifile.online/?suite=nta</loc>
-    <lastmod>2026-10-18</lastmod>
+    <lastmod>2026-10-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://optifile.online/logo.png</image:loc>
+      <image:title>NTA NEET UG, JEE Main &amp; CUET Passport Photo, Postcard Photo (4x6), Signature &amp; Thumb Impression Resizer</image:title>
+      <image:caption>Pre-locked NTA document formatter for Passport Photo (10-200KB), Postcard Size Photo (4x6 inch, 600x900px), Signature (4-30KB), Left &amp; Right Hand Fingers/Thumb Impression, and Class 10th Certificate PDF.</image:caption>
+    </image:image>
   </url>
 
-  <!-- 6. Pro KB Manager -->
+  <!-- 6. Pro KB Manager (Reduce & Exact Boost) -->
   <url>
     <loc>https://optifile.online/kb-manager.html</loc>
-    <lastmod>2026-10-18</lastmod>
+    <lastmod>2026-10-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://optifile.online/logo.png</image:loc>
+      <image:title>Reduce or Increase Image Size in Exact KB - 10KB, 20KB, 50KB, 100KB Photo Resizer</image:title>
+      <image:caption>Compress heavy 20MB+ images or boost small photos to exact KB limits (10KB, 20KB, 50KB, 100KB) in Single and Bulk Batch modes 100% offline.</image:caption>
+    </image:image>
   </url>
 
-  <!-- 7. Image Tools Suite -->
+  <!-- 7. Image Tools Suite (Crop, Pixel Resize & Format Converter) -->
   <url>
     <loc>https://optifile.online/image-tools.html</loc>
-    <lastmod>2026-10-18</lastmod>
+    <lastmod>2026-10-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://optifile.online/logo.png</image:loc>
+      <image:title>Image Utility &amp; Format Converter - Resize Pixels (200x230px, 140x60px, 550x550px) &amp; Convert JPG, PNG, WEBP, PDF</image:title>
+      <image:caption>Resize exact pixel dimensions, rotate or flip photos, and batch convert images between JPG, PNG, WEBP, and PDF in browser.</image:caption>
+    </image:image>
   </url>
 
-  <!-- 8. PDF Tools Suite -->
+  <!-- 8. PDF Tools Suite (8-in-1 Offline PDF Toolkit) -->
   <url>
     <loc>https://optifile.online/pdf-tools.html</loc>
-    <lastmod>2026-10-18</lastmod>
+    <lastmod>2026-10-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://optifile.online/logo.png</image:loc>
+      <image:title>Pro 8-in-1 PDF Suite - Merge, Split, Compress PDF (50KB to 300KB), PDF to JPG, Rotate &amp; Watermark</image:title>
+      <image:caption>100% client-side PDF utility suite to merge, split, compress PDFs for government portals, convert PDF pages to JPG ZIP, rotate, add page numbers, watermark, and delete pages.</image:caption>
+    </image:image>
   </url>
 
-  <!-- 9. Fast Formatter -->
+  <!-- 9. Fast Formatter & Universal AI Grammar Fixer -->
   <url>
     <loc>https://optifile.online/fast-formatter.html</loc>
-    <lastmod>2026-10-18</lastmod>
+    <lastmod>2026-10-19</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://optifile.online/logo.png</image:loc>
+      <image:title>Universal AI Fast Formatter &amp; Smart Grammar Engine - Fix Broken PDF Lines &amp; Split Words</image:title>
+      <image:caption>Mathematically reconstructs broken or split English words from PDFs/OCR, fixes grammar and spelling, removes extra spaces, and exports clean PDF, DOC, or TXT.</image:caption>
+    </image:image>
   </url>
 
-  <!-- 10. Word & Character Counter -->
+  <!-- 10. Universal Word & Character Counter (with Smart OCR) -->
   <url>
     <loc>https://optifile.online/word-counter.html</loc>
-    <lastmod>2026-10-18</lastmod>
+    <lastmod>2026-10-19</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://optifile.online/logo.png</image:loc>
+      <image:title>Universal Word &amp; Character Counter with Smart AI OCR for PDF, Scanned PDF, Word, Excel &amp; Essays</image:title>
+      <image:caption>Count words, characters, sentences, paragraphs, reading time, and top keywords for SBI PO, IBPS, SSC, and UPSC descriptive exams.</image:caption>
+    </image:image>
   </url>
 
-  <!-- 11. Case Converter -->
+  <!-- 11. Universal Smart Case Converter -->
   <url>
     <loc>https://optifile.online/case-converter.html</loc>
-    <lastmod>2026-10-18</lastmod>
+    <lastmod>2026-10-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://optifile.online/logo.png</image:loc>
+      <image:title>Universal Smart Case Converter - UPPERCASE, lowercase, Title Case &amp; Sentence case</image:title>
+      <image:caption>Upload PDF, Word (.DOCX), Excel (.XLSX), or text to convert 10,000+ words to any case in 1 click and export as TXT, DOC, or PDF.</image:caption>
+    </image:image>
   </url>
 
 </urlset>
