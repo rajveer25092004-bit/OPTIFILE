@@ -3,12 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Utility & Converter | OptiFile</title>
+    <title>Image Utility & Converter - Resize Pixels (200x230, 140x60) & Convert JPG, PNG, WEBP, PDF | OptiFile</title>
+
+    <!-- SEO Meta Tags for Google Search -->
+    <meta name="description" content="100% free client-side Image Utility & Converter by OptiFile. Resize image pixel dimensions (200x230px, 140x60px, 550x550px), rotate/flip photos, and convert JPG, PNG, WEBP, and PDF offline.">
+    <meta name="keywords" content="image converter online, resize image pixels 200x230, signature resize 140x60 px, convert webp to jpg, png to jpg converter, image to pdf converter, bulk image converter, optifile image tools">
+    <meta name="author" content="Rajveer Singh">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://optifile.online/image-tools.html">
+
+    <!-- Open Graph (Social, WhatsApp, Telegram & Reddit Preview) -->
+    <meta property="og:title" content="Image Utility & Format Converter (JPG, PNG, WEBP, PDF) | OptiFile">
+    <meta property="og:description" content="Convert image formats, resize exact pixel dimensions, rotate/flip photos, and batch convert images to PDF or ZIP 100% offline in your browser.">
+    <meta property="og:url" content="https://optifile.online/image-tools.html">
+    <meta property="og:site_name" content="OptiFile">
+    <meta property="og:image" content="https://optifile.online/logo.png">
+    <meta property="og:type" content="website">
+
+    <!-- Google Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "OptiFile Image Utility & Format Converter",
+      "url": "https://optifile.online/image-tools.html",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "All",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "INR"
+      },
+      "description": "Client-side image format converter (JPG, PNG, WEBP, PDF), pixel dimension resizer, and batch photo processor."
+    }
+    </script>
+
     <script src="optifile-shield.js"></script>
+    <meta name="application-name" content="OptiFile">
+    <meta name="theme-color" content="#0F172A">
+    <meta name="copyright" content="© 2026 OptiFile UtilityHub. All Rights Reserved.">
+
+    <!-- Static Square Favicon Links for Google Search Bot -->
+    <link rel="shortcut icon" type="image/png" href="https://optifile.online/logo.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="logo.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="logo.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="logo.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="logo.png">
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <!-- Client-Side PDF & ZIP Libraries for Pro Features -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -38,13 +83,16 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            position: relative;
+            overflow-x: hidden;
         }
 
-        /* Header Layout */
+        /* Unified Header Layout Matching index.html */
         header {
-            background: var(--surface-card);
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border-light);
-            padding: 16px 5%;
+            padding: 12px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -53,30 +101,31 @@
             z-index: 50;
         }
 
-        .header-left { flex: 1; font-weight: 800; font-size: 20px; color: #4F46E5; text-decoration: none; }
-        .header-center { flex: 2; display: flex; justify-content: center; }
-        .header-right { flex: 1; display: flex; justify-content: flex-end; align-items: center; gap: 12px; }
+        .header-left { flex: 1; display: flex; align-items: center; gap: 12px; cursor: pointer; text-decoration: none; }
+        .brand-logo-img { width: 44px; height: 44px; object-fit: contain; border-radius: 10px; flex-shrink: 0; filter: drop-shadow(0 2px 6px rgba(2, 132, 199, 0.2)); }
+        .brand-text-wrap { display: flex; flex-direction: column; line-height: 1.1; }
+        .brand-main-name { font-weight: 800; font-size: 20px; letter-spacing: -0.5px; color: #0F172A; }
+        .brand-main-name span { background: linear-gradient(90deg, #0284C7, #0D9488); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .brand-sub-tag { font-size: 9.5px; font-weight: 700; letter-spacing: 1.6px; color: var(--text-muted); text-transform: uppercase; margin-top: 2px; }
 
-        nav { display: flex; gap: 32px; }
-        .nav-pill { padding: 10px 24px; border-radius: 50px; font-size: 13px; font-weight: 700; text-decoration: none; transition: all 0.3s; display: flex; align-items: center; gap: 8px; border: 1px solid transparent; }
-        .pill-kb { color: #4F46E5; background: rgba(79, 70, 229, 0.06); }
-        .pill-kb:hover { background: rgba(79, 70, 229, 0.12); transform: translateY(-1px); }
+        .header-center { flex: 2; display: flex; justify-content: center; }
+        .header-right { flex: 1; display: flex; justify-content: flex-end; align-items: center; gap: 10px; }
+
+        nav { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+        .nav-pill { padding: 9px 18px; border-radius: 50px; font-size: 13px; font-weight: 700; text-decoration: none; transition: all 0.25s; display: flex; align-items: center; gap: 8px; border: 1px solid transparent; cursor: pointer; }
+        .pill-kb { color: #4F46E5; background: rgba(79, 70, 229, 0.07); border-color: rgba(79, 70, 229, 0.2); }
+        .pill-kb:hover { background: rgba(79, 70, 229, 0.14); transform: translateY(-1px); }
         
         /* Active State for IMG Tools */
-        .pill-img { color: var(--primary); background: rgba(5, 150, 105, 0.08); box-shadow: 0 0 15px rgba(5, 150, 105, 0.15); border-color: rgba(5, 150, 105, 0.2); }
-        .pill-pdf { color: #2563EB; background: rgba(37, 99, 235, 0.06); }
+        .pill-img { color: var(--primary); background: rgba(5, 150, 105, 0.12); box-shadow: 0 0 15px rgba(5, 150, 105, 0.15); border-color: rgba(5, 150, 105, 0.3); }
+        .pill-pdf { color: #0284C7; background: rgba(2, 132, 199, 0.07); border-color: rgba(2, 132, 199, 0.2); }
+        .pill-pdf:hover { background: rgba(2, 132, 199, 0.14); transform: translateY(-1px); }
 
-        .btn-text { background: transparent; color: var(--text-dark); border: none; padding: 10px 16px; font-size: 14px; font-weight: 600; cursor: pointer; }
-        .btn-cta { background: var(--text-dark); color: #fff; border: none; padding: 10px 24px; border-radius: 50px; font-size: 14px; font-weight: 600; cursor: pointer; }
+        .zero-signup-pill { background: #ECFDF5; color: #047857; border: 1.5px solid #A7F3D0; padding: 7px 14px; border-radius: 50px; font-size: 12px; font-weight: 800; display: flex; align-items: center; gap: 6px; white-space: nowrap; }
 
         .secure-banner { background-color: #ECFDF5; border-bottom: 1px solid #A7F3D0; color: #065F46; font-size: 13px; font-weight: 600; text-align: center; padding: 10px; }
 
-        /* AdSense Spots */
-        .ad-spot { width: 100%; max-width: 728px; height: 90px; background: #F1F5F9; border: 2px dashed #CBD5E1; color: #94A3B8; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; border-radius: 8px; margin: 0 auto; }
-        .ad-spot-top { margin-top: 24px; }
-        .ad-spot-bottom { margin-top: 40px; margin-bottom: 60px; }
-
-        main { max-width: 1050px; margin: 40px auto 20px; padding: 0 20px; width: 100%; }
+        main { max-width: 1050px; margin: 36px auto 60px; padding: 0 20px; width: 100%; flex-grow: 1; }
 
         /* Tool Header & Black Glance Back Button */
         .tool-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 12px; }
@@ -85,7 +134,7 @@
         
         .btn-back { 
             background: #111827; color: #FFFFFF; border: 1px solid transparent; padding: 10px 20px; 
-            border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 14px; text-decoration: none;
+            border-radius: 10px; cursor: pointer; font-weight: 600; font-size: 13px; text-decoration: none;
             display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 0 15px rgba(17, 24, 39, 0.25);
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
@@ -93,7 +142,11 @@
 
         /* 2-Column Tool Layout */
         .design6-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
-        @media (max-width: 768px) { .design6-layout { grid-template-columns: 1fr; } }
+        @media (max-width: 768px) {
+            .design6-layout { grid-template-columns: 1fr; }
+            header { flex-wrap: wrap; gap: 12px; }
+            .header-center { order: 3; flex: 100%; }
+        }
 
         .tool-panel {
             background: var(--surface-card); border: 1.5px solid var(--border-light); border-radius: 16px;
@@ -160,35 +213,80 @@
         .result-info img { width: 46px; height: 46px; border-radius: 8px; object-fit: cover; border: 1px solid #CBD5E1; background: white; }
         .btn-download { background: var(--primary); color: white; text-decoration: none; padding: 9px 18px; border-radius: 8px; font-size: 13px; font-weight: 700; transition: 0.2s; }
         .btn-download:hover { background: var(--primary-hover); }
+
+        footer {
+            background: #111827; color: #94A3B8; text-align: center; padding: 22px 5%;
+            font-size: 13px; font-weight: 600; border-top: 4px solid #0284C7; margin-top: auto;
+        }
     </style>
+
+    <!-- Vercel Web Analytics Tracking Script -->
+    <script>
+        window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
 
+    <!-- Inline SVG Fallback Symbol Matching index.html -->
+    <svg width="0" height="0" style="position:absolute;">
+        <defs>
+            <linearGradient id="uh-grad-blue" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#0F172A" />
+                <stop offset="50%" stop-color="#0284C7" />
+                <stop offset="100%" stop-color="#0D9488" />
+            </linearGradient>
+            <linearGradient id="uh-grad-cyan" x1="0%" y1="100%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#1E3A8A" />
+                <stop offset="60%" stop-color="#06B6D4" />
+                <stop offset="100%" stop-color="#F59E0B" />
+            </linearGradient>
+            <symbol id="utilityhub-logo" viewBox="0 0 120 120">
+                <path d="M22 18 L48 18 L60 30 L60 80 L22 65 Z" fill="#FFFFFF" stroke="url(#uh-grad-blue)" stroke-width="5" stroke-linejoin="round"/>
+                <path d="M46 18 L46 31 L60 31" fill="none" stroke="#0284C7" stroke-width="4" stroke-linejoin="round"/>
+                <polyline points="29,36 33,40 40,32" fill="none" stroke="#0F172A" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <line x1="45" y1="36" x2="54" y2="36" stroke="#0284C7" stroke-width="3.5" stroke-linecap="round"/>
+                <polyline points="29,49 33,53 40,45" fill="none" stroke="#0F172A" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <line x1="45" y1="49" x2="54" y2="49" stroke="#0D9488" stroke-width="3.5" stroke-linecap="round"/>
+                <rect x="68" y="18" width="30" height="26" rx="4" fill="#FFFFFF" stroke="url(#uh-grad-cyan)" stroke-width="4.5"/>
+                <circle cx="89" cy="26" r="3" fill="#F59E0B"/>
+                <path d="M71 41 L79 31 L86 38 L91 34 L96 41 Z" fill="#0D9488"/>
+                <path d="M20 55 C20 92, 55 104, 78 78 C90 65, 96 52, 96 45" fill="none" stroke="url(#uh-grad-blue)" stroke-width="10" stroke-linecap="round"/>
+                <path d="M30 68 C45 96, 86 92, 86 45" fill="none" stroke="url(#uh-grad-cyan)" stroke-width="8" stroke-linecap="round"/>
+            </symbol>
+        </defs>
+    </svg>
+
     <header>
-        <a href="index.html" class="header-left">🗜️ OptiFile</a>
+        <a href="index.html" class="header-left">
+            <img src="logo.png" alt="OptiFile Logo" class="brand-logo-img" onerror="this.style.display='none'; document.getElementById('svgHeaderLogo').style.display='block';">
+            <svg id="svgHeaderLogo" class="brand-logo-img" style="display:none;" viewBox="0 0 120 120">
+                <use href="#utilityhub-logo"></use>
+            </svg>
+            <div class="brand-text-wrap">
+                <div class="brand-main-name">OPTI<span>FILE</span></div>
+                <div class="brand-sub-tag">UTILITYHUB SUITE</div>
+            </div>
+        </a>
         <div class="header-center">
             <nav>
-                <a href="index.html" class="nav-pill pill-kb">🎛️ KB MANAGER</a>
+                <a href="kb-manager.html" class="nav-pill pill-kb">🎛️ KB MANAGER</a>
                 <a href="image-tools.html" class="nav-pill pill-img">🖼️ IMG TOOLS</a>
                 <a href="pdf-tools.html" class="nav-pill pill-pdf">📄 PDF TOOLS</a>
             </nav>
         </div>
         <div class="header-right">
-            <button class="btn-text">Sign in</button>
-            <button class="btn-cta">Sign up</button>
+            <div class="zero-signup-pill">⚡ No Sign-Up • 100% Free</div>
         </div>
     </header>
 
-    <div class="secure-banner">🛡️ <span>100% Private | Processed locally on your browser, zero server uploads</span></div>
-
-    <!-- AdSense Spot 1 (Top) -->
-    <div class="ad-spot ad-spot-top">AdSense Spot 1 (Leaderboard 728x90) - Top of Content</div>
+    <div class="secure-banner">🛡️ <span>100% Private Image Utility | Processed locally in your browser — zero server uploads</span></div>
 
     <main>
         
         <div class="tool-header">
             <div class="tool-title">
-                <h1>Image Utility & Converter</h1>
+                <h1>Image Utility &amp; Converter</h1>
                 <p>Convert formats (JPG, PNG, WEBP, PDF), resize pixel dimensions, and rotate photos instantly.</p>
             </div>
             <a href="index.html" class="btn-back">← Back to Home</a>
@@ -243,7 +341,7 @@
 
                     <!-- Rotate & Flip Tools -->
                     <div class="setting-divider">
-                        <div style="font-size: 12px; font-weight: 700; color: var(--text-muted); margin-bottom: 8px; text-transform: uppercase;">Rotate & Flip Orientation:</div>
+                        <div style="font-size: 12px; font-weight: 700; color: var(--text-muted); margin-bottom: 8px; text-transform: uppercase;">Rotate &amp; Flip Orientation:</div>
                         <div class="transform-bar">
                             <button type="button" class="btn-tool" onclick="rotateSingle(-90)">↺ Rotate Left</button>
                             <button type="button" class="btn-tool" onclick="rotateSingle(90)">↻ Rotate Right</button>
@@ -254,7 +352,7 @@
                     </div>
                 </div>
 
-                <button id="singleActionBtn" class="btn-action" onclick="processSingleImage()">Process & Download</button>
+                <button id="singleActionBtn" class="btn-action" onclick="processSingleImage()">Process &amp; Download</button>
             </div>
 
             <!-- RIGHT PANEL: Bulk Format Converter -->
@@ -266,13 +364,13 @@
                 
                 <div class="drop-zone" style="padding: 24px 16px;">
                     <input type="file" id="bulkFileInput" accept="image/*" multiple>
-                    <h3>Drag & Drop Dozens of Photos</h3>
+                    <h3>Drag &amp; Drop Dozens of Photos</h3>
                     <p>Batch convert multiple images in one click</p>
                     <button class="btn-upload" style="background: var(--primary);">Select Multiple Images</button>
                 </div>
 
                 <div class="bulk-list" id="bulkListContainer">
-                    No files selected yet. Drag & drop multiple images to convert them all at once.
+                    No files selected yet. Drag &amp; drop multiple images to convert them all at once.
                 </div>
 
                 <div class="settings-box" style="background: #FFFBEB; border-color: #FDE68A;">
@@ -312,8 +410,9 @@
 
     </main>
 
-    <!-- AdSense Spot 4 (Bottom) -->
-    <div class="ad-spot ad-spot-bottom">AdSense Spot 4 (Leaderboard 728x90) - Below Processing Panels</div>
+    <footer>
+        © OptiFile UtilityHub 2026 ® — All Rights Reserved • 100% Client-Side Processing
+    </footer>
 
     <!-- ADVANCED CLIENT-SIDE IMAGE ENGINE -->
     <script>
