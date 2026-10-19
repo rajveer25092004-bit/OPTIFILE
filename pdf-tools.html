@@ -3,12 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pro PDF Suite - 8-in-1 Offline PDF Tools | OptiFile</title>
+    <title>Pro PDF Suite - Merge, Split & Compress PDF (50KB to 300KB) Offline | OptiFile</title>
+
+    <!-- SEO Meta Tags for Google Search -->
+    <meta name="description" content="100% free client-side 8-in-1 PDF Utility Suite by OptiFile. Compress PDFs under 100KB–300KB for exam portals (Railway SC/ST Pass, Caste Certificate, UPSC ID), merge, split, rotate, watermark, and convert PDF to JPG offline.">
+    <meta name="keywords" content="compress pdf to 100kb, compress pdf to 200kb, compress pdf to 300kb, merge pdf offline, split pdf pages, pdf to jpg converter zip, railway sc st pass pdf compressor, upsc id card pdf resizer, optifile pdf tools">
+    <meta name="author" content="Rajveer Singh">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://optifile.online/pdf-tools.html">
+
+    <!-- Open Graph (Social, WhatsApp, Telegram & Reddit Preview) -->
+    <meta property="og:title" content="Pro PDF Suite - 8-in-1 Offline PDF Tools | OptiFile">
+    <meta property="og:description" content="Merge, split, compress (under 100KB–300KB), convert to JPG, watermark, and edit PDFs instantly in your browser with zero server uploads.">
+    <meta property="og:url" content="https://optifile.online/pdf-tools.html">
+    <meta property="og:site_name" content="OptiFile">
+    <meta property="og:image" content="https://optifile.online/logo.png">
+    <meta property="og:type" content="website">
+
+    <!-- Google Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "OptiFile Pro PDF Utility Suite (8-in-1)",
+      "url": "https://optifile.online/pdf-tools.html",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "All",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "INR"
+      },
+      "description": "100% client-side PDF toolkit to merge, split, compress PDFs to exact KB limits, convert PDF to JPG, rotate, add page numbers, and watermark PDFs offline."
+    }
+    </script>
+
     <script src="optifile-shield.js"></script>
+    <meta name="application-name" content="OptiFile">
+    <meta name="theme-color" content="#0F172A">
+    <meta name="copyright" content="© 2026 OptiFile UtilityHub. All Rights Reserved.">
+
+    <!-- Static Square Favicon Links for Google Search Bot -->
+    <link rel="shortcut icon" type="image/png" href="https://optifile.online/logo.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="logo.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="logo.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="logo.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="logo.png">
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <!-- High-Level PDF & ZIP Engines (pdf-lib, PDF.js, JSZip, jsPDF) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
@@ -41,13 +86,16 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            position: relative;
+            overflow-x: hidden;
         }
 
-        /* Header Layout */
+        /* Unified Header Layout Matching index.html */
         header {
-            background: var(--surface-card);
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border-light);
-            padding: 16px 5%;
+            padding: 12px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -56,31 +104,31 @@
             z-index: 50;
         }
 
-        .header-left { flex: 1; font-weight: 800; font-size: 20px; color: #4F46E5; text-decoration: none; }
-        .header-center { flex: 2; display: flex; justify-content: center; }
-        .header-right { flex: 1; display: flex; justify-content: flex-end; align-items: center; gap: 12px; }
+        .header-left { flex: 1; display: flex; align-items: center; gap: 12px; cursor: pointer; text-decoration: none; }
+        .brand-logo-img { width: 44px; height: 44px; object-fit: contain; border-radius: 10px; flex-shrink: 0; filter: drop-shadow(0 2px 6px rgba(2, 132, 199, 0.2)); }
+        .brand-text-wrap { display: flex; flex-direction: column; line-height: 1.1; }
+        .brand-main-name { font-weight: 800; font-size: 20px; letter-spacing: -0.5px; color: #0F172A; }
+        .brand-main-name span { background: linear-gradient(90deg, #0284C7, #0D9488); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .brand-sub-tag { font-size: 9.5px; font-weight: 700; letter-spacing: 1.6px; color: var(--text-muted); text-transform: uppercase; margin-top: 2px; }
 
-        nav { display: flex; gap: 32px; }
-        .nav-pill { padding: 10px 24px; border-radius: 50px; font-size: 13px; font-weight: 700; text-decoration: none; transition: all 0.3s; display: flex; align-items: center; gap: 8px; border: 1px solid transparent; }
-        .pill-kb { color: #4F46E5; background: rgba(79, 70, 229, 0.06); }
-        .pill-kb:hover { background: rgba(79, 70, 229, 0.12); transform: translateY(-1px); }
-        .pill-img { color: #059669; background: rgba(5, 150, 105, 0.06); }
-        .pill-img:hover { background: rgba(5, 150, 105, 0.12); transform: translateY(-1px); }
+        .header-center { flex: 2; display: flex; justify-content: center; }
+        .header-right { flex: 1; display: flex; justify-content: flex-end; align-items: center; gap: 10px; }
+
+        nav { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+        .nav-pill { padding: 9px 18px; border-radius: 50px; font-size: 13px; font-weight: 700; text-decoration: none; transition: all 0.25s; display: flex; align-items: center; gap: 8px; border: 1px solid transparent; cursor: pointer; }
+        .pill-kb { color: #4F46E5; background: rgba(79, 70, 229, 0.07); border-color: rgba(79, 70, 229, 0.2); }
+        .pill-kb:hover { background: rgba(79, 70, 229, 0.14); transform: translateY(-1px); }
+        .pill-img { color: #059669; background: rgba(5, 150, 105, 0.07); border-color: rgba(5, 150, 105, 0.2); }
+        .pill-img:hover { background: rgba(5, 150, 105, 0.14); transform: translateY(-1px); }
         
         /* Active PDF Pill */
-        .pill-pdf { color: var(--primary); background: rgba(37, 99, 235, 0.08); box-shadow: 0 0 15px rgba(37, 99, 235, 0.18); border-color: rgba(37, 99, 235, 0.25); }
+        .pill-pdf { color: var(--primary); background: rgba(37, 99, 235, 0.12); box-shadow: 0 0 15px rgba(37, 99, 235, 0.18); border-color: rgba(37, 99, 235, 0.3); }
 
-        .btn-text { background: transparent; color: var(--text-dark); border: none; padding: 10px 16px; font-size: 14px; font-weight: 600; cursor: pointer; }
-        .btn-cta { background: var(--text-dark); color: #fff; border: none; padding: 10px 24px; border-radius: 50px; font-size: 14px; font-weight: 600; cursor: pointer; }
+        .zero-signup-pill { background: #ECFDF5; color: #047857; border: 1.5px solid #A7F3D0; padding: 7px 14px; border-radius: 50px; font-size: 12px; font-weight: 800; display: flex; align-items: center; gap: 6px; white-space: nowrap; }
 
         .secure-banner { background-color: #EFF6FF; border-bottom: 1px solid #BFDBFE; color: #1E3A8A; font-size: 13px; font-weight: 600; text-align: center; padding: 10px; }
 
-        /* AdSense Spots */
-        .ad-spot { width: 100%; max-width: 728px; height: 90px; background: #F1F5F9; border: 2px dashed #CBD5E1; color: #94A3B8; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; border-radius: 8px; margin: 0 auto; }
-        .ad-spot-top { margin-top: 24px; }
-        .ad-spot-bottom { margin-top: 40px; margin-bottom: 60px; }
-
-        main { max-width: 1080px; margin: 36px auto 20px; padding: 0 20px; width: 100%; flex-grow: 1; }
+        main { max-width: 1080px; margin: 36px auto 60px; padding: 0 20px; width: 100%; flex-grow: 1; }
 
         /* Top Bar with Back Button */
         .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; flex-wrap: wrap; gap: 14px; }
@@ -89,13 +137,18 @@
 
         .btn-back { 
             background: #111827; color: #FFFFFF; border: 1px solid transparent; padding: 10px 20px; 
-            border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 14px; text-decoration: none;
+            border-radius: 10px; cursor: pointer; font-weight: 600; font-size: 13px; text-decoration: none;
             display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 0 15px rgba(17, 24, 39, 0.25);
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .btn-back:hover { background: #000000; box-shadow: 0 0 25px rgba(17, 24, 39, 0.4); transform: translateY(-2px); }
 
-        /* 8-Tool Bento Grid (Better than iLovePDF) */
+        @media (max-width: 768px) {
+            header { flex-wrap: wrap; gap: 12px; }
+            .header-center { order: 3; flex: 100%; }
+        }
+
+        /* 8-Tool Bento Grid */
         #pdf-grid-view { display: block; }
         .pdf-tools-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
         @media (max-width: 950px) { .pdf-tools-grid { grid-template-columns: repeat(2, 1fr); } }
@@ -157,28 +210,74 @@
         #pdf-result-box p { color: #047857; font-size: 13px; margin-bottom: 16px; font-weight: 600; }
         .btn-dl-final { background: #059669; color: white; text-decoration: none; padding: 12px 28px; border-radius: 8px; font-weight: 700; font-size: 14px; display: inline-block; transition: 0.2s; }
         .btn-dl-final:hover { background: #047857; transform: translateY(-1px); }
+
+        footer {
+            background: #111827; color: #94A3B8; text-align: center; padding: 22px 5%;
+            font-size: 13px; font-weight: 600; border-top: 4px solid #0284C7; margin-top: auto;
+        }
     </style>
+
+    <!-- Vercel Web Analytics Tracking Script -->
+    <script>
+        window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
 
+    <!-- Inline SVG Fallback Symbol Matching index.html -->
+    <svg width="0" height="0" style="position:absolute;">
+        <defs>
+            <linearGradient id="uh-grad-blue" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#0F172A" />
+                <stop offset="50%" stop-color="#0284C7" />
+                <stop offset="100%" stop-color="#0D9488" />
+            </linearGradient>
+            <linearGradient id="uh-grad-cyan" x1="0%" y1="100%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#1E3A8A" />
+                <stop offset="60%" stop-color="#06B6D4" />
+                <stop offset="100%" stop-color="#F59E0B" />
+            </linearGradient>
+            <symbol id="utilityhub-logo" viewBox="0 0 120 120">
+                <path d="M22 18 L48 18 L60 30 L60 80 L22 65 Z" fill="#FFFFFF" stroke="url(#uh-grad-blue)" stroke-width="5" stroke-linejoin="round"/>
+                <path d="M46 18 L46 31 L60 31" fill="none" stroke="#0284C7" stroke-width="4" stroke-linejoin="round"/>
+                <polyline points="29,36 33,40 40,32" fill="none" stroke="#0F172A" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <line x1="45" y1="36" x2="54" y2="36" stroke="#0284C7" stroke-width="3.5" stroke-linecap="round"/>
+                <polyline points="29,49 33,53 40,45" fill="none" stroke="#0F172A" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <line x1="45" y1="49" x2="54" y2="49" stroke="#0D9488" stroke-width="3.5" stroke-linecap="round"/>
+                <rect x="68" y="18" width="30" height="26" rx="4" fill="#FFFFFF" stroke="url(#uh-grad-cyan)" stroke-width="4.5"/>
+                <circle cx="89" cy="26" r="3" fill="#F59E0B"/>
+                <path d="M71 41 L79 31 L86 38 L91 34 L96 41 Z" fill="#0D9488"/>
+                <path d="M20 55 C20 92, 55 104, 78 78 C90 65, 96 52, 96 45" fill="none" stroke="url(#uh-grad-blue)" stroke-width="10" stroke-linecap="round"/>
+                <path d="M30 68 C45 96, 86 92, 86 45" fill="none" stroke="url(#uh-grad-cyan)" stroke-width="8" stroke-linecap="round"/>
+            </symbol>
+        </defs>
+    </svg>
+
     <header>
-        <a href="index.html" class="header-left">🗜️ OptiFile</a>
+        <a href="index.html" class="header-left">
+            <img src="logo.png" alt="OptiFile Logo" class="brand-logo-img" onerror="this.style.display='none'; document.getElementById('svgHeaderLogo').style.display='block';">
+            <svg id="svgHeaderLogo" class="brand-logo-img" style="display:none;" viewBox="0 0 120 120">
+                <use href="#utilityhub-logo"></use>
+            </svg>
+            <div class="brand-text-wrap">
+                <div class="brand-main-name">OPTI<span>FILE</span></div>
+                <div class="brand-sub-tag">UTILITYHUB SUITE</div>
+            </div>
+        </a>
         <div class="header-center">
             <nav>
-                <a href="index.html" class="nav-pill pill-kb">🎛️ KB MANAGER</a>
+                <a href="kb-manager.html" class="nav-pill pill-kb">🎛️ KB MANAGER</a>
                 <a href="image-tools.html" class="nav-pill pill-img">🖼️ IMG TOOLS</a>
                 <a href="pdf-tools.html" class="nav-pill pill-pdf">📄 PDF TOOLS</a>
             </nav>
         </div>
         <div class="header-right">
-            <button class="btn-text">Sign in</button>
-            <button class="btn-cta">Sign up</button>
+            <div class="zero-signup-pill">⚡ No Sign-Up • 100% Free</div>
         </div>
     </header>
 
     <div class="secure-banner">🛡️ <span>100% Private PDF Engine | Zero server uploads — files never leave your device</span></div>
-
-    <div class="ad-spot ad-spot-top">AdSense Spot 1 (Leaderboard 728x90) - Top of PDF Suite</div>
 
     <main>
         <div class="top-bar">
@@ -210,7 +309,7 @@
                 <div class="pdf-card" onclick="openPdfTool('compress')">
                     <div class="pdf-card-icon" style="background:#ECFDF5; color:#059669;">📉</div>
                     <h3>Compress PDF Size</h3>
-                    <p>Reduce heavy PDF file size in KB/MB for government & exam portals.</p>
+                    <p>Reduce heavy PDF file size in KB/MB for government &amp; exam portals.</p>
                     <div class="pdf-card-badge">Open Tool →</div>
                 </div>
 
@@ -289,7 +388,7 @@
                         <label class="opt-label">Compression Level (Target Quality):</label>
                         <select id="compressLevel" class="opt-select">
                             <option value="0.45">Extreme Compression (Smallest KB Size - Best for Portals)</option>
-                            <option value="0.68" selected>Recommended Compression (Balanced Size & Clarity)</option>
+                            <option value="0.68" selected>Recommended Compression (Balanced Size &amp; Clarity)</option>
                             <option value="0.85">Light Compression (High Quality)</option>
                         </select>
                     </div>
@@ -334,7 +433,9 @@
 
     </main>
 
-    <div class="ad-spot ad-spot-bottom">AdSense Spot 4 (Leaderboard 728x90) - Below PDF Suite</div>
+    <footer>
+        © OptiFile UtilityHub 2026 ® — All Rights Reserved • 100% Client-Side Processing
+    </footer>
 
     <script>
 /* 🔒 Protected & Obfuscated by OptiFile UtilityHub (optifile.online) — All Rights Reserved */
