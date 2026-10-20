@@ -8,14 +8,15 @@
  * 2. ADSENSE_CLIENT_ID: Jab Google AdSense mil jaye, apna ID (e.g. "ca-pub-1234567890")
  *              yahan daal dena — saare 7 pages par Auto-Ads khud lag jayenge!
  * 3. DOMAIN_LOCK: true rehne par sirf optifile.online (+ local testing) par chalega.
- * 4. HIGH_SECURITY: true rehne par Right-Click, F12, Ctrl+U, Ctrl+S sab lock rahenge.
+ * 4. HIGH_SECURITY: false kar diya gaya hai taaki F12, Right-Click aur Text Copy
+ *              Reddit/HackerNews/Developers ke liye normal kaam karein.
  * ============================================================================
  */
 window.OPTIFILE_CONFIG = {
     SHOW_ADS: false,                 // <-- AdSense milne ke baad isko true kar dena
     ADSENSE_CLIENT_ID: "",           // <-- Future me apna "ca-pub-XXXXXXXXXXXX" yahan daalna
     DOMAIN_LOCK: true,               // <-- Domain Lock Active (optifile.online)
-    HIGH_SECURITY: true,             // <-- F12, Right-Click, Ctrl+U, Ctrl+S Lock Active
+    HIGH_SECURITY: false,            // <-- FALSE = F12, Right-Click & Text Copy UNLOCKED!
     ALLOWED_DOMAINS: [
         "optifile.online",
         "www.optifile.online",
@@ -27,7 +28,7 @@ window.OPTIFILE_CONFIG = {
 };
 
 /* ============================================================================
-   🔒 OBFUSCATED CORE ENGINE (DOMAIN LOCK + ANTI-INSPECT + AD & NAV MANAGER)
+   🔒 OBFUSCATED CORE ENGINE (DOMAIN LOCK + AD & NAV MANAGER)
    ============================================================================ */
 (function(_0x1a2b){
     var _0x3c4d=["\x68\x6F\x73\x74\x6E\x61\x6D\x65","\x6C\x6F\x63\x61\x74\x69\x6F\x6E","\x74\x6F\x4C\x6F\x77\x65\x72\x43\x61\x73\x65","\x70\x72\x6F\x74\x6F\x63\x6F\x6C","\x66\x69\x6C\x65\x3A","\x6C\x6F\x63\x61\x6C\x68\x6F\x73\x74","\x31\x32\x37\x2E\x30\x2E\x30\x2E\x31","\x2E\x76\x65\x72\x63\x65\x6C\x2E\x61\x70\x70","\x65\x6E\x64\x73\x57\x69\x74\x68","\x69\x6E\x63\x6C\x75\x64\x65\x73","\x44\x4F\x4D\x43\x6F\x6E\x74\x65\x6E\x74\x4C\x6F\x61\x64\x65\x64","\x61\x64\x64\x45\x76\x65\x6E\x74\x4C\x69\x73\x74\x65\x6E\x65\x72","\x63\x6F\x6E\x74\x65\x78\x74\x6D\x65\x6E\x75","\x49\x4E\x50\x55\x54","\x54\x45\x58\x54\x41\x52\x45\x41","\x70\x72\x65\x76\x65\x6E\x74\x44\x65\x66\x61\x75\x6C\x74","\x73\x74\x6F\x70\x50\x72\x6F\x70\x61\x67\x61\x74\x69\x6F\x6E","\x6B\x65\x79\x64\x6F\x77\x6E","\x46\x31\x32"];
@@ -43,7 +44,7 @@ window.OPTIFILE_CONFIG = {
         var _0xisAllowed=_0x1a2b.ALLOWED_DOMAINS[_0x3c4d[9]](_0xhost)||(_0x1a2b.ALLOW_VERCEL_PREVIEW&&_0xhost[_0x3c4d[8]](_0x3c4d[7]))||_0xisLocal;
         if(!_0xisAllowed){
             window[_0x3c4d[11]](_0x3c4d[10],function(){
-                document.body.innerHTML='<div style="height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#0F172A;color:#FFF;font-family:sans-serif;text-align:center;padding:24px;"><div style="font-size:54px;margin-bottom:12px;">🛡️</div><h1 style="font-size:24px;font-weight:800;margin-bottom:8px;color:#38BDF8;">Unauthorized Domain Detected</h1><p style="font-size:14px;color:#94A3B8;max-width:460px;line-height:1.6;margin-bottom:20px;">This software is protected under DMCA & Copyright Law and licensed exclusively to <strong>optifile.online</strong>.</p><a href="https://optifile.online" style="background:#0284C7;color:#fff;padding:12px 24px;border-radius:10px;text-decoration:none;font-weight:700;font-size:14px;">Go to Official OptiFile.online →</a></div>';
+                document.body.innerHTML='<div style="height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#0F172A;color:#FFF;font-family:sans-serif;text-align:center;padding:24px;"><div style="font-size:54px;margin-bottom:12px;">🛡️</div><h1 style="font-size:24px;font-weight:800;margin-bottom:8px;color:#38BDF8;">Unauthorized Domain Detected</h1><p style="font-size:14px;color:#94A3B8;max-width:460px;line-height:1.6;margin-bottom:20px;">This software is licensed exclusively to <strong>optifile.online</strong>.</p><a href="https://optifile.online" style="background:#0284C7;color:#fff;padding:12px 24px;border-radius:10px;text-decoration:none;font-weight:700;font-size:14px;">Go to Official OptiFile.online →</a></div>';
             });
             throw new Error("OptiFile Domain Lock Active.");
         }
