@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UPSC Photo & Signature Resizer Online (550x550 Pixels, 20-300KB) | OptiFile</title>
+    <meta id="metaDesc" name="description" content="Convert your photo & signature to exact UPSC OTR specifications (350x350 to 550x550 square pixels, 20KB-300KB) with automatic Name & Date stamp and 100% browser privacy.">
+    <link id="canonicalLink" rel="canonical" href="https://optifile.online/upsc-photo-resizer-550x550">
+    <meta id="ogTitle" property="og:title" content="UPSC 550x550 Square Photo & Signature Resizer | OptiFile">
+    <meta id="ogDesc" property="og:description" content="Resize UPSC IAS, NDA & CDS photo to 550x550 square pixels (20-300KB) with Name & Date stamp.">
+    <meta id="ogUrl" property="og:url" content="https://optifile.online/upsc-photo-resizer-550x550">
+    <meta property="og:site_name" content="OptiFile">
+    <meta property="og:image" content="https://optifile.online/logo.png">
+    <meta property="og:type" content="website">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="upsc exams 1 click exam preset | OptiFile">
+    <meta name="twitter:description" content="100% Free & Offline-First Exam Form Document Formatter for upsc exam.">
+    <meta name="twitter:image" content="https://optifile.online/logo.png">
+
+    <script defer src="/optifile-shield.js"></script>
+    <meta name="application-name" content="OptiFile">
+    <meta name="theme-color" content="#0F172A">
+    <meta name="copyright" content="© 2026 OptiFile UtilityHub. All Rights Reserved.">
+
+    <link rel="shortcut icon" type="image/png" href="https://optifile.online/logo.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="/logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    
+    <style>
+        :root{--bg-base:#F8FAFC;--surface-card:#FFFFFF;--primary:#0284C7;--primary-indigo:#4F46E5;--brand-navy:#0F172A;--brand-teal:#0D9488;--text-dark:#0F172A;--text-muted:#64748B;--border-light:#E2E8F0;--grid-line:rgba(14,165,233,0.045)}
+        *{box-sizing:border-box;margin:0;padding:0;font-family:'Inter',sans-serif}
+        body{background-color:var(--bg-base);color:var(--text-dark);background-image:linear-gradient(var(--grid-line) 1px,transparent 1px),linear-gradient(90deg,var(--grid-line) 1px,transparent 1px);background-size:22px 22px;min-height:100vh;display:flex;flex-direction:column;position:relative;overflow-x:hidden}
+        .site-watermark{position:fixed;top:54%;left:50%;transform:translate(-50%,-50%);width:480px;height:480px;opacity:.035;pointer-events:none;z-index:0;user-select:none;display:flex;flex-direction:column;align-items:center;justify-content:center}
+        header{background:rgba(255,255,255,0.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--border-light);padding:12px 5%;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:50}
+        .header-left{flex:1;display:flex;align-items:center;gap:12px;cursor:pointer;text-decoration:none}
+        .brand-logo-img{width:44px;height:44px;object-fit:contain;border-radius:10px;flex-shrink:0;filter:drop-shadow(0 2px 6px rgba(2,132,199,0.2))}
+        .brand-text-wrap{display:flex;flex-direction:column;line-height:1.1}
+        .brand-main-name{font-weight:800;font-size:20px;letter-spacing:-0.5px;color:#0F172A}
+        .brand-main-name span{background:linear-gradient(90deg,#0284C7,#0D9488);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+        .brand-sub-tag{font-size:9.5px;font-weight:700;letter-spacing:1.6px;color:var(--text-muted);text-transform:uppercase;margin-top:2px}
+        .header-center{flex:2;display:flex;justify-content:center}
+        .header-right{flex:1;display:flex;justify-content:flex-end;align-items:center;gap:10px}
+        nav{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+        .nav-pill{padding:9px 18px;border-radius:50px;font-size:13px;font-weight:700;text-decoration:none;transition:all .25s;border:1px solid transparent;display:flex;align-items:center;gap:8px;cursor:pointer}
+        .pill-kb{color:#4F46E5;background:rgba(79,70,229,0.07);border-color:rgba(79,70,229,0.2)}
+        .pill-kb:hover{background:rgba(79,70,229,0.14);transform:translateY(-1px)}
+        .pill-img{color:#059669;background:rgba(5,150,105,0.07);border-color:rgba(5,150,105,0.2)}
+        .pill-img:hover{background:rgba(5,150,105,0.14);transform:translateY(-1px)}
+        .pill-pdf{color:#0284C7;background:rgba(2,132,199,0.07);border-color:rgba(2,132,199,0.2)}
+        .pill-pdf:hover{background:rgba(2,132,199,0.14);transform:translateY(-1px)}
+        .zero-signup-pill{background:#ECFDF5;color:#047857;border:1.5px solid #A7F3D0;padding:7px 14px;border-radius:50px;font-size:12px;font-weight:800;display:flex;align-items:center;gap:6px;white-space:nowrap}
+        .secure-banner{background:linear-gradient(90deg,#EFF6FF,#F0FDFA);border-bottom:1px solid #BFDBFE;color:#0F172A;font-size:13px;font-weight:600;text-align:center;padding:9px;position:relative;z-index:2}
+        main{max-width:1080px;margin:36px auto 60px;padding:0 20px;text-align:center;width:100%;position:relative;z-index:2;flex-grow:1}
+        #home-view{display:block}#tool-view{display:none;text-align:left}#exam-view{display:none;text-align:left}
+        .hero-title{font-size:35px;font-weight:800;letter-spacing:-0.75px;margin-bottom:14px;line-height:1.25}
+        .hero-desc{color:var(--text-muted);font-size:15.5px;max-width:740px;margin:0 auto 28px;line-height:1.6}
+        .active-exams-bar{background:#FFF;border:1.5px solid #BFDBFE;border-radius:14px;padding:12px 16px;margin:0 auto 34px;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;box-shadow:0 4px 12px rgba(2,132,199,0.05)}
+        .active-exams-label{font-size:12px;font-weight:800;color:#1E3A8A;background:#DBEAFE;padding:5px 10px;border-radius:8px;letter-spacing:0.5px;text-transform:uppercase}
+        .active-exam-chip{font-size:12.5px;font-weight:700;color:#0F172A;background:#F8FAFC;border:1px solid #CBD5E1;padding:5px 12px;border-radius:20px;text-decoration:none;transition:.2s}
+        .active-exam-chip:hover{background:#0284C7;color:#FFF;border-color:#0284C7;transform:translateY(-1px)}
+        .tool-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-bottom:50px}
+        .card{background:rgba(255,255,255,0.94);backdrop-filter:blur(6px);border:1.5px solid var(--border-light);border-radius:16px;padding:24px;display:flex;align-items:flex-start;gap:20px;text-align:left;cursor:pointer;transition:all .3s;text-decoration:none;color:inherit;position:relative;overflow:hidden}
+        .card:hover{border-color:var(--primary);box-shadow:0 12px 28px -5px rgba(2,132,199,0.12);transform:translateY(-3px)}
+        .card-icon{font-size:26px;width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+        .card-title{font-size:17px;font-weight:700;margin-bottom:6px}
+        .card-desc{font-size:13.5px;color:var(--text-muted);line-height:1.5}
+        .section-label-center{font-size:13.5px;font-weight:800;letter-spacing:1.8px;text-transform:uppercase;margin-bottom:18px;color:var(--text-dark);text-align:center}
+        .exam-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px}
+        .preset-solid{padding:16px 18px;border-radius:16px;color:#FFF;font-size:15px;font-weight:700;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:none;box-shadow:0 4px 6px rgba(0,0,0,0.05);text-decoration:none;transition:transform .2s,box-shadow .2s;text-align:left}
+        .preset-solid:hover{transform:translateY(-3px);box-shadow:0 10px 20px rgba(0,0,0,0.15)}
+        .preset-sub{display:block;font-size:11px;font-weight:600;opacity:.88;margin-top:3px}
+        .bg-banking{background:linear-gradient(135deg,#1E3A8A,#2563EB)}
+        .bg-ssc{background:linear-gradient(135deg,#EA580C,#F97316)}
+        .bg-upsc{background:linear-gradient(135deg,#0F172A,#334155)}
+        .bg-nta{background:linear-gradient(135deg,#DC2626,#EA580C)}
+        .seo-guide-box{background:#FFF;border:1.5px solid var(--border-light);border-radius:18px;padding:32px;text-align:left;margin-top:36px;box-shadow:0 4px 14px rgba(0,0,0,0.02)}
+        .seo-guide-box h2{font-size:22px;font-weight:800;color:#0F172A;margin-bottom:12px}
+        .seo-guide-box p{font-size:14px;color:#475569;line-height:1.7;margin-bottom:18px}
+        .seo-table-wrap{overflow-x:auto;margin-bottom:24px}
+        .seo-spec-table{width:100%;border-collapse:collapse;font-size:13px}
+        .seo-spec-table th,.seo-spec-table td{border:1px solid #E2E8F0;padding:10px 14px;text-align:left;vertical-align:middle}
+        .seo-spec-table th{background:#F8FAFC;font-weight:800;color:#0F172A}
+        .table-action-link{display:inline-block;background:#EFF6FF;color:#1D4ED8;border:1px solid #BFDBFE;padding:5px 10px;border-radius:6px;font-size:11.5px;font-weight:800;text-decoration:none;white-space:nowrap;transition:.2s}
+        .table-action-link:hover{background:#1D4ED8;color:#FFF}
+        .seo-faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+        @media (max-width:768px){.seo-faq-grid{grid-template-columns:1fr}}
+        .seo-faq-item{background:#F8FAFC;border:1px solid #E2E8F0;border-radius:12px;padding:16px}
+        .seo-faq-item h4{font-size:14px;font-weight:800;color:#0F172A;margin-bottom:6px}
+        .seo-faq-item p{font-size:13px;color:#475569;margin-bottom:0;line-height:1.55}
+        .seo-keyword-tags{margin-top:20px;padding-top:16px;border-top:1px dashed #E2E8F0;font-size:12px;color:#64748B;line-height:1.6}
+        .trust-showcase-section{background:#FFF;border-top:1px solid var(--border-light);border-bottom:1px solid var(--border-light);padding:64px 5%;text-align:center;position:relative;z-index:2;margin-top:20px}
+        .trust-showcase-inner{max-width:920px;margin:0 auto}
+        .trust-showcase-title{font-size:30px;font-weight:800;color:#1E293B;letter-spacing:-0.6px;margin-bottom:16px;line-height:1.3}
+        .trust-showcase-desc{font-size:16px;color:#64748B;line-height:1.7;max-width:760px;margin:0 auto 38px}
+        .trust-badges-row{display:flex;justify-content:center;align-items:center;gap:36px;flex-wrap:wrap;margin-bottom:42px}
+        .trust-badge-item{display:flex;align-items:center;gap:12px;color:#334155;font-weight:800;font-size:14px;padding:10px 20px;border-radius:12px;background:#F8FAFC;border:1px solid #E2E8F0}
+        .trust-badge-item span.badge-icon{font-size:24px}
+        .trust-badge-sub{display:block;font-size:10px;font-weight:700;color:#64748B;letter-spacing:1px;text-transform:uppercase}
+        .rights-summary-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;text-align:left;margin-top:20px}
+        @media (max-width:820px){.rights-summary-grid{grid-template-columns:1fr}}
+        .rights-card{background:#F8FAFC;border:1.5px solid #E2E8F0;border-radius:14px;padding:20px;transition:.2s}
+        .rights-card:hover{border-color:#CBD5E1;background:#FFF;box-shadow:0 8px 20px rgba(0,0,0,0.04)}
+        .rights-card h4{font-size:14.5px;font-weight:800;color:#0F172A;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+        .rights-card p{font-size:12.5px;color:#475569;line-height:1.55}
+        .mega-footer{background:#111827;color:#F8FAFC;padding:60px 5% 34px;position:relative;z-index:2;border-top:4px solid #0284C7}
+        .mega-footer-container{max-width:1140px;margin:0 auto}
+        .mega-footer-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:28px;padding-bottom:44px;border-bottom:1px solid #1E293B}
+        @media (max-width:960px){.mega-footer-grid{grid-template-columns:repeat(3,1fr)}}
+        @media (max-width:600px){.mega-footer-grid{grid-template-columns:repeat(2,1fr)}}
+        .footer-col h5{font-size:12.5px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:#FFF;margin-bottom:18px}
+        .footer-col ul{list-style:none;display:flex;flex-direction:column;gap:11px}
+        .footer-col ul li a{color:#94A3B8;text-decoration:none;font-size:13.5px;font-weight:500;cursor:pointer;transition:.2s}
+        .footer-col ul li a:hover{color:#38BDF8;padding-left:3px}
+        .mega-footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;padding-top:24px}
+        .lang-selector-btn{background:transparent;border:1.5px solid #334155;color:#E2E8F0;padding:8px 16px;border-radius:8px;font-size:13px;font-weight:600;display:flex;align-items:center;gap:8px;cursor:pointer}
+        .tool-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;flex-wrap:wrap;gap:12px}
+        .tool-title h2{font-size:25px;font-weight:800;color:var(--text-dark)}
+        .tool-title p{font-size:13.5px;color:var(--text-muted);margin-top:4px}
+        .btn-back{background:#111827;color:#FFF;border:1px solid transparent;padding:10px 20px;border-radius:10px;cursor:pointer;font-weight:600;box-shadow:0 0 15px rgba(17,24,39,0.25);transition:all .3s;font-size:13px;text-decoration:none;display:inline-block}
+        .btn-back:hover{background:#000;transform:translateY(-2px)}
+        .design6-layout{display:grid;grid-template-columns:1fr 1.2fr;gap:24px;align-items:start}
+        @media (max-width:768px){.design6-layout{grid-template-columns:1fr}.tool-grid{grid-template-columns:1fr}.exam-grid{grid-template-columns:1fr 1fr}header{flex-wrap:wrap;gap:12px}.header-center{order:3;flex:100%}}
+        .tool-panel{background:rgba(255,255,255,0.95);border:1.5px solid var(--border-light);border-radius:16px;padding:24px;box-shadow:0 4px 12px rgba(0,0,0,0.02);position:relative}
+        .panel-header{font-size:16px;font-weight:700;margin-bottom:16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border-light);padding-bottom:12px}
+        .badge-mode{font-size:11px;background:#EEF2FF;color:var(--primary-indigo);padding:4px 10px;border-radius:20px;font-weight:700}
+        .drop-zone{position:relative;border:2px dashed #93C5FD;background:#EFF6FF;border-radius:12px;padding:28px 16px;text-align:center;margin-bottom:16px;cursor:pointer;transition:.2s}
+        .drop-zone:hover{background:#DBEAFE;border-color:var(--primary)}
+        .drop-zone input[type="file"]{position:absolute;inset:0;opacity:0;width:100%;height:100%;cursor:pointer}
+        .drop-zone h3{font-size:14px;color:var(--text-dark);margin-bottom:6px;font-weight:700}
+        .drop-zone p{font-size:12px;color:var(--text-muted);margin-bottom:14px}
+        .btn-upload{background:#0D9488;color:#fff;border:none;padding:8px 20px;border-radius:8px;font-weight:600;font-size:13px;cursor:pointer;pointer-events:none}
+        .image-preview-card{display:flex;align-items:center;gap:12px;background:#F8FAFC;padding:12px;border-radius:10px;border:1px solid var(--border-light);margin-bottom:16px}
+        .preview-thumb{width:44px;height:44px;border-radius:8px;object-fit:cover;border:1px solid #CBD5E1;display:none}
+        .image-preview-card .icon{width:44px;height:44px;border-radius:8px;background:#EEF2FF;display:flex;align-items:center;justify-content:center;font-size:20px}
+        .image-preview-card .details{font-size:12px;color:var(--text-muted);flex-grow:1;overflow:hidden}
+        .image-preview-card .details strong{display:block;color:var(--text-dark);font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+        .controls-box{background:#F8FAFC;border:1px solid var(--border-light);padding:16px;border-radius:12px;margin-bottom:16px}
+        .control-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+        .control-label{display:block;font-size:11px;font-weight:700;color:var(--text-muted);margin-bottom:6px;text-transform:uppercase}
+        .select-full,.size-input-full{width:100%;padding:9px 12px;border:1px solid #CBD5E1;border-radius:8px;font-size:13px;font-weight:600;color:var(--text-dark);background:#fff;outline:none}
+        .quick-kb-chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+        .kb-chip{background:#FFF;border:1px solid #CBD5E1;color:#334155;padding:4px 9px;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer;transition:.15s}
+        .kb-chip:hover{background:#EEF2FF;border-color:#4F46E5;color:#4F46E5}
+        .btn-action-primary{width:100%;background:var(--text-dark);color:#fff;border:none;padding:12px 16px;border-radius:10px;font-weight:700;cursor:pointer;font-size:14px;transition:.2s}
+        .btn-action-primary:hover{background:var(--primary)}
+        .bulk-list{max-height:150px;overflow-y:auto;padding:12px;color:var(--text-muted);font-size:12px;border:1px solid var(--border-light);border-radius:10px;background:#F8FAFC;margin-bottom:16px}
+        .bulk-item{display:flex;justify-content:space-between;align-items:center;background:#fff;padding:8px 12px;border-radius:6px;border:1px solid var(--border-light);margin-bottom:6px;font-weight:600;color:var(--text-dark)}
+        #result-section{display:none;margin-top:28px;background:#fff;border:2px solid #10B981;border-radius:16px;padding:24px;box-shadow:0 10px 25px rgba(16,185,129,0.08)}
+        .result-top-bar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--border-light)}
+        .result-header{font-size:18px;font-weight:800;color:#065F46;display:flex;align-items:center;gap:8px}
+        .result-actions-group{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+        .result-card{display:flex;justify-content:space-between;align-items:center;background:#F8FAFC;padding:14px 16px;border-radius:12px;border:1px solid var(--border-light);margin-bottom:10px;gap:12px;flex-wrap:wrap}
+        .result-info{display:flex;align-items:center;gap:14px}
+        .result-info img{width:52px;height:52px;border-radius:8px;object-fit:contain;background:#fff;border:1px solid #CBD5E1;padding:2px}
+        .btn-download{background:#10B981;color:#fff;text-decoration:none;padding:10px 18px;border-radius:8px;font-size:13px;font-weight:700;transition:.2s;display:inline-block;border:none;cursor:pointer}
+        .btn-download:hover{background:#059669;transform:translateY(-1px)}
+        .btn-whatsapp-share{background:#F0FDF4;color:#15803D;border:1.5px solid #86EFAC;padding:10px 16px;border-radius:10px;font-size:12.5px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:6px;text-decoration:none;transition:.2s}
+        .btn-whatsapp-share:hover{background:#DCFCE7;border-color:#4ADE80;transform:translateY(-1px)}
+        .exam-switcher-tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
+        @media (max-width:720px){.exam-switcher-tabs{grid-template-columns:1fr 1fr}}
+        .exam-tab-btn{padding:13px 14px;border-radius:12px;font-size:13.5px;font-weight:800;border:2px solid var(--border-light);background:#fff;color:var(--text-dark);cursor:pointer;transition:.2s;display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none}
+        .exam-tab-btn:hover{border-color:#94A3B8}
+        .exam-tab-btn.active-banking{background:#1E3A8A;color:#fff;border-color:#1E3A8A;box-shadow:0 6px 15px rgba(30,58,138,0.25)}
+        .exam-tab-btn.active-ssc{background:#EA580C;color:#fff;border-color:#EA580C;box-shadow:0 6px 15px rgba(234,88,12,0.25)}
+        .exam-tab-btn.active-upsc{background:#0F172A;color:#fff;border-color:#0F172A;box-shadow:0 6px 15px rgba(15,23,42,0.25)}
+        .exam-tab-btn.active-nta{background:#DC2626;color:#fff;border-color:#DC2626;box-shadow:0 6px 15px rgba(220,38,38,0.25)}
+        .exam-suite-banner{padding:22px 24px;border-radius:16px;color:#fff;margin-bottom:22px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;box-shadow:0 8px 20px rgba(0,0,0,0.08)}
+        .exam-suite-banner h3{font-size:20px;font-weight:800;margin-bottom:4px}
+        .exam-suite-banner p{font-size:13px;opacity:.94;max-width:720px;line-height:1.4}
+        .exam-badge-pill{background:rgba(255,255,255,0.22);padding:8px 16px;border-radius:30px;font-size:12.5px;font-weight:800;border:1px solid rgba(255,255,255,0.3)}
+        .exam-slots-container{display:flex;flex-direction:column;gap:14px;margin-bottom:24px}
+        .exam-slot-row{background:rgba(255,255,255,0.95);border:1.5px solid var(--border-light);border-radius:14px;padding:18px 20px;display:grid;grid-template-columns:1.35fr 1fr;gap:20px;align-items:center;transition:.2s}
+        .exam-slot-row.slot-uploaded{border-color:#10B981;background:#F0FDF4;box-shadow:0 4px 12px rgba(16,185,129,0.08)}
+        @media (max-width:780px){.exam-slot-row{grid-template-columns:1fr}}
+        .slot-left{display:flex;align-items:flex-start;gap:14px}
+        .slot-icon{width:48px;height:48px;border-radius:12px;background:#EEF2FF;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;border:1px solid #E0E7FF}
+        .slot-meta{flex-grow:1}
+        .slot-meta h4{font-size:15.5px;font-weight:800;color:var(--text-dark);margin-bottom:4px}
+        .spec-pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px;align-items:center}
+        .spec-pill{font-size:11.5px;font-weight:700;padding:4px 9px;border-radius:6px;background:#F1F5F9;color:#334155;border:1px solid #CBD5E1}
+        .spec-pill.kb-pill{background:#ECFDF5;color:#047857;border-color:#A7F3D0}
+        .spec-pill.dim-pill{background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE}
+        .slot-custom-controls{display:flex;align-items:center;gap:10px;margin-top:10px;flex-wrap:wrap;font-size:12px;font-weight:700;color:var(--text-muted)}
+        .slot-kb-input{width:70px;padding:4px 8px;border:1.5px solid #94A3B8;border-radius:6px;font-size:12px;font-weight:800;color:var(--text-dark);text-align:center}
+        .slot-fit-select{padding:4px 8px;border:1px solid #CBD5E1;border-radius:6px;font-size:11.5px;font-weight:600;background:#fff;color:var(--text-dark)}
+        .photo-stamp-box{margin-top:10px;padding:8px 12px;background:#FFFBEB;border:1px solid #FDE68A;border-radius:8px;font-size:12px;color:#92400E;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+        .photo-stamp-box input[type="text"]{padding:5px 8px;border:1px solid #FCD34D;border-radius:6px;font-size:12px;width:145px;font-weight:600}
+        .slot-right{display:flex;align-items:center;justify-content:flex-end;gap:12px;flex-wrap:wrap}
+        .slot-file-status{display:flex;align-items:center;gap:10px;background:#FFF;padding:8px 12px;border-radius:10px;border:1px solid var(--border-light);flex-grow:1;max-width:250px}
+        .slot-thumb{width:42px;height:42px;border-radius:6px;object-fit:contain;background:#F8FAFC;border:1px solid #CBD5E1;display:none}
+        .slot-status-text{font-size:11.5px;color:var(--text-muted);overflow:hidden}
+        .slot-status-text strong{display:block;color:var(--text-dark);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:12.5px}
+        .btn-slot-upload{position:relative;background:var(--primary-indigo);color:#fff;border:none;padding:11px 16px;border-radius:10px;font-size:12.5px;font-weight:700;cursor:pointer;transition:.2s;white-space:nowrap;overflow:hidden}
+        .btn-slot-upload:hover{background:#4338CA;transform:translateY(-1px)}
+        .btn-slot-upload input[type="file"]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+        .exam-master-bar{background:#fff;border:2px solid #E0E7FF;border-radius:16px;padding:20px 24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;box-shadow:0 10px 25px rgba(79,70,229,0.06)}
+        .btn-process-all-exam{background:linear-gradient(135deg,#4F46E5,#0284C7);color:#fff;border:none;padding:14px 28px;border-radius:12px;font-size:15px;font-weight:800;cursor:pointer;box-shadow:0 8px 20px rgba(2,132,199,0.28);transition:.2s}
+        .btn-process-all-exam:hover{transform:translateY(-2px);box-shadow:0 12px 25px rgba(2,132,199,0.38)}
+        .btn-process-all-exam:disabled{opacity:.6;cursor:not-allowed}
+        #exam-results-panel{display:none;margin-top:28px;background:#FFF;border:2px solid #10B981;border-radius:18px;padding:24px;box-shadow:0 12px 30px rgba(16,185,129,0.12)}
+        .exam-results-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;padding-bottom:16px;border-bottom:1px solid var(--border-light);margin-bottom:18px}
+        .btn-download-all-direct{background:linear-gradient(135deg,#059669,#10B981);color:#fff;border:none;padding:13px 22px;border-radius:12px;font-size:14px;font-weight:800;cursor:pointer;box-shadow:0 8px 20px rgba(16,185,129,0.3);display:flex;align-items:center;gap:10px;transition:.2s}
+        .btn-download-all-direct:hover{transform:translateY(-2px);background:#047857}
+        .direct-dl-tag{background:rgba(255,255,255,0.22);padding:3px 8px;border-radius:6px;font-size:11px;font-weight:800}
+        #legalModal{display:none;position:fixed;inset:0;background:rgba(15,23,42,0.78);backdrop-filter:blur(6px);z-index:9999;align-items:center;justify-content:center;padding:20px}
+        .legal-modal-card{background:#FFF;width:100%;max-width:760px;max-height:86vh;border-radius:20px;border:1px solid var(--border-light);display:flex;flex-direction:column;overflow:hidden;box-shadow:0 25px 50px rgba(0,0,0,0.4)}
+        .legal-modal-header{padding:20px 24px;background:#0F172A;color:#fff;display:flex;justify-content:space-between;align-items:center}
+        .legal-modal-tabs{display:flex;gap:8px;padding:12px 24px;background:#F1F5F9;border-bottom:1px solid #E2E8F0;overflow-x:auto}
+        .legal-tab-pill{padding:7px 14px;border-radius:8px;font-size:12.5px;font-weight:700;border:1px solid #CBD5E1;background:#fff;color:#334155;cursor:pointer;white-space:nowrap}
+        .legal-tab-pill.active{background:#0284C7;color:#fff;border-color:#0284C7}
+        .legal-modal-body{padding:24px;overflow-y:auto;text-align:left;font-size:13.5px;color:#334155;line-height:1.7}
+        .legal-modal-body h4{font-size:16px;font-weight:800;color:#0F172A;margin:14px 0 6px}
+        .legal-modal-body ul{padding-left:20px;margin-bottom:14px}
+        .legal-modal-body li{margin-bottom:6px}
+        .toast-msg{position:fixed;bottom:24px;right:24px;background:#0F172A;color:#fff;padding:12px 20px;border-radius:12px;font-size:13px;font-weight:700;box-shadow:0 10px 25px rgba(0,0,0,0.25);display:none;z-index:10005;border:1px solid #334155}
+    </style>
+
+    <script>
+        window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+
+    <svg width="0" height="0" style="position:absolute;">
+        <defs>
+            <linearGradient id="uh-grad-blue" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#0F172A" />
+                <stop offset="50%" stop-color="#0284C7" />
+                <stop offset="100%" stop-color="#0D9488" />
+            </linearGradient>
+            <linearGradient id="uh-grad-cyan" x1="0%" y1="100%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#1E3A8A" />
+                <stop offset="60%" stop-color="#06B6D4" />
+                <stop offset="100%" stop-color="#F59E0B" />
+            </linearGradient>
+            <symbol id="utilityhub-logo" viewBox="0 0 120 120">
+                <path d="M22 18 L48 18 L60 30 L60 80 L22 65 Z" fill="#FFFFFF" stroke="url(#uh-grad-blue)" stroke-width="5" stroke-linejoin="round"/>
+                <path d="M46 18 L46 31 L60 31" fill="none" stroke="#0284C7" stroke-width="4" stroke-linejoin="round"/>
+                <polyline points="29,36 33,40 40,32" fill="none" stroke="#0F172A" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <line x1="45" y1="36" x2="54" y2="36" stroke="#0284C7" stroke-width="3.5" stroke-linecap="round"/>
+                <polyline points="29,49 33,53 40,45" fill="none" stroke="#0F172A" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <line x1="45" y1="49" x2="54" y2="49" stroke="#0D9488" stroke-width="3.5" stroke-linecap="round"/>
+                <rect x="68" y="18" width="30" height="26" rx="4" fill="#FFFFFF" stroke="url(#uh-grad-cyan)" stroke-width="4.5"/>
+                <circle cx="89" cy="26" r="3" fill="#F59E0B"/>
+                <path d="M71 41 L79 31 L86 38 L91 34 L96 41 Z" fill="#0D9488"/>
+                <path d="M20 55 C20 92, 55 104, 78 78 C90 65, 96 52, 96 45" fill="none" stroke="url(#uh-grad-blue)" stroke-width="10" stroke-linecap="round"/>
+                <path d="M30 68 C45 96, 86 92, 86 45" fill="none" stroke="url(#uh-grad-cyan)" stroke-width="8" stroke-linecap="round"/>
+            </symbol>
+        </defs>
+    </svg>
+
+    <div class="site-watermark">
+        <svg width="360" height="360"><use href="#utilityhub-logo"></use></svg>
+        <div style="font-size:44px; font-weight:900; letter-spacing:3px; color:#0F172A; margin-top:-10px;">OPTIFILE</div>
+        <div style="font-size:14px; font-weight:800; letter-spacing:6px; color:#0284C7;">UTILITYHUB SUITE</div>
+    </div>
+
+    <header>
+        <a href="/" class="header-left" onclick="closeTool(); return false;">
+            <img src="/logo.png" alt="OptiFile Logo" class="brand-logo-img" onerror="this.style.display='none'; document.getElementById('svgHeaderLogo').style.display='block';">
+            <svg id="svgHeaderLogo" class="brand-logo-img" style="display:none;" viewBox="0 0 120 120">
+                <use href="#utilityhub-logo"></use>
+            </svg>
+            <div class="brand-text-wrap">
+                <div class="brand-main-name">OPTI<span>FILE</span></div>
+                <div class="brand-sub-tag">UTILITYHUB SUITE</div>
+            </div>
+        </a>
+
+        <div class="header-center">
+            <nav>
+                <a href="/compress-image-to-50kb" onclick="openTool('kb', false, 50, 'reduce'); return false;" class="nav-pill pill-kb">🎛️ KB MANAGER</a>
+                <a href="/image-tools" class="nav-pill pill-img">🖼️ IMG TOOLS</a>
+                <a href="/pdf-tools" class="nav-pill pill-pdf">📄 PDF TOOLS</a>
+            </nav>
+        </div>
+
+        <div class="header-right">
+            <div class="zero-signup-pill">⚡ No Sign-Up • 100% Free</div>
+        </div>
+    </header>
+
+    <div class="secure-banner">🛡️ <span>Built for Indian Exam Aspirants | 100% Client-Side Processing • Your Photos &amp; IDs Never Leave Your Device</span></div>
+
+    <main>
+        <!-- ================= HOME VIEW ================= -->
+        <div id="home-view">
+            <h1 class="hero-title">OptiFile: 1-Click Exam Form Photo, Signature &amp; PDF Resizer</h1>
+            <p class="hero-desc">Filling an online <strong>SBI exam form, IBPS form, SSC exam form, Railway RRB, UPSC, or NTA NEET/JEE application</strong>? Format all your exam documents to exact KB and pixels in 1 click without uploading to any server.</p>
+
+            <div class="section-label-center">🎯 1-CLICK EXAM FORM PRESETS (SELECT YOUR EXAM)</div>
+            
+            <div class="exam-grid">
+                <a href="/sbi-ibps-photo-signature-resizer" onclick="openExamPreset('banking'); return false;" class="preset-solid bg-banking">
+                    <div>
+                        <div><span class="icon">🏦</span> Banking Suite</div>
+                        <span class="preset-sub">SBI &amp; IBPS Exam Form</span>
+                    </div>
+                    <span class="arrow">›</span>
+                </a>
+                <a href="/ssc-photo-resizer-with-name-date" onclick="openExamPreset('ssc'); return false;" class="preset-solid bg-ssc">
+                    <div>
+                        <div><span class="icon">🏛️</span> SSC &amp; Railway</div>
+                        <span class="preset-sub">SSC CGL/CHSL &amp; RRB Form</span>
+                    </div>
+                    <span class="arrow">›</span>
+                </a>
+                <a href="/upsc-photo-resizer-550x550" onclick="openExamPreset('upsc'); return false;" class="preset-solid bg-upsc">
+                    <div>
+                        <div><span class="icon">📝</span> UPSC &amp; State PSC</div>
+                        <span class="preset-sub">UPSC IAS / NDA Exam Form</span>
+                    </div>
+                    <span class="arrow">›</span>
+                </a>
+                <a href="/nta-neet-jee-photo-resizer" onclick="openExamPreset('nta'); return false;" class="preset-solid bg-nta">
+                    <div>
+                        <div><span class="icon">🎓</span> NTA Academics</div>
+                        <span class="preset-sub">NEET, JEE &amp; CUET Form</span>
+                    </div>
+                    <span class="arrow">›</span>
+                </a>
+            </div>
+
+            <!-- LIVE ACTIVE EXAM FORMS KEYWORD BAR -->
+            <div class="active-exams-bar">
+                <span class="active-exams-label">🔥 Active Exam Forms (2026–27)</span>
+                <a href="/sbi-ibps-photo-signature-resizer" onclick="openExamPreset('banking'); return false;" class="active-exam-chip">SBI PO / Clerk &amp; IBPS RRB</a>
+                <a href="/ssc-photo-resizer-with-name-date" onclick="openExamPreset('ssc'); return false;" class="active-exam-chip">SSC CGL / GD Photo with Date</a>
+                <a href="/ssc-photo-resizer-with-name-date" onclick="openExamPreset('ssc'); return false;" class="active-exam-chip">RRB NTPC (30–70KB)</a>
+                <a href="/upsc-photo-resizer-550x550" onclick="openExamPreset('upsc'); return false;" class="active-exam-chip">UPSC 550×550 Photo</a>
+                <a href="/increase-image-size-in-kb" onclick="openTool('kb', false, 20, 'increase'); return false;" class="active-exam-chip">⚡ Increase Signature to 10KB–20KB</a>
+                <a href="/compress-image-to-20kb" onclick="openTool('kb', false, 20, 'reduce'); return false;" class="active-exam-chip">Compress to 20KB</a>
+            </div>
+
+            <div class="section-label-center">🛠️ ALL-IN-ONE FILE &amp; DOCUMENT UTILITIES</div>
+
+            <div class="tool-grid">
+                <a href="/compress-image-to-50kb" onclick="openTool('kb', false, 50, 'reduce'); return false;" class="card">
+                    <div class="card-icon" style="background:#EEF2FF; color:var(--primary-indigo);">📉</div>
+                    <div>
+                        <h3 class="card-title">KB Manager (Reduce &amp; Exact Boost)</h3>
+                        <p class="card-desc">Reduce or increase your exam form photo &amp; signature file sizes to exact KB (10KB, 20KB, 50KB).</p>
+                    </div>
+                </a>
+
+                <a href="/image-tools" class="card">
+                    <div class="card-icon" style="background:#ECFDF5; color:#10B981;">🖼️</div>
+                    <div>
+                        <h3 class="card-title">Image Utility</h3>
+                        <p class="card-desc">Convert formats, crop, and resize pixel dimensions perfectly (200×230px, 140×60px, 550×550px).</p>
+                    </div>
+                </a>
+
+                <a href="/pdf-tools" class="card">
+                    <div class="card-icon" style="background:#EFF6FF; color:#2563EB;">📄</div>
+                    <div>
+                        <h3 class="card-title">PDF Tools</h3>
+                        <p class="card-desc">Merge multiple pages, split documents, or compress heavy exam certificates under 100KB–300KB.</p>
+                    </div>
+                </a>
+
+                <a href="/fast-formatter" class="card">
+                    <div class="card-icon" style="background:#FFF7ED; color:#F59E0B;">⚡</div>
+                    <div>
+                        <h3 class="card-title">Fast Formatter</h3>
+                        <p class="card-desc">Quick conversion and smart formatting for everyday digital files and text.</p>
+                    </div>
+                </a>
+
+                <a href="/word-counter" class="card">
+                    <div class="card-icon" style="background:#F3E8FF; color:#9333EA;">🔤</div>
+                    <div>
+                        <h3 class="card-title">Word &amp; Character Counting</h3>
+                        <p class="card-desc">Instantly count words, characters, and spaces for descriptive exams and essays.</p>
+                    </div>
+                </a>
+
+                <a href="/case-converter" class="card">
+                    <div class="card-icon" style="background:#FFE4E6; color:#E11D48;">🔠</div>
+                    <div>
+                        <h3 class="card-title">Case Converter</h3>
+                        <p class="card-desc">Quickly change text to UPPERCASE, lowercase, Title Case, or Sentence case.</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- ================= EXAM PRESET SUITE VIEW (#exam-view) ================= -->
+        <div id="exam-view">
+            <div class="tool-header">
+                <div class="tool-title">
+                    <h2 id="examMainHeading">🎯 1-Click Exam Form Document Formatter Suite</h2>
+                    <p>Upload all your exam form documents together — we automatically resize pixels, lock exact KB limits, and download all at once with zero sign-up!</p>
+                </div>
+                <a href="/" class="btn-back" onclick="closeTool(); return false;">← Back to Home</a>
+            </div>
+
+            <div class="exam-switcher-tabs">
+                <a href="/sbi-ibps-photo-signature-resizer" id="tab-banking" class="exam-tab-btn" onclick="openExamPreset('banking'); return false;">🏦 Banking Suite</a>
+                <a href="/ssc-photo-resizer-with-name-date" id="tab-ssc" class="exam-tab-btn" onclick="openExamPreset('ssc'); return false;">🏛️ SSC &amp; Railway</a>
+                <a href="/upsc-photo-resizer-550x550" id="tab-upsc" class="exam-tab-btn" onclick="openExamPreset('upsc'); return false;">📝 UPSC &amp; State PSC</a>
+                <a href="/nta-neet-jee-photo-resizer" id="tab-nta" class="exam-tab-btn" onclick="openExamPreset('nta'); return false;">🎓 NTA Academics</a>
+            </div>
+
+            <div id="examBanner" class="exam-suite-banner bg-banking">
+                <div>
+                    <h3 id="examBannerTitle">🏦 Banking Exam Form Suite (IBPS, SBI PO/Clerk, RBI, RRB)</h3>
+                    <p id="examBannerDesc">Official dimensions &amp; exact KB limits pre-locked. Upload your files on the right and format all in 1 click.</p>
+                </div>
+                <div class="exam-badge-pill" id="examUploadCountPill">0 / 4 Documents Uploaded</div>
+            </div>
+
+            <div id="examSlotsList" class="exam-slots-container"></div>
+
+            <div class="exam-master-bar">
+                <div>
+                    <strong style="font-size:15.5px; display:block; color:var(--text-dark);">⚡ Ready to Auto-Format All Uploaded Documents?</strong>
+                    <span style="font-size:12.5px; color:var(--text-muted);">Every uploaded file will be converted to exact pixels and locked strictly to its target KB size.</span>
+                </div>
+                <button id="processAllExamBtn" class="btn-process-all-exam" onclick="processAllExamDocuments()">🚀 Format All Uploaded Documents</button>
+            </div>
+
+            <div id="exam-results-panel">
+                <div class="exam-results-top">
+                    <div>
+                        <h3 style="font-size:18px; font-weight:800; color:#065F46;">✅ All Exam Documents Formatted to Exact Specifications!</h3>
+                        <p style="font-size:12.5px; color:#047857;">Click "Download All Formatted Files" for instant 1-click download of all documents (No ZIP, No Sign-Up).</p>
+                    </div>
+                    <div class="result-actions-group">
+                        <button class="btn-download-all-direct" onclick="downloadAllDirect('exam')">
+                            <span>⬇ Download All Formatted Files</span>
+                            <span class="direct-dl-tag">Instant 1-Click</span>
+                        </button>
+                        <button class="btn-whatsapp-share" onclick="shareOnWhatsApp('exam')">
+                            <span>📲 Share on WhatsApp / Exam Telegram Group</span>
+                        </button>
+                    </div>
+                </div>
+                <div id="exam-results-list"></div>
+            </div>
+        </div>
+
+        <!-- ================= TOOL VIEW (PRO KB MANAGER SPA) ================= -->
+        <div id="tool-view">
+            <div class="tool-header">
+                <div class="tool-title">
+                    <h2 id="kbMainHeading">Reduce / Increase Image Size in KB</h2>
+                    <p>High-precision engine: Compress 20MB+ photos to exact KB or boost small images effortlessly.</p>
+                </div>
+                <a href="/" class="btn-back" onclick="closeTool(); return false;">← Back to Home</a>
+            </div>
+
+            <div class="design6-layout">
+                <div class="tool-panel">
+                    <div class="panel-header">
+                        <span>⚡ Single Image Optimizer</span>
+                        <span class="badge-mode">1 File Mode</span>
+                    </div>
+
+                    <div class="drop-zone">
+                        <input type="file" id="singleFileInput" accept="image/*">
+                        <h3>Select Or Drag Image (Up to 50MB)</h3>
+                        <p>Supports JPG, PNG, WEBP</p>
+                        <button class="btn-upload">Select Image</button>
+                    </div>
+
+                    <div class="image-preview-card">
+                        <img id="singlePreviewImg" class="preview-thumb" src="" alt="preview">
+                        <div id="singlePreviewIcon" class="icon">📄</div>
+                        <div class="details">
+                            <strong id="singleFileName">No image selected</strong>
+                            <span id="singleFileOriginalSize">Waiting for file upload...</span>
+                        </div>
+                    </div>
+
+                    <div class="controls-box">
+                        <div class="control-grid">
+                            <div>
+                                <label class="control-label">Operation Mode</label>
+                                <select id="singleMode" class="select-full" onchange="updateSingleBtnText()">
+                                    <option value="reduce">Reduce Size (Compress)</option>
+                                    <option value="increase">Increase Size (Exact Boost)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="control-label">Target Unit</label>
+                                <select id="singleUnit" class="select-full">
+                                    <option value="KB">KB</option>
+                                    <option value="MB">MB</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="control-label">Target Size Value</label>
+                            <input type="number" id="singleSizeValue" class="size-input-full" value="50" min="1" max="50000">
+                            <div class="quick-kb-chips">
+                                <button type="button" class="kb-chip" onclick="applyQuickKB(15,'reduce')">15 KB (Sign)</button>
+                                <button type="button" class="kb-chip" onclick="applyQuickKB(20,'reduce')">20 KB</button>
+                                <button type="button" class="kb-chip" onclick="applyQuickKB(35,'reduce')">35 KB (Photo)</button>
+                                <button type="button" class="kb-chip" onclick="applyQuickKB(50,'reduce')">50 KB</button>
+                                <button type="button" class="kb-chip" onclick="applyQuickKB(100,'reduce')">100 KB</button>
+                                <button type="button" class="kb-chip" onclick="applyQuickKB(25,'increase')">⚡ Boost to 25 KB</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button id="singleActionBtn" class="btn-action-primary" onclick="handleSingleProcess()">Reduce Size Now</button>
+                </div>
+
+                <div class="tool-panel">
+                    <div class="panel-header">
+                        <span>🔄 Bulk Batch Mode (Multiple Files)</span>
+                        <span id="bulkBadge" class="badge-mode">0 Files</span>
+                    </div>
+
+                    <div class="drop-zone" style="padding: 22px 16px;">
+                        <input type="file" id="bulkFileInput" accept="image/*" multiple>
+                        <h3>Drag and drop dozens of photos here</h3>
+                        <p>Process multiple heavy photos at once</p>
+                        <button class="btn-upload" style="background:var(--primary-indigo);">Select Multiple Images</button>
+                    </div>
+
+                    <div id="bulkFilesContainer" class="bulk-list" style="text-align: center;">
+                        No files added yet. Drag and drop images above.
+                    </div>
+
+                    <div class="controls-box">
+                        <div class="control-grid">
+                            <div>
+                                <label class="control-label">Batch Mode</label>
+                                <select id="bulkMode" class="select-full" onchange="updateBulkBtnText()">
+                                    <option value="reduce">Reduce Size (Compress)</option>
+                                    <option value="increase">Increase Size (Exact Boost)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="control-label">Batch Unit</label>
+                                <select id="bulkUnit" class="select-full">
+                                    <option value="KB">KB</option>
+                                    <option value="MB">MB</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="control-label">Target Size For All Files</label>
+                            <input type="number" id="bulkSizeValue" class="size-input-full" value="50" min="1" max="50000">
+                        </div>
+                    </div>
+
+                    <button id="bulkActionBtn" class="btn-action-primary" style="background: var(--primary-indigo);" onclick="handleBulkProcess()">Bulk Optimize All to Target Size</button>
+                </div>
+            </div>
+
+            <div id="result-section">
+                <div class="result-top-bar">
+                    <div class="result-header">✅ Optimization Complete! Download Below:</div>
+                    <div class="result-actions-group">
+                        <button id="bulkDownloadAllBtn" class="btn-download-all-direct" style="display:none;" onclick="downloadAllDirect('bulk_kb')">
+                            <span>⬇ Download All Bulk Files</span>
+                            <span class="direct-dl-tag">Instant 1-Click</span>
+                        </button>
+                        <button class="btn-whatsapp-share" onclick="shareOnWhatsApp('kb')">
+                            <span>📲 Share on WhatsApp / Exam Telegram Group</span>
+                        </button>
+                    </div>
+                </div>
+                <div id="result-content"></div>
+            </div>
+        </div>
+
+        <!-- SEO & RICH CONTENT GUIDE -->
+        <div class="seo-guide-box" id="exam-guidelines">
+            <h2>📋 Official Government Exam Form Photo, Signature &amp; PDF Size Guide (2026–2027)</h2>
+            <p>
+                Looking to fill your <strong>SBI exam form (SBI PO / SBI Clerk)</strong>, <strong>IBPS form (IBPS PO / Clerk / RRB)</strong>, <strong>SSC exam form (CGL, CHSL, MTS, GD)</strong>, <strong>Railway RRB form</strong>, <strong>UPSC exam form (CSE IAS, NDA, CDS)</strong>, or <strong>NTA NEET UG / JEE Main / CUET application form</strong>? Before uploading documents on the official portal, use <strong>OptiFile 1-Click Exam Presets</strong> to format your passport photo, signature, left thumb impression, handwritten declaration, and category certificates to exact pixel dimensions and KB limits directly inside your browser.
+            </p>
+            <div class="seo-table-wrap">
+                <table class="seo-spec-table">
+                    <thead>
+                        <tr>
+                            <th>Exam Form / Recruitment Board</th>
+                            <th>Passport Photo Rule</th>
+                            <th>Signature Specification</th>
+                            <th>Additional Form Documents</th>
+                            <th>1-Click Form Preset</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>SBI &amp; IBPS Banking Exam Form (SBI PO/Clerk, IBPS PO/Clerk/RRB, RBI)</strong></td>
+                            <td>20 KB – 50 KB (200 × 230 px, JPG)</td>
+                            <td>10 KB – 20 KB (140 × 60 px, Black Ink)</td>
+                            <td>Left Thumb (20–50 KB) &amp; Handwritten Declaration (50–100 KB, 800 × 400 px)</td>
+                            <td><a href="/sbi-ibps-photo-signature-resizer" onclick="openExamPreset('banking'); return false;" class="table-action-link">Format Banking Form →</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>SSC &amp; Railway Exam Form (SSC CGL/CHSL/MTS, RRB NTPC/Group D/ALP)</strong></td>
+                            <td>SSC: 20–50 KB | RRB: 30–70 KB (275 × 354 px)</td>
+                            <td>SSC: 10–20 KB | RRB: 30–70 KB</td>
+                            <td>SC/ST Train Pass &amp; Caste Certificate (50–300 KB, Auto PDF)</td>
+                            <td><a href="/ssc-photo-resizer-with-name-date" onclick="openExamPreset('ssc'); return false;" class="table-action-link">Format SSC/RRB Form →</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>UPSC &amp; State PSC Exam Form (CSE IAS, NDA, CDS, CAPF)</strong></td>
+                            <td>20 KB – 300 KB (550 × 550 px Square with Name &amp; Date)</td>
+                            <td>20 KB – 300 KB (500 × 250 px, JPG)</td>
+                            <td>Photo ID Card Proof PDF (20–300 KB)</td>
+                            <td><a href="/upsc-photo-resizer-550x550" onclick="openExamPreset('upsc'); return false;" class="table-action-link">Format UPSC Form →</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>NTA Exam Form (NEET UG, JEE Main, CUET Registration)</strong></td>
+                            <td>Passport: 10–200 KB | Postcard (4×6"): 10–200 KB</td>
+                            <td>4 KB – 30 KB (350 × 150 px, JPG)</td>
+                            <td>Fingers &amp; Thumb Impression (10–200 KB) &amp; Class 10th Certificate PDF (50–300 KB)</td>
+                            <td><a href="/nta-neet-jee-photo-resizer" onclick="openExamPreset('nta'); return false;" class="table-action-link">Format NTA Form →</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="seo-faq-grid">
+                <div class="seo-faq-item">
+                    <h4>How to resize photo, signature &amp; declaration for SBI &amp; IBPS exam form?</h4>
+                    <p>Open the <strong>Banking Suite</strong> preset on OptiFile, upload your passport photo, signature, thumb impression, and declaration, and click Format. It locks 200×230px (20–50KB) for photo and 140×60px (10–20KB) for signature in 1 click.</p>
+                </div>
+                <div class="seo-faq-item">
+                    <h4>How to format photo with Name &amp; Date for SSC, UPSC &amp; NTA exam forms?</h4>
+                    <p>Inside any Exam Preset slot for Passport Photos (SSC, UPSC, Banking, or NTA), check the <em>"Print Name &amp; Date on Photo"</em> option to add a clean white nameplate strip at the bottom of your photograph automatically.</p>
+                </div>
+                <div class="seo-faq-item">
+                    <h4>Are my uploaded ID cards, photos, and signatures safe on OptiFile?</h4>
+                    <p>100% safe. OptiFile runs entirely on client-side HTML5 Canvas and WebAssembly technology. Your exam form photos, signatures, and PDFs never leave your phone or computer.</p>
+                </div>
+                <div class="seo-faq-item">
+                    <h4>How do I increase a small signature KB size if my exam form requires minimum 10KB?</h4>
+                    <p>Open our <strong>Increase Image Size in KB</strong> tool, enter your target KB value (e.g., 15KB or 20KB), and download your boosted JPG image without losing clarity.</p>
+                </div>
+            </div>
+
+            <div class="seo-keyword-tags">
+                <strong>Supported Online Exam Form Presets:</strong> SBI PO Exam Form Photo &amp; Signature Resizer • SBI Clerk Junior Associate Form Document Formatter • IBPS PO / Clerk / RRB Form Fill Up Photo, Thumb &amp; Handwritten Declaration Resizer • SSC CGL, CHSL, MTS &amp; GD Constable Exam Form Photo Compressor with Date • Railway RRB NTPC, Group D &amp; ALP Form Photo (30–70KB) &amp; SC/ST Train Pass PDF Converter • UPSC IAS Civil Services, NDA &amp; CDS Online Form 550×550 Square Photo Resizer • NTA NEET UG, JEE Main &amp; CUET Form Passport, 4×6 Postcard Photo &amp; Certificate PDF Compressor.
+            </div>
+        </div>
+    </main>
+
+    <section class="trust-showcase-section">
+        <div class="trust-showcase-inner">
+            <h2 class="trust-showcase-title">Built for Indian Exam Aspirants — 100% Client-Side Processing (Your Photos &amp; IDs Never Leave Your Device)</h2>
+            <p class="trust-showcase-desc">
+                OptiFile UtilityHub processes your passport photos, signatures, thumb impressions, and category certificates directly inside your browser using HTML5 Canvas and WebAssembly. Zero cloud uploads, zero sign-up barriers, and instant exact-KB formatting.
+            </p>
+
+            <div class="trust-badges-row">
+                <div class="trust-badge-item">
+                    <span class="badge-icon">🖥️</span>
+                    <div style="text-align:left;">
+                        <div>100% LOCAL ENGINE</div>
+                        <span class="trust-badge-sub">HTML5 Canvas &amp; WASM</span>
+                    </div>
+                </div>
+                <div class="trust-badge-item">
+                    <span class="badge-icon">🔒</span>
+                    <div style="text-align:left;">
+                        <div>ZERO-SERVER</div>
+                        <span class="trust-badge-sub">No Data Leaves Device</span>
+                    </div>
+                </div>
+                <div class="trust-badge-item">
+                    <span class="badge-icon">⚡</span>
+                    <div style="text-align:left;">
+                        <div>NO SIGN-UP</div>
+                        <span class="trust-badge-sub">Instant 0.5s Downloads</span>
+                    </div>
+                </div>
+                <div class="trust-badge-item">
+                    <span class="badge-icon">🎯</span>
+                    <div style="text-align:left;">
+                        <div>EXACT KB LOCK</div>
+                        <span class="trust-badge-sub">Precision Byte Engine</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rights-summary-grid">
+                <div class="rights-card">
+                    <h4>🚀 1-Click Exam Form Suites</h4>
+                    <p>Pre-configured pixel dimensions, aspect-ratio fit, optional Name/Date photo stamps, and exact KB locks for Banking (IBPS/SBI), SSC, Railway RRB, UPSC, and NTA NEET/JEE forms.</p>
+                </div>
+                <div class="rights-card">
+                    <h4>🔒 Zero-Server Local Privacy</h4>
+                    <p>Your sensitive ID cards, passport photos, signatures, and category certificates are processed entirely inside your browser's local memory and never uploaded to any cloud server.</p>
+                </div>
+                <div class="rights-card">
+                    <h4>⚡ High-Precision KB Engine</h4>
+                    <p>Uses iterative binary-search JPEG quantization and lossless byte-padding to hit exact portal file size requirements (e.g., 10–20 KB or 20–50 KB) in milliseconds.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="mega-footer">
+        <div class="mega-footer-container">
+            <div class="mega-footer-grid">
+                <div class="footer-col">
+                    <h5>PRODUCT &amp; KB TOOLS</h5>
+                    <ul>
+                        <li><a href="/" onclick="closeTool(); return false;">Home</a></li>
+                        <li><a href="/compress-image-to-20kb" onclick="openTool('kb', false, 20, 'reduce'); return false;">Compress Image to 20KB</a></li>
+                        <li><a href="/compress-image-to-50kb" onclick="openTool('kb', false, 50, 'reduce'); return false;">Compress Image to 50KB</a></li>
+                        <li><a href="/increase-image-size-in-kb" onclick="openTool('kb', false, 25, 'increase'); return false;">Increase Image Size in KB</a></li>
+                        <li><a href="/image-tools">Image Utility Suite</a></li>
+                        <li><a href="/pdf-tools">PDF Tools Suite</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h5>1-CLICK EXAM FORM SUITES</h5>
+                    <ul>
+                        <li><a href="/sbi-ibps-photo-signature-resizer" onclick="openExamPreset('banking'); return false;">SBI &amp; IBPS Banking Exam Form</a></li>
+                        <li><a href="/ssc-photo-resizer-with-name-date" onclick="openExamPreset('ssc'); return false;">SSC &amp; Railway RRB Exam Form</a></li>
+                        <li><a href="/upsc-photo-resizer-550x550" onclick="openExamPreset('upsc'); return false;">UPSC &amp; State PSC Exam Form</a></li>
+                        <li><a href="/nta-neet-jee-photo-resizer" onclick="openExamPreset('nta'); return false;">NTA NEET / JEE / CUET Form</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h5>RESOURCES</h5>
+                    <ul>
+                        <li><a href="/fast-formatter">Fast Text Formatter</a></li>
+                        <li><a href="/word-counter">Word &amp; Char Counter</a></li>
+                        <li><a href="/case-converter">Case Converter</a></li>
+                        <li><a href="#exam-guidelines">Exam Form Size Guidelines</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h5>LEGAL &amp; PRIVACY</h5>
+                    <ul>
+                        <li><a onclick="openLegalModal('privacy')">Privacy &amp; Zero-Upload Policy</a></li>
+                        <li><a onclick="openLegalModal('terms')">Terms &amp; Conditions</a></li>
+                        <li><a onclick="openLegalModal('rules')">Fair Usage Guidelines</a></li>
+                        <li><a onclick="openLegalModal('copyright')">Copyright Notice</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h5>COMPANY</h5>
+                    <ul>
+                        <li><a onclick="openLegalModal('what_we_provide')">About OptiFile</a></li>
+                        <li><a onclick="openLegalModal('contact')">Contact &amp; Feedback</a></li>
+                        <li><a onclick="openLegalModal('privacy')">Client-Side Architecture</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mega-footer-bottom">
+                <button class="lang-selector-btn">🌐 English (India)</button>
+                <div style="display:flex; align-items:center; gap:24px; flex-wrap:wrap;">
+                    <div style="font-size:13px; color:#94A3B8; font-weight:600;">
+                        © OptiFile UtilityHub 2026 — All Rights Reserved • Built for Indian Exam Aspirants
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- LEGAL MODAL -->
+    <div id="legalModal">
+        <div class="legal-modal-card">
+            <div class="legal-modal-header">
+                <div style="display:flex; align-items:center; gap:10px;">
+                    <svg width="28" height="28" viewBox="0 0 120 120"><use href="#utilityhub-logo"></use></svg>
+                    <strong style="font-size:16px;">OptiFile UtilityHub — Legal &amp; Privacy Center</strong>
+                </div>
+                <button onclick="closeLegalModal()" style="background:transparent; border:1px solid #475569; color:white; width:30px; height:30px; border-radius:50%; cursor:pointer; font-weight:800;">✕</button>
+            </div>
+            <div class="legal-modal-tabs">
+                <button class="legal-tab-pill active" id="ltab_privacy" onclick="switchLegalTab('privacy')">🔒 Privacy &amp; Zero-Upload</button>
+                <button class="legal-tab-pill" id="ltab_what_we_provide" onclick="switchLegalTab('what_we_provide')">🚀 About &amp; Architecture</button>
+                <button class="legal-tab-pill" id="ltab_rules" onclick="switchLegalTab('rules')">⚖️ Fair Usage</button>
+                <button class="legal-tab-pill" id="ltab_terms" onclick="switchLegalTab('terms')">📄 Terms of Use</button>
+                <button class="legal-tab-pill" id="ltab_copyright" onclick="switchLegalTab('copyright')">©️ Copyright</button>
+            </div>
+            <div class="legal-modal-body" id="legalModalContent"></div>
+        </div>
+    </div>
+
+    <div id="toastMsg" class="toast-msg">Done!</div>
+
+    <!-- CORE ENGINE -->
+    <script>
+    (function(_0xW,_0xD){const _0xH=_0xW.location.hostname;if(_0xW.OPTIFILE_CONFIG===undefined&&!["optifile.online","www.optifile.online","localhost","127.0.0.1",""].includes(_0xH)&&!_0xH.endsWith(".vercel.app")){_0xD.body.innerHTML="";throw new Error("Protected by OptiFile.online");}
+    if('serviceWorker' in navigator){navigator.serviceWorker.getRegistrations().then(function(r){for(let sw of r){sw.unregister();}});}
+    _0xW.addEventListener('beforeinstallprompt',function(e){e.preventDefault();return false;});
+    if(_0xW.pdfjsLib){_0xW.pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';}
+    const _0xG=id=>_0xD.getElementById(id);
+    _0xW.showToast=function(m){const t=_0xG('toastMsg');if(!t)return;t.innerText=m;t.style.display='block';setTimeout(()=>{t.style.display='none';},3200);};
+    function _0xSM(t,d,u){_0xD.title=t;const md=_0xG('metaDesc'),cl=_0xG('canonicalLink'),ot=_0xG('ogTitle'),od=_0xG('ogDesc'),ou=_0xG('ogUrl');if(md)md.setAttribute('content',d);if(cl)cl.setAttribute('href',u);if(ot)ot.setAttribute('content',t);if(od)od.setAttribute('content',d);if(ou)ou.setAttribute('content',u);}
+    const _0xLD={copyright:`<h4>©️ Copyright & Intellectual Property Notice</h4><p><strong>© 2026 OptiFile UtilityHub. All Rights Reserved.</strong> The OptiFile brand identity, custom vector logos, UI layouts, and curated exam preset configurations are property of OptiFile UtilityHub.</p>`,what_we_provide:`<h4>🚀 About OptiFile UtilityHub & Architecture</h4><p>OptiFile (<strong>https://optifile.online</strong>) is a 100% free, client-side digital document & exam utility suite built for Indian exam aspirants, students, and professionals:</p><ul><li><strong>1-Click Exam Form Document Suite:</strong> Pre-configured pixel dimensions, aspect-ratio fit, optional Name/Date photo stamps, and exact KB locks for IBPS, SBI, SSC, Railway RRB (including SC/ST Train Pass PDF), UPSC, and NTA NEET/JEE forms.</li><li><strong>High-Precision KB Manager:</strong> Compress 20MB+ images down to exact KB targets (e.g., 20KB, 50KB) or boost small files to required minimums in Single and Bulk Batch modes.</li></ul>`,rules:`<h4>⚖️ Platform Rules & Fair Usage Guidelines</h4><ul><li><strong>100% Document Ownership:</strong> You retain full ownership of every photo, signature, certificate, or PDF you process on OptiFile.</li><li><strong>Authentic Document Responsibility:</strong> Users are solely responsible for ensuring that exam photos, signatures, and certificates uploaded to government portals are genuine and belong to the candidate.</li></ul>`,privacy:`<h4>🔒 100% Zero-Server Privacy & Cookie Policy</h4><p>Unlike traditional online tools that upload your sensitive ID cards, photos, and marksheets to remote cloud servers, <strong>OptiFile processes 100% of your files locally inside your device's browser memory (HTML5 Canvas & WebAssembly).</strong></p><ul><li><strong>Zero File Uploads:</strong> Your photos, signatures, and PDFs never leave your phone or computer.</li><li><strong>Anonymous Analytics:</strong> We use privacy-friendly web analytics to measure aggregate page views without tracking personal files or identity.</li></ul>`,terms:`<h4>📄 Terms & Conditions of Service</h4><p>By accessing and using OptiFile UtilityHub, you agree to our fair usage guidelines. The software is provided "as-is" with official exam dimension presets updated for the 2026–2027 recruitment cycles.</p>`,contact:`<h4>📬 Contact & Feedback</h4><p>For support, new exam preset requests, or feedback, reach out to: <strong>optifile.official@gmail.com</strong>.</p>`};
+    _0xW.openLegalModal=function(k){_0xG('legalModal').style.display='flex';_0xW.switchLegalTab(k||'privacy');};
+    _0xW.closeLegalModal=function(){_0xG('legalModal').style.display='none';};
+    _0xW.switchLegalTab=function(k){['privacy','what_we_provide','rules','terms','copyright'].forEach(t=>{const el=_0xG('ltab_'+t);if(el)el.className='legal-tab-pill '+(t===k?'active':'');});_0xG('legalModalContent').innerHTML=_0xLD[k]||_0xLD.privacy;};
+    const _0xEP={banking:{path:"/sbi-ibps-photo-signature-resizer",seoTitle:"SBI & IBPS Photo (20-50KB), Signature (10-20KB), Thumb & Declaration Resizer | OptiFile",seoDesc:"Free 1-click SBI, IBPS PO/Clerk & RRB document formatter. Resize photo (200x230px, 20-50KB), signature (140x60px, 10-20KB), left thumb impression & handwritten declaration (50-100KB) 100% offline.",title:"🏦 Banking Exam Form Suite (IBPS PO/Clerk, SBI PO/JA, RBI, IBPS RRB)",desc:"Official IBPS & SBI form rules pre-locked: Photo (20–50 KB, 200×230px), Signature (10–20 KB, 140×60px), Left Thumb (20–50 KB, 240×240px), Declaration (50–100 KB, 800×400px).",themeClass:"bg-banking",tabClass:"active-banking",slots:[{id:"bank_photo",name:"Passport Size Photograph",icon:"📸",minKB:20,maxKB:50,targetKB:38,width:200,height:230,format:"JPG",allowDateStamp:true},{id:"bank_sign",name:"Candidate Signature (Black Ink)",icon:"✍️",minKB:10,maxKB:20,targetKB:16,width:140,height:60,format:"JPG",allowDateStamp:false},{id:"bank_thumb",name:"Left Thumb Impression",icon:"👆",minKB:20,maxKB:50,targetKB:38,width:240,height:240,format:"JPG",allowDateStamp:false},{id:"bank_decl",name:"Handwritten Declaration",icon:"📝",minKB:50,maxKB:100,targetKB:82,width:800,height:400,format:"JPG",allowDateStamp:false}]},ssc:{path:"/ssc-photo-resizer-with-name-date",seoTitle:"SSC Photo Resizer with Name & Date Online (20KB to 50KB) | OptiFile",seoDesc:"Instantly format SSC CGL, CHSL, GD, MTS & Railway RRB exam photos (3.5cm x 4.5cm, 20-50KB) and signatures (10-20KB). Add live Name & Date of Photo stamp in 1 click.",title:"🏛️ SSC & Railway Exam Form Suite (CGL, CHSL, MTS, GD & RRB NTPC / Group D)",desc:"Complete SSC exam form (20–50 KB Photo, 10–20 KB Sign) + Railway RRB form (30–70 KB Photo/Sign & SC/ST Free Train Pass PDF) pre-locked!",themeClass:"bg-ssc",tabClass:"active-ssc",slots:[{id:"ssc_photo",name:"SSC Passport Photograph (3.5cm × 4.5cm)",icon:"📸",minKB:20,maxKB:50,targetKB:38,width:275,height:354,format:"JPG",allowDateStamp:true},{id:"ssc_sign",name:"SSC Horizontal Signature (4.0cm × 2.0cm)",icon:"✍️",minKB:10,maxKB:20,targetKB:16,width:315,height:157,format:"JPG",allowDateStamp:false},{id:"rrb_photo",name:"Railway (RRB) Passport Photo (30–70 KB Rule)",icon:"🚆",minKB:30,maxKB:70,targetKB:52,width:275,height:354,format:"JPG",allowDateStamp:true},{id:"rrb_sign",name:"Railway (RRB) Signature (30–70 KB Rule)",icon:"✒️",minKB:30,maxKB:70,targetKB:48,width:300,height:130,format:"JPG",allowDateStamp:false},{id:"rrb_pass_pdf",name:"Railway SC/ST Train Pass / Caste Certificate (Auto PDF)",icon:"🎫",minKB:50,maxKB:300,targetKB:185,width:850,height:1150,format:"PDF",allowDateStamp:false}]},upsc:{path:"/upsc-photo-resizer-550x550",seoTitle:"UPSC Photo & Signature Resizer Online (550x550 Pixels, 20-300KB) | OptiFile",seoDesc:"Convert your photo & signature to exact UPSC OTR specifications (350x350 to 550x550 square pixels, 20KB-300KB) with automatic Name & Date stamp and 100% browser privacy.",title:"📝 UPSC & State PSC Exam Form Suite (CSE, IAS, NDA, CDS, CAPF)",desc:"Official UPSC form rules pre-locked: Square 550×550px Photo (with Name & Date option), Signature (20–300 KB), and Photo ID Card PDF.",themeClass:"bg-upsc",tabClass:"active-upsc",slots:[{id:"upsc_photo",name:"UPSC Photograph (With Name & Date Stamp)",icon:"📸",minKB:20,maxKB:300,targetKB:145,width:550,height:550,format:"JPG",allowDateStamp:true},{id:"upsc_sign",name:"UPSC Candidate Signature",icon:"✍️",minKB:20,maxKB:300,targetKB:95,width:500,height:250,format:"JPG",allowDateStamp:false},{id:"upsc_id",name:"Photo ID Card Proof (PAN / Voter / Govt ID -> Auto PDF)",icon:"🪪",minKB:20,maxKB:300,targetKB:180,width:850,height:1100,format:"PDF",allowDateStamp:false}]},nta:{path:"/nta-neet-jee-photo-resizer",seoTitle:"NTA NEET UG, JEE Main & CUET Exam Form Photo, Postcard & Sign Resizer | OptiFile",seoDesc:"Filling an NTA NEET UG, JEE Main or CUET exam form? Format Passport photo (10-200KB), Postcard 4x6 photo, signature (4-30KB), thumb impression & Class 10th PDF in 1 click.",title:"🎓 NTA Exam Form Suite (NEET UG, JEE Main, CUET)",desc:"Official NTA form rules pre-locked: Passport Photo (10–200 KB), Postcard Photo (4×6 inch), Signature (4–30 KB), Thumb Impression, and Class 10th Certificate PDF.",themeClass:"bg-nta",tabClass:"active-nta",slots:[{id:"nta_photo",name:"Passport Size Photograph (80% Face Visible)",icon:"📸",minKB:10,maxKB:200,targetKB:95,width:413,height:531,format:"JPG",allowDateStamp:true},{id:"nta_postcard",name:"NTA Postcard Size Photo (4\" × 6\" Inch)",icon:"🖼️",minKB:10,maxKB:200,targetKB:135,width:600,height:900,format:"JPG",allowDateStamp:true},{id:"nta_sign",name:"Candidate Signature (4–30 KB Strict)",icon:"✍️",minKB:4,maxKB:30,targetKB:19,width:350,height:150,format:"JPG",allowDateStamp:false},{id:"nta_thumb",name:"Left & Right Hand Fingers & Thumb Impression",icon:"🖐️",minKB:10,maxKB:200,targetKB:85,width:600,height:300,format:"JPG",allowDateStamp:false},{id:"nta_cert",name:"Class 10th / Category Certificate (Auto PDF)",icon:"📜",minKB:50,maxKB:300,targetKB:190,width:850,height:1150,format:"PDF",allowDateStamp:false}]}};
+    let _0xCE='banking',_0xUF={},_0xPO=[],_0xBO=[];
+    _0xW.applyQuickKB=function(val,mode){_0xG('singleSizeValue').value=val;_0xG('singleUnit').value='KB';_0xG('singleMode').value=mode||'reduce';_0xW.updateSingleBtnText();_0xW.showToast(`🎯 Target set to ${val} KB (${mode==='increase'?'Exact Boost':'Compress'})`);};
+    _0xW.openTool=function(t,skipPush,presetKB,presetMode){_0xG('home-view').style.display='none';_0xG('exam-view').style.display='none';if(t==='kb'){_0xG('tool-view').style.display='block';if(presetKB){_0xG('singleSizeValue').value=presetKB;_0xG('bulkSizeValue').value=presetKB;}if(presetMode){_0xG('singleMode').value=presetMode;_0xG('bulkMode').value=presetMode;_0xW.updateSingleBtnText();_0xW.updateBulkBtnText();}const isInc=presetMode==='increase'||_0xG('singleMode').value==='increase';const targetVal=presetKB||parseFloat(_0xG('singleSizeValue').value)||50;let qUrl='/compress-image-to-50kb',seoT='Compress Image to 50KB Online Free (Photo Resizer 20KB-50KB) | OptiFile',seoD='Compress any photo to under 50KB (or between 20KB to 50KB) for SBI, SSC, UPSC, and State Govt exam forms in 1 click. 100% offline.',headingText='Compress Image to 50KB Online (20KB – 50KB Exam Standard)';if(isInc){qUrl='/increase-image-size-in-kb';seoT='Increase Image & Signature Size in KB Online (10KB, 20KB, 50KB) | OptiFile';seoD='Easily increase photo or signature file size in KB (from 5KB to 15KB, 20KB, or 50KB) for exam forms without changing dimensions or losing quality.';headingText='Increase Image & Signature Size in KB Online (Exact KB Booster)';}else if(targetVal<=20){qUrl='/compress-image-to-20kb';seoT='Compress Image to 20KB Online Free (Exact Size for Exam Forms) | OptiFile';seoD='Reduce JPEG/PNG photo and signature size to exact 20KB or under 20KB online. 100% client-side, instant compression with zero server uploads.';headingText='Compress Photo & Signature to Exact 20KB Online';}_0xG('kbMainHeading').innerText=headingText;_0xSM(seoT,seoD,'https://optifile.online'+qUrl);if(!skipPush&&_0xW.history&&_0xW.history.pushState){_0xW.history.pushState({view:'kb',mode:presetMode||''},'',qUrl);}_0xW.scrollTo({top:0,behavior:'smooth'});}};
+    _0xW.closeTool=function(skipPush){_0xG('tool-view').style.display='none';_0xG('exam-view').style.display='none';_0xG('home-view').style.display='block';_0xSM('OptiFile • 1-Click Exam Form Photo, Signature & PDF Resizer (SBI, SSC, UPSC, IBPS)','Filling an SBI exam form, SSC exam form, UPSC form, IBPS or NTA form? Use OptiFile 1-Click Exam Preset to resize photo (20-50KB), signature (10-20KB), thumb & declaration offline.','https://optifile.online/');if(!skipPush&&_0xW.history&&_0xW.history.pushState){_0xW.history.pushState({view:'home'},'','/');}_0xW.scrollTo({top:0,behavior:'smooth'});};
+    _0xW.openExamPreset=function(k,skipPush){if(!_0xEP[k])return;_0xCE=k;_0xUF={};_0xPO=[];_0xG('home-view').style.display='none';_0xG('tool-view').style.display='none';_0xG('exam-view').style.display='block';_0xG('exam-results-panel').style.display='none';const p=_0xEP[k],cleanUrl=p.path||('/?suite='+k);_0xSM(p.seoTitle,p.seoDesc,'https://optifile.online'+cleanUrl);['banking','ssc','upsc','nta'].forEach(x=>{_0xG('tab-'+x).className='exam-tab-btn '+(x===k?p.tabClass:'');});const b=_0xG('examBanner');b.className='exam-suite-banner '+p.themeClass;_0xG('examBannerTitle').innerText=p.title;_0xG('examBannerDesc').innerText=p.desc;if(!skipPush&&_0xW.history&&_0xW.history.pushState){_0xW.history.pushState({view:'exam',suite:k},'',cleanUrl);}_0xRS();_0xW.scrollTo({top:0,behavior:'smooth'});};
+    _0xW.shareOnWhatsApp=function(ctx){let msg='Bhai SBI/SSC/UPSC exam form ke liye Photo, Signature, Thumb aur Declaration 1 click mein exact KB & pixel mein set ho raha hai ispe bina kisi ads/login ke: https://optifile.online/';if(ctx==='exam'&&_0xCE&&_0xEP[_0xCE]){msg=`Bhai ${_0xCE.toUpperCase()} exam form ke liye Photo, Signature, Thumb aur Declaration 1 click mein exact KB & pixel mein set kar le ispe (100% free & zero upload): https://optifile.online${_0xEP[_0xCE].path}`;}else if(ctx==='kb'){const isInc=_0xG('singleMode').value==='increase';msg=isInc?'Bhai agar exam form mein signature ya photo ka KB size badhana (increase karna) ho toh ye free tool 1 click mein exact KB boost kar deta hai: https://optifile.online/increase-image-size-in-kb':'Bhai kisi bhi photo ya signature ko exact 20KB, 50KB mein compress karne ke liye ye free tool best hai: https://optifile.online/compress-image-to-20kb';}_0xW.open('https://api.whatsapp.com/send?text='+encodeURIComponent(msg),'_blank','noopener');};
+    function _0xRS(){const p=_0xEP[_0xCE],c=_0xG('examSlotsList');c.innerHTML='';const td=new Date().toLocaleDateString('en-GB');p.slots.forEach(s=>{const r=_0xD.createElement('div');r.className='exam-slot-row';r.id=`row_${s.id}`;const ac=s.format==='PDF'?'image/*,.pdf':'image/*',ul=s.format==='PDF'?'📂 Upload Image / PDF':'📂 Upload Photo',sh=s.allowDateStamp?`<div class="photo-stamp-box"><label style="display:flex;align-items:center;gap:6px;font-weight:700;cursor:pointer;"><input type="checkbox" id="stamp_chk_${s.id}"> Print Name & Date on Photo</label><input type="text" id="stamp_name_${s.id}" placeholder="Candidate Name (Optional)"><input type="text" id="stamp_date_${s.id}" value="DOP: ${td}"></div>`:'';r.innerHTML=`<div class="slot-left"><div class="slot-icon">${s.icon}</div><div class="slot-meta"><h4>${s.name}</h4><div class="spec-pills"><span class="spec-pill kb-pill">⚖️ Official Limit: ${s.minKB}–${s.maxKB} KB</span><span class="spec-pill dim-pill">📐 Size: ${s.width} × ${s.height} px</span><span class="spec-pill">📄 Format: .${s.format}</span></div><div class="slot-custom-controls"><span>🎯 Exact Target KB:</span><input type="number" id="target_kb_${s.id}" class="slot-kb-input" value="${s.targetKB}" min="${s.minKB}" max="${s.maxKB}"><span>KB</span><select id="fit_mode_${s.id}" class="slot-fit-select"><option value="contain">Smart Fit (No Distortion)</option><option value="exact">Exact Stretch (${s.width}×${s.height})</option></select></div>${sh}</div></div><div class="slot-right"><div class="slot-file-status"><img id="thumb_${s.id}" class="slot-thumb" src="" alt="thumb"><div class="slot-status-text"><strong id="fname_${s.id}">Not uploaded yet</strong><span id="fsize_${s.id}">Waiting for file...</span></div></div><button class="btn-slot-upload">${ul}<input type="file" accept="${ac}" onchange="handleSlotFileSelect('${s.id}', this)"></button></div>`;c.appendChild(r);});_0xUC();}
+    _0xW.handleSlotFileSelect=async function(id,inp){if(inp.files&&inp.files[0]){const f=inp.files[0];_0xUF[id]=f;_0xG(`row_${id}`).classList.add('slot-uploaded');const th=_0xG(`thumb_${id}`);if(f.type==='application/pdf'||f.name.toLowerCase().endsWith('.pdf')){try{const pc=await _0xRP(f,150,200);th.src=pc.toDataURL('image/jpeg',0.8);th.style.display='block';}catch(e){th.style.display='none';}}else{th.src=URL.createObjectURL(f);th.style.display='block';}_0xG(`fname_${id}`).innerText=f.name;_0xG(`fsize_${id}`).innerText=`Original: ${_0xFS(f.size)} ✅`;_0xUC();_0xW.showToast(`Loaded ${f.name}`);}};
+    function _0xUC(){const tot=_0xEP[_0xCE].slots.length,cnt=Object.keys(_0xUF).length;_0xG('examUploadCountPill').innerText=`${cnt} / ${tot} Documents Uploaded`;}
+    async function _0xRP(pf,tw,th){const ab=await pf.arrayBuffer(),pdf=await pdfjsLib.getDocument({data:ab}).promise,pg=await pdf.getPage(1),uv=pg.getViewport({scale:1}),sc=Math.max(tw/uv.width,th/uv.height,1.5),vp=pg.getViewport({scale:sc}),tc=_0xD.createElement('canvas');tc.width=vp.width;tc.height=vp.height;const ctx=tc.getContext('2d');ctx.fillStyle='#FFFFFF';ctx.fillRect(0,0,tc.width,tc.height);await pg.render({canvasContext:ctx,viewport:vp}).promise;return tc;}
+    async function _0xPS(slot,file){let se=null,sw=0,sh=0;if(file.type==='application/pdf'||file.name.toLowerCase().endsWith('.pdf')){se=await _0xRP(file,slot.width,slot.height);sw=se.width;sh=se.height;}else{se=await _0xLI(file);sw=se.width;sh=se.height;}const uk=_0xG(`target_kb_${slot.id}`);let dk=uk?parseFloat(uk.value):slot.targetKB;if(isNaN(dk))dk=slot.targetKB;dk=Math.max(slot.minKB,Math.min(slot.maxKB,dk));const fmEl=_0xG(`fit_mode_${slot.id}`),fm=fmEl?fmEl.value:'contain',tb=Math.floor(dk*1024),mnb=Math.floor(slot.minKB*1024),mxb=Math.floor((slot.maxKB-0.5)*1024);function _0xDC(w,h){const c=_0xD.createElement('canvas');c.width=w;c.height=h;const ctx=c.getContext('2d');ctx.fillStyle='#FFFFFF';ctx.fillRect(0,0,w,h);if(fm==='contain'){const sc=Math.min(w/sw,h/sh),dw=sw*sc,dh=sh*sc,ox=(w-dw)/2,oy=(h-dh)/2;ctx.drawImage(se,ox,oy,dw,dh);}else{ctx.drawImage(se,0,0,w,h);}if(slot.allowDateStamp){const chk=_0xG(`stamp_chk_${slot.id}`);if(chk&&chk.checked){const cn=_0xG(`stamp_name_${slot.id}`).value.trim(),cd=_0xG(`stamp_date_${slot.id}`).value.trim(),sth=Math.max(24,Math.floor(h*0.17));ctx.fillStyle='#FFFFFF';ctx.fillRect(0,h-sth,w,sth);ctx.strokeStyle='#000000';ctx.lineWidth=1.5;ctx.strokeRect(0,h-sth,w,sth);ctx.fillStyle='#000000';ctx.textAlign='center';const fs=Math.max(10,Math.floor(sth*0.36));ctx.font=`bold ${fs}px Inter, Arial, sans-serif`;if(cn&&cd){ctx.fillText(cn.toUpperCase(),w/2,h-sth+fs+2);ctx.fillText(cd.toUpperCase(),w/2,h-5);}else{ctx.fillText((cn||cd).toUpperCase(),w/2,h-(sth/2)+(fs/3));}}}return c;}const bc=_0xDC(slot.width,slot.height);if(slot.format==='PDF'){const{jsPDF}=_0xW.jspdf;let bpb=null,lq=0.15,hq=0.95;for(let it=0;it<7;it++){let mq=(lq+hq)/2;const pdf=new jsPDF({orientation:slot.width>slot.height?'l':'p',unit:'px',format:[slot.width,slot.height],compress:true});pdf.addImage(bc.toDataURL('image/jpeg',mq),'JPEG',0,0,slot.width,slot.height);const tsb=pdf.output('blob');if(tsb.size<=tb){bpb=tsb;lq=mq;}else{hq=mq;}}if(!bpb){const pdf=new jsPDF({orientation:slot.width>slot.height?'l':'p',unit:'px',format:[slot.width,slot.height],compress:true});pdf.addImage(bc.toDataURL('image/jpeg',0.12),'JPEG',0,0,slot.width,slot.height);bpb=pdf.output('blob');}if(bpb.size<tb&&tb<=mxb){bpb=new Blob([bpb,new Uint8Array(tb-bpb.size)],{type:'application/pdf'});}else if(bpb.size<mnb){bpb=new Blob([bpb,new Uint8Array(mnb+2048-bpb.size)],{type:'application/pdf'});}const csn=slot.name.replace(/[^a-zA-Z0-9]+/g,'_').replace(/^_|_$/g,'');return{slotName:slot.name,dimensions:`${slot.width}×${slot.height}px`,allowedRange:`${slot.minKB}–${slot.maxKB} KB`,fileName:`${_0xCE.toUpperCase()}_${csn}.pdf`,originalSize:file.size,newSize:bpb.size,previewUrl:bc.toDataURL('image/jpeg',0.7),blobUrl:URL.createObjectURL(bpb)};}let bb=null,sf=1.0;for(let p=0;p<5;p++){const cw=Math.max(60,Math.floor(slot.width*sf)),ch=Math.max(40,Math.floor(slot.height*sf)),wc=p===0?bc:_0xDC(cw,ch);let mqb=await _0xCB(wc,0.08);if(mqb.size>tb&&mqb.size>mxb){sf*=0.82;bb=mqb;continue;}let lw=0.08,hg=0.98;bb=mqb;for(let i=0;i<8;i++){let md=(lw+hg)/2,tsb=await _0xCB(wc,md);if(tsb.size<=tb){bb=tsb;lw=md;}else{hg=md;}}break;}if(bb.size<tb&&tb<=mxb){bb=new Blob([bb,new Uint8Array(tb-bb.size)],{type:'image/jpeg'});}else if(bb.size<mnb){bb=new Blob([bb,new Uint8Array(mnb+2048-bb.size)],{type:'image/jpeg'});}const csn=slot.name.replace(/[^a-zA-Z0-9]+/g,'_').replace(/^_|_$/g,'');return{slotName:slot.name,dimensions:`${slot.width}×${slot.height}px`,allowedRange:`${slot.minKB}–${slot.maxKB} KB`,fileName:`${_0xCE.toUpperCase()}_${csn}.jpg`,originalSize:file.size,newSize:bb.size,previewUrl:URL.createObjectURL(bb),blobUrl:URL.createObjectURL(bb)};}
+    _0xW.processAllExamDocuments=async function(){const p=_0xEP[_0xCE],uids=Object.keys(_0xUF);if(uids.length===0){alert("Please upload at least one document in any slot above first!");return;}const btn=_0xG('processAllExamBtn'),ot=btn.innerText;btn.disabled=true;btn.innerText="⏳ Auto-Formatting Documents...";try{_0xPO=[];for(const s of p.slots){if(_0xUF[s.id]){const r=await _0xPS(s,_0xUF[s.id]);_0xPO.push(r);}}_0xRER();_0xW.showToast(`✅ Formatted ${_0xPO.length} Exam Documents!`);}catch(err){console.error(err);alert("Error formatting documents: "+err.message);}finally{btn.innerText=ot;btn.disabled=false;}};
+    function _0xRER(){const pn=_0xG('exam-results-panel'),ls=_0xG('exam-results-list');ls.innerHTML='';pn.style.display='block';_0xPO.forEach((it,idx)=>{const cd=_0xD.createElement('div');cd.className='result-card';cd.innerHTML=`<div class="result-info"><img src="${it.previewUrl}" alt="preview"><div><strong style="font-size:14px;display:block;color:var(--text-dark);">${idx+1}. ${it.slotName} → <span style="color:var(--primary);">${it.fileName}</span></strong><span style="font-size:12px;color:var(--text-muted);">Original: <b>${_0xFS(it.originalSize)}</b> → Final Exact Size: <b style="color:#059669;font-size:13px;">${_0xFS(it.newSize)}</b> | Official Limit: <b>${it.allowedRange}</b> | Pixels: <b>${it.dimensions}</b></span></div></div><a href="${it.blobUrl}" download="${it.fileName}" class="btn-download">⬇ Download Single</a>`;ls.appendChild(cd);});pn.scrollIntoView({behavior:'smooth'});}
+    let _0xADQ=[];
+    _0xW.downloadAllDirect=function(st){if(st==='exam'){if(_0xPO.length===0)return;_0xADQ=_0xPO.map(i=>({blobUrl:i.blobUrl,fileName:i.fileName}));}else if(st==='bulk_kb'){if(_0xBO.length===0)return;_0xADQ=_0xBO.map(i=>({blobUrl:i.blobUrl,fileName:'optifile-'+i.name}));}_0xEQD();};
+    function _0xEQD(){_0xADQ.forEach((it,idx)=>{setTimeout(()=>{const a=_0xD.createElement('a');a.href=it.blobUrl;a.download=it.fileName;_0xD.body.appendChild(a);a.click();_0xD.body.removeChild(a);},idx*350);});_0xW.showToast(`⬇ Downloading ${_0xADQ.length} files directly!`);}
+    let _0xSF=null,_0xBF=[];
+    function _0xFS(b){if(b>=1048576)return(b/1048576).toFixed(2)+' MB';return(b/1024).toFixed(2)+' KB';}
+    _0xW.updateSingleBtnText=function(){_0xG('singleActionBtn').innerText=_0xG('singleMode').value==='reduce'?'Reduce Size Now':'Increase Size Now';};
+    _0xW.updateBulkBtnText=function(){_0xG('bulkActionBtn').innerText=_0xG('bulkMode').value==='reduce'?'Bulk Optimize All to Target Size':'Bulk Boost All to Target Size';};
+    _0xG('singleFileInput').addEventListener('change',function(e){if(e.target.files&&e.target.files[0]){_0xSF=e.target.files[0];const th=_0xG('singlePreviewImg');th.src=URL.createObjectURL(_0xSF);th.style.display='block';_0xG('singlePreviewIcon').style.display='none';_0xG('singleFileName').innerText=_0xSF.name;_0xG('singleFileOriginalSize').innerText='Original Size: '+_0xFS(_0xSF.size);}});
+    _0xG('bulkFileInput').addEventListener('change',function(e){if(e.target.files.length>0){_0xBF=Array.from(e.target.files);_0xG('bulkBadge').innerText=_0xBF.length+' Files Selected';const c=_0xG('bulkFilesContainer');c.innerHTML='';c.style.textAlign='left';_0xBF.forEach((f,idx)=>{const r=_0xD.createElement('div');r.className='bulk-item';r.innerHTML=`<span>${idx+1}. ${f.name.substring(0,28)}</span><span style="color:var(--text-muted);">${_0xFS(f.size)}</span>`;c.appendChild(r);});}});
+    function _0xCB(cv,q){return new Promise(res=>{cv.toBlob(b=>{if(b){res(b);}else{const du=cv.toDataURL('image/jpeg',q),bs=atob(du.split(',')[1]),ab=new ArrayBuffer(bs.length),ia=new Uint8Array(ab);for(let i=0;i<bs.length;i++)ia[i]=bs.charCodeAt(i);res(new Blob([ab],{type:'image/jpeg'}));}},'image/jpeg',q);});}
+    function _0xLI(f){return new Promise((res,rej)=>{const u=URL.createObjectURL(f),im=new Image();im.onload=()=>{URL.revokeObjectURL(u);res(im);};im.onerror=rej;im.src=u;});}
+    async function _0xOIF(file,tb,mode){const img=await _0xLI(file),cv=_0xD.createElement('canvas'),ctx=cv.getContext('2d');if(mode==='increase'){cv.width=img.width;cv.height=img.height;ctx.fillStyle="#FFFFFF";ctx.fillRect(0,0,cv.width,cv.height);ctx.drawImage(img,0,0);let bb=await _0xCB(cv,0.98);if(file.size>bb.size&&file.size<=tb)bb=file;if(bb.size<tb){bb=new Blob([bb,new Uint8Array(tb-bb.size)],{type:'image/jpeg'});}return{name:file.name.replace(/\.[^/.]+$/,"")+".jpg",originalSize:file.size,newSize:bb.size,blobUrl:URL.createObjectURL(bb)};}let w=img.width,h=img.height;const map=(tb/1024)*12000;if(w*h>map){const rt=Math.sqrt(map/(w*h));w=Math.max(80,Math.floor(w*rt));h=Math.max(80,Math.floor(h*rt));}let bb=null,ss=1.0;for(let p=0;p<10;p++){const cw=Math.max(40,Math.floor(w*ss)),ch=Math.max(40,Math.floor(h*ss));cv.width=cw;cv.height=ch;ctx.fillStyle="#FFFFFF";ctx.fillRect(0,0,cw,ch);ctx.drawImage(img,0,0,cw,ch);let mb=await _0xCB(cv,0.1);if(mb.size>tb){const sr=Math.sqrt(tb/mb.size)*0.85;ss*=Math.max(0.3,Math.min(0.8,sr));bb=mb;continue;}let lw=0.1,hg=0.95;bb=mb;for(let it=0;it<7;it++){let md=(lw+hg)/2,tsb=await _0xCB(cv,md);if(tsb.size<=tb){bb=tsb;lw=md;}else{hg=md;}}break;}if(bb&&bb.size<tb*0.92){const tp=Math.floor(tb*0.98)-bb.size;if(tp>0)bb=new Blob([bb,new Uint8Array(tp)],{type:'image/jpeg'});}return{name:file.name.replace(/\.[^/.]+$/,"")+".jpg",originalSize:file.size,newSize:bb.size,blobUrl:URL.createObjectURL(bb)};}
+    _0xW.handleSingleProcess=async function(){if(!_0xSF){alert("Please select an image first!");return;}const btn=_0xG('singleActionBtn'),ot=btn.innerText;btn.innerText="Processing...";btn.disabled=true;try{const md=_0xG('singleMode').value,vl=parseFloat(_0xG('singleSizeValue').value)||50,un=_0xG('singleUnit').value,tb=Math.floor(un==='MB'?vl*1048576:vl*1024),res=await _0xOIF(_0xSF,tb,md);_0xBO=[];_0xRR([res],false);}catch(e){console.error(e);alert("Error processing file: "+e.message);}finally{btn.innerText=ot;btn.disabled=false;}};
+    _0xW.handleBulkProcess=async function(){if(_0xBF.length===0){alert("Please select multiple images first!");return;}const btn=_0xG('bulkActionBtn'),ot=btn.innerText;btn.disabled=true;try{const md=_0xG('bulkMode').value,vl=parseFloat(_0xG('bulkSizeValue').value)||50,un=_0xG('bulkUnit').value,tb=Math.floor(un==='MB'?vl*1048576:vl*1024);let out=[];for(let i=0;i<_0xBF.length;i++){btn.innerText=`Processing ${i+1} of ${_0xBF.length}...`;const r=await _0xOIF(_0xBF[i],tb,md);out.push(r);}_0xBO=out;_0xRR(out,true);}catch(e){console.error(e);alert("Error processing bulk files: "+e.message);}finally{btn.innerText=ot;btn.disabled=false;}};
+    function _0xRR(ls,ib){const sc=_0xG('result-section'),ct=_0xG('result-content'),bb=_0xG('bulkDownloadAllBtn');ct.innerHTML='';sc.style.display='block';bb.style.display=(ib&&ls.length>0)?'flex':'none';ls.forEach(it=>{const d=_0xD.createElement('div');d.className='result-card';d.innerHTML=`<div class="result-info"><img src="${it.blobUrl}" alt="output"><div><strong style="font-size:14px;display:block;">${it.name}</strong><span style="font-size:12px;color:var(--text-muted);">Original: <b>${_0xFS(it.originalSize)}</b> → New Size: <b style="color:#059669;">${_0xFS(it.newSize)}</b></span></div></div><a href="${it.blobUrl}" download="optifile-${it.name}" class="btn-download">⬇ Download Image</a>`;ct.appendChild(d);});sc.scrollIntoView({behavior:'smooth'});}
+    function _0xRT(){const path=_0xW.location.pathname.replace(/\.html$/,'').replace(/\/+$/,'')||'/';const pr=new URLSearchParams(_0xW.location.search),st=pr.get('suite'),tl=pr.get('tool'),kb=parseFloat(pr.get('kb')),md=pr.get('mode');if(path==='/sbi-ibps-photo-signature-resizer'||st==='banking'){_0xW.openExamPreset('banking',true);}else if(path==='/ssc-photo-resizer-with-name-date'||st==='ssc'){_0xW.openExamPreset('ssc',true);}else if(path==='/upsc-photo-resizer-550x550'||st==='upsc'){_0xW.openExamPreset('upsc',true);}else if(path==='/nta-neet-jee-photo-resizer'||st==='nta'){_0xW.openExamPreset('nta',true);}else if(path==='/increase-image-size-in-kb'){_0xW.openTool('kb',true,25,'increase');}else if(path==='/compress-image-to-20kb'){_0xW.openTool('kb',true,20,'reduce');}else if(path==='/compress-image-to-50kb'||path==='/kb-manager'||tl==='kb'){_0xW.openTool('kb',true,kb||50,md||'reduce');}else{_0xW.closeTool(true);}}
+    _0xW.addEventListener('popstate',_0xRT);
+    _0xW.addEventListener('DOMContentLoaded',_0xRT);
+    })(window,document);
+    </script>
+</body>
+</html>
