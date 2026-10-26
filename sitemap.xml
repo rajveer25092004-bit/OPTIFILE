@@ -5,7 +5,7 @@
   <!-- 1. Main Homepage & All-In-One Exam Utility Hub -->
   <url>
     <loc>https://optifile.online/</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <image:image>
@@ -15,67 +15,10 @@
     </image:image>
   </url>
 
-  <!-- 2. Descriptive Writing by OptiFile Simulator -->
+  <!-- 2. Banking Exam Suite (IBPS PO/Clerk, SBI PO/Clerk, RBI, IBPS RRB) -->
   <url>
-    <loc>https://optifile.online/descriptive-writing.html</loc>
-    <lastmod>2026-10-25</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
-    <image:image>
-      <image:loc>https://optifile.online/logo.png</image:loc>
-      <image:title>Descriptive Writing by OptiFile • Banking PO, UPSC, IELTS &amp; PTE Simulator</image:title>
-      <image:caption>Practice Banking PO Descriptive Writing (SBI PO, IBPS PO, RBI Grade B, NABARD), UPSC Mains QCA Booklet, CD-IELTS Writing, and Pearson PTE with AI Examiner evaluation and live WPM.</image:caption>
-    </image:image>
-  </url>
-
-  <!-- 3. Descriptive Writing Exam Presets -->
-  <url>
-    <loc>https://optifile.online/descriptive-writing.html?exam=sbi-po</loc>
-    <lastmod>2026-10-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.95</priority>
-  </url>
-  <url>
-    <loc>https://optifile.online/descriptive-writing.html?exam=rbi-grb</loc>
-    <lastmod>2026-10-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
-  </url>
-  <url>
-    <loc>https://optifile.online/descriptive-writing.html?exam=nabard-a</loc>
-    <lastmod>2026-10-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
-  </url>
-  <url>
-    <loc>https://optifile.online/descriptive-writing.html?exam=upsc-essay</loc>
-    <lastmod>2026-10-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
-  </url>
-  <url>
-    <loc>https://optifile.online/descriptive-writing.html?exam=upsc-gs</loc>
-    <lastmod>2026-10-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
-  </url>
-  <url>
-    <loc>https://optifile.online/descriptive-writing.html?exam=ielts-full</loc>
-    <lastmod>2026-10-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
-  </url>
-  <url>
-    <loc>https://optifile.online/descriptive-writing.html?exam=pte-full</loc>
-    <lastmod>2026-10-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
-  </url>
-
-  <!-- 4. Dedicated SEO URL: SBI & IBPS Banking Exam Suite -->
-  <url>
-    <loc>https://optifile.online/sbi-ibps-photo-signature-resizer</loc>
-    <lastmod>2026-10-25</lastmod>
+    <loc>https://optifile.online/?suite=banking</loc>
+    <lastmod>2026-10-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
     <image:image>
@@ -85,10 +28,10 @@
     </image:image>
   </url>
 
-  <!-- 5. Dedicated SEO URL: SSC & Railway RRB Exam Suite -->
+  <!-- 3. SSC & Railway RRB Exam Suite -->
   <url>
-    <loc>https://optifile.online/ssc-photo-resizer-with-name-date</loc>
-    <lastmod>2026-10-25</lastmod>
+    <loc>https://optifile.online/?suite=ssc</loc>
+    <lastmod>2026-10-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
     <image:image>
@@ -98,10 +41,10 @@
     </image:image>
   </url>
 
-  <!-- 6. Dedicated SEO URL: UPSC & State PSC Exam Suite -->
+  <!-- 4. UPSC & State PSC Exam Suite -->
   <url>
-    <loc>https://optifile.online/upsc-photo-resizer-550x550</loc>
-    <lastmod>2026-10-25</lastmod>
+    <loc>https://optifile.online/?suite=upsc</loc>
+    <lastmod>2026-10-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
     <image:image>
@@ -111,12 +54,12 @@
     </image:image>
   </url>
 
-  <!-- 7. Dedicated SEO URL: NTA Academics Exam Suite (NEET, JEE, CUET) -->
+  <!-- 5. NTA Academics Exam Suite (NEET UG, JEE Main, CUET) -->
   <url>
-    <loc>https://optifile.online/nta-neet-jee-photo-resizer</loc>
-    <lastmod>2026-10-25</lastmod>
+    <loc>https://optifile.online/?suite=nta</loc>
+    <lastmod>2026-10-19</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
+    <priority>0.95</priority>
     <image:image>
       <image:loc>https://optifile.online/logo.png</image:loc>
       <image:title>NTA NEET UG, JEE Main &amp; CUET Passport Photo, Postcard Photo (4x6), Signature &amp; Thumb Impression Resizer</image:title>
@@ -124,103 +67,77 @@
     </image:image>
   </url>
 
-  <!-- 8. Dedicated SEO URL: Increase Image Size in KB (Exact Boost) -->
+  <!-- 6. Pro KB Manager (Reduce & Exact Boost) -->
   <url>
-    <loc>https://optifile.online/increase-image-size-in-kb</loc>
-    <lastmod>2026-10-25</lastmod>
+    <loc>https://optifile.online/kb-manager.html</loc>
+    <lastmod>2026-10-19</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
+    <priority>0.95</priority>
     <image:image>
       <image:loc>https://optifile.online/logo.png</image:loc>
-      <image:title>Increase Image &amp; Signature Size in KB Online (10KB, 20KB, 50KB) Without Losing Quality</image:title>
-      <image:caption>Easily boost small exam form photos or signatures from 5KB to required portals minimums like 10KB, 20KB, or 50KB without changing pixel dimensions.</image:caption>
+      <image:title>Reduce or Increase Image Size in Exact KB - 10KB, 20KB, 50KB, 100KB Photo Resizer</image:title>
+      <image:caption>Compress heavy 20MB+ images or boost small photos to exact KB limits (10KB, 20KB, 50KB, 100KB) in Single and Bulk Batch modes 100% offline.</image:caption>
     </image:image>
   </url>
 
-  <!-- 9. Dedicated SEO URL: Compress Image to 20KB -->
+  <!-- 7. Image Tools Suite (Crop, Pixel Resize & Format Converter) -->
   <url>
-    <loc>https://optifile.online/compress-image-to-20kb</loc>
-    <lastmod>2026-10-25</lastmod>
+    <loc>https://optifile.online/image-tools.html</loc>
+    <lastmod>2026-10-19</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
+    <priority>0.90</priority>
     <image:image>
       <image:loc>https://optifile.online/logo.png</image:loc>
-      <image:title>Compress Image to 20KB Online Free (Exact Size for Exam Signatures)</image:title>
-      <image:caption>Reduce signature and photo size to exact 20KB or under 20KB online instantly with 100% browser privacy and zero server uploads.</image:caption>
-    </image:image>
-  </url>
-
-  <!-- 10. Dedicated SEO URL: Compress Image to 50KB -->
-  <url>
-    <loc>https://optifile.online/compress-image-to-50kb</loc>
-    <lastmod>2026-10-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-    <image:image>
-      <image:loc>https://optifile.online/logo.png</image:loc>
-      <image:title>Compress Image to 50KB Online Free (Photo Resizer 20KB-50KB Standard)</image:title>
-      <image:caption>Compress any exam form photograph to under 50KB (or between 20KB to 50KB) for SBI, SSC, UPSC, and Banking exams in 1 click.</image:caption>
-    </image:image>
-  </url>
-
-  <!-- 11. Image Tools Suite -->
-  <url>
-    <loc>https://optifile.online/image-tools</loc>
-    <lastmod>2026-10-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
-    <image:image>
-      <image:loc>https://optifile.online/logo.png</image:loc>
-      <image:title>Image Utility &amp; Format Converter - Resize Pixels &amp; Convert JPG, PNG, WEBP, PDF</image:title>
+      <image:title>Image Utility &amp; Format Converter - Resize Pixels (200x230px, 140x60px, 550x550px) &amp; Convert JPG, PNG, WEBP, PDF</image:title>
       <image:caption>Resize exact pixel dimensions, rotate or flip photos, and batch convert images between JPG, PNG, WEBP, and PDF in browser.</image:caption>
     </image:image>
   </url>
 
-  <!-- 12. PDF Tools Suite -->
+  <!-- 8. PDF Tools Suite (8-in-1 Offline PDF Toolkit) -->
   <url>
-    <loc>https://optifile.online/pdf-tools</loc>
-    <lastmod>2026-10-25</lastmod>
+    <loc>https://optifile.online/pdf-tools.html</loc>
+    <lastmod>2026-10-19</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
+    <priority>0.90</priority>
     <image:image>
       <image:loc>https://optifile.online/logo.png</image:loc>
-      <image:title>Pro 8-in-1 PDF Suite - Merge, Split, Compress PDF (50KB to 300KB), PDF to JPG</image:title>
+      <image:title>Pro 8-in-1 PDF Suite - Merge, Split, Compress PDF (50KB to 300KB), PDF to JPG, Rotate &amp; Watermark</image:title>
       <image:caption>100% client-side PDF utility suite to merge, split, compress PDFs for government portals, convert PDF pages to JPG ZIP, rotate, add page numbers, watermark, and delete pages.</image:caption>
     </image:image>
   </url>
 
-  <!-- 13. Fast Formatter -->
+  <!-- 9. Fast Formatter & Universal AI Grammar Fixer -->
   <url>
-    <loc>https://optifile.online/fast-formatter</loc>
-    <lastmod>2026-10-25</lastmod>
+    <loc>https://optifile.online/fast-formatter.html</loc>
+    <lastmod>2026-10-19</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
+    <priority>0.85</priority>
     <image:image>
       <image:loc>https://optifile.online/logo.png</image:loc>
-      <image:title>Universal AI Fast Formatter &amp; Smart Grammar Engine - Fix Broken PDF Lines</image:title>
+      <image:title>Universal AI Fast Formatter &amp; Smart Grammar Engine - Fix Broken PDF Lines &amp; Split Words</image:title>
       <image:caption>Mathematically reconstructs broken or split English words from PDFs/OCR, fixes grammar and spelling, removes extra spaces, and exports clean PDF, DOC, or TXT.</image:caption>
     </image:image>
   </url>
 
-  <!-- 14. Word & Character Counter -->
+  <!-- 10. Universal Word & Character Counter (with Smart OCR) -->
   <url>
-    <loc>https://optifile.online/word-counter</loc>
-    <lastmod>2026-10-25</lastmod>
+    <loc>https://optifile.online/word-counter.html</loc>
+    <lastmod>2026-10-19</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
+    <priority>0.85</priority>
     <image:image>
       <image:loc>https://optifile.online/logo.png</image:loc>
-      <image:title>Universal Word &amp; Character Counter with Smart AI OCR for Essays &amp; Exams</image:title>
+      <image:title>Universal Word &amp; Character Counter with Smart AI OCR for PDF, Scanned PDF, Word, Excel &amp; Essays</image:title>
       <image:caption>Count words, characters, sentences, paragraphs, reading time, and top keywords for SBI PO, IBPS, SSC, and UPSC descriptive exams.</image:caption>
     </image:image>
   </url>
 
-  <!-- 15. Smart Case Converter -->
+  <!-- 11. Universal Smart Case Converter -->
   <url>
-    <loc>https://optifile.online/case-converter</loc>
-    <lastmod>2026-10-25</lastmod>
+    <loc>https://optifile.online/case-converter.html</loc>
+    <lastmod>2026-10-19</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
+    <priority>0.80</priority>
     <image:image>
       <image:loc>https://optifile.online/logo.png</image:loc>
       <image:title>Universal Smart Case Converter - UPPERCASE, lowercase, Title Case &amp; Sentence case</image:title>
