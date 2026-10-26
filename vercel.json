@@ -1,4 +1,46 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "rewrites": [
+    {
+      "source": "/sbi-ibps-photo-signature-resizer",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/ssc-photo-resizer-with-name-date",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/upsc-photo-resizer-550x550",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/nta-neet-jee-photo-resizer",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/compress-image-to-50kb",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/compress-image-to-20kb",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/increase-image-size-in-kb",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/kb-manager",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/exam-practice-hub",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/descriptive-writing",
+      "destination": "/descriptive-writing.html"
+    }
+  ]
 }
